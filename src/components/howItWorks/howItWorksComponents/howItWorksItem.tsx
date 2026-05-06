@@ -1,4 +1,3 @@
-import { Circle } from "@/components/circle/Circle";
 import { Icon } from "@/components/ui/Icon";
 
 export interface HowItWorksItemProps {
@@ -14,9 +13,9 @@ export const HowItWorksItem: React.FC<HowItWorksItemProps> = ({ logoId, title, d
      bg-bg_item ${logoId ? "justify-between" : "justify-end"} `}
     >
       {logoId && (
-        <Circle className="size-20">
-          <Icon id={logoId} width={37} height={36} />{" "}
-        </Circle>
+        <div className="flex justify-center items-center rounded-full shrink-0 size-20 bg-accent">
+          <Icon id={logoId} width={35} height={35} />{" "}
+        </div>
       )}
 
       <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">

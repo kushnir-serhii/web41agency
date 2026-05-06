@@ -44,16 +44,16 @@ body {
 .swiper-wrapper{
   display: flex !important;
   transition-timing-function: linear !important;
-  width: 100%;
+  width: auto;
 }
 .swiper {
-  width: 100%;
+  width: auto;
   height: 100%;
 }
  .swiper-slide {
   text-align: center;
   background: red;
-   height: 100%;
+   height: auto;
    display: flex;
   
   justify-content: center;

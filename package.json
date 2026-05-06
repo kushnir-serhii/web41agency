@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clear-cache": "rm -rf .next"
+    "clear-cache": "rm -rf .next",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
+    "framer-motion": "^12.38.0",
     "motion": "^12.4.10",
     "next": "15.2.1",
     "react": "^19.0.0",

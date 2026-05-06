@@ -8,23 +8,24 @@ interface HeroAnimationItemProps {
   arraySrc: string[];
   speed: number;
   revers?: boolean;
+  className?: string;
 }
 
 export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
   arraySrc,
   speed,
   revers,
+  className,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [slides, setSlides] = useState([...arraySrc, ...arraySrc]);
 
   useEffect(() => {
-    // Duplicate slides for seamless infinite scrolling
     setSlides((prev) => [...prev, ...prev]);
   }, []);
 
   return (
-    <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
+    <div className={`relative w-full h-full overflow-hidden flex items-center justify-center ${className ?? ""}`}>
       <motion.div
         ref={containerRef}
         className="absolute -top-20 flex flex-col gap-4"

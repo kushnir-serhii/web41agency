@@ -1,4 +1,3 @@
-import { Circle } from "@/components/circle/Circle";
 import { Icon } from "@/components/ui/Icon";
 
 interface IDescription {
@@ -20,9 +19,9 @@ export const WhyChooseItem: React.FC<WhyChooseItemProps> = ({
 
   return (
     <div className="flex flex-col justify-start items-start flex-grow relative gap-6 pr-4 rounded-lg">
-      <Circle className="size-20">
+      <div className="flex justify-center items-center rounded-full shrink-0 size-20 bg-accent">
         <Icon id={iconId} width={37} height={36} />{" "}
-      </Circle>
+      </div>
       <h3 className="self-stretch flex-grow-0 flex-shrink-0 w-[400px] text-[32px] font-bold text-left text-black">
         {title}
       </h3>

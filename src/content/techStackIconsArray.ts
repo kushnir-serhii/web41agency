@@ -12,6 +12,6 @@ export const techStackIconsArray = [
   "icon-react",
   "icon-redux",
   "icon-tailwind",
-  "icon-typesctipt",
+  "icon-typescript",
   "icon-webflow",
 ];
