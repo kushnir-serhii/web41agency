@@ -21,8 +21,8 @@ export const WhyChoose: React.FC<WhyChooseProps> = ({ content }) => {
   const { sectionTitle, textButton, mainContent } = content;
 
   return (
-    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-10 px-20 py-40">
-      <h2 className="self-stretch flex-grow-0 flex-shrink-0 w-[1280px] text-6xl font-semibold text-left text-black">
+    <div className="w-full max-w-[1440px] mx-auto flex flex-col justify-start items-start relative gap-10 px-4 lg:px-20 py-20 lg:py-40">
+      <h2 className="self-stretch w-full text-4xl lg:text-6xl font-semibold text-left text-black">
         {sectionTitle}
       </h2>
       <WhyChooseList mainContent={mainContent} />

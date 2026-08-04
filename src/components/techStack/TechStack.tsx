@@ -6,17 +6,17 @@ import { Icon } from "../ui/Icon";
 
 export const TechStack = () => {
   return (
-    <section className=" flex-col justify-between h-[547px] py-40 w-full max-w-[1440px]">
-      <h2 className="container mr-auto text-6xl font-semibold text-left text-black">
+    <section className="flex flex-col justify-between gap-10 lg:gap-20 py-20 lg:py-40 w-full max-w-[1440px]">
+      <h2 className="container mr-auto text-4xl lg:text-6xl font-semibold text-left text-black">
         Tech Stack
       </h2>
       <div className="relative w-full">
         <div className="absolute flex z-10 top-0 h-full gradient-techstack_slider w-full" />
         <MySlider
           contentArray={techStackIconsArray}
-          className="w-auto"
+          className="w-auto marquee"
           config={{
-            slidesPerView: 7,
+            slidesPerView: 10,
             spaceBetween: 16,
             loop: true,
             freeMode: true,
@@ -25,14 +25,16 @@ export const TechStack = () => {
             },
             speed: 6800,
             breakpoints: {
-              320: { slidesPerView: 2 }, // For mobile screens
-              480: { slidesPerView: 3 }, // Small tablets
-              768: { slidesPerView: 4 }, // Tablets
-              1024: { slidesPerView: 5 }, // Small laptops
-              1280: { slidesPerView: 7 }, // Large screens
+              320: { slidesPerView: 3 }, // For mobile screens
+              480: { slidesPerView: 4 }, // Small tablets
+              768: { slidesPerView: 6 }, // Tablets
+              1024: { slidesPerView: 8 }, // Small laptops
+              1280: { slidesPerView: 10 }, // Large screens
             },
           }}
-          slide={(item) => <Icon id={item} />}
+          slide={(item) => (
+            <Icon id={item} height={60} className="w-full max-w-[130px]" />
+          )}
         />
       </div>
       {/* <ul className="flex  justify-between items-center gap-12 w-full">

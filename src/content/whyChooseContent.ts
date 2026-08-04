@@ -14,7 +14,7 @@ export const whyChooseContent: IWhyChooseContent = {
         },
         { text: "2–4 weeks,", highlight: true },
         {
-          text: "and custom JavaScript solutions optimized for high performance.",
+          text: " and custom JavaScript solutions optimized for high performance.",
           highlight: false,
         },
       ],

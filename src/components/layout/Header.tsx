@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { NavBar } from "@/components/layout/navBar/NavBar";
+import { NavBarItem } from "@/components/layout/navBar/NavBarItem";
+import { Icon } from "@/components/ui/Icon";
+import { Logo } from "@/components/ui/Logo";
 import { navBarArray } from "@/content/navBarArray";
-import { NavBar } from "../navBar/NavBar";
-import { NavBarItem } from "../navBar/NavBarItem";
-import { Icon } from "../ui/Icon";
-import { Logo } from "../ui/Logo";
+import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

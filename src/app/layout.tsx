@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/footer/Footer";
 import fixelDisplay from "@/fonts/fixelDisplay";
+import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/header/Header";
-import { Footer } from "@/components/footer/Footer";
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,9 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={fixelDisplay.className}>
-        <div className="flex flex-col justify-between items-center w-full min-h-screen pt-4 bg-white">
-          <div className="relative ">
-            <div className="sticky  top-4 left-0 right-0 z-100">
+        <div className="flex flex-col justify-between items-center w-full min-h-screen pt-4 bg-white overflow-x-hidden">
+          <div className="relative w-full">
+            <div className="sticky top-4 left-0 right-0 z-100">
               <Header />
             </div>
             {children}

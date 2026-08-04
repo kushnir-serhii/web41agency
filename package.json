@@ -11,12 +11,11 @@
     "tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "framer-motion": "^12.38.0",
     "motion": "^12.4.10",
-    "next": "15.2.1",
+    "next": "^15.5.22",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "swiper": "^11.2.5"
+    "swiper": "^12.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -25,8 +24,13 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.2.1",
+    "eslint-config-next": "^15.5.22",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "brace-expansion": "^5.0.8",
+    "postcss": "^8.5.23",
+    "sharp": "^0.35.3"
   }
 }

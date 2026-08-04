@@ -18,8 +18,8 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       type="button"
       aria-label={text + "button"}
-      className={`flex justify-center items-center gap-2.5 h-14 px-6 py-4 rounded-full cursor-pointer
-              text-lg font-bold ${width} ${height}
+      className={`flex justify-center items-center shrink-0 gap-2.5 h-14 px-6 py-4 rounded-full cursor-pointer
+              text-lg font-bold whitespace-nowrap ${width} ${height}
              ${fill ? `${bg} text-white` : "bg-red text-black"}  `}
     >
       {children}

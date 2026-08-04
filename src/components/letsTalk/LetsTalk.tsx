@@ -1,78 +1,94 @@
+"use client";
+
+import { useState } from "react";
+import { Icon } from "@/components/ui/Icon";
+
+const inputClass =
+  "w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-[#868686] outline-none focus:ring-2 focus:ring-black/10";
+
 export const LetsTalk = () => {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // TODO: connect to the contact endpoint once the back end is ready.
+    console.log(form);
+  };
+
   return (
-    <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2.5 px-20 pb-20">
-      <div className="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0 overflow-hidden p-12 rounded-lg bg-[#f9f9f9]">
-        <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[369px] relative gap-6">
-          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[369px] text-6xl font-semibold text-left text-black">
-            Let’s Talk
+    <section className="w-full max-w-[1440px] mx-auto px-4 lg:px-20 pb-20">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 overflow-hidden p-6 lg:p-12 rounded-lg bg-bg_item">
+        <div className="flex flex-col items-start w-full lg:w-[369px] gap-6">
+          <h2 className="text-4xl lg:text-6xl font-semibold text-left text-black">
+            Let&rsquo;s Talk
+          </h2>
+          <p className="text-lg text-left text-black">
+            Ready to bring your vision to life? Get in touch, and let&rsquo;s
+            build something great together.
           </p>
-          <p className="self-stretch flex-grow-0 flex-shrink-0 w-[369px] text-lg text-left text-black">
-            Ready to bring your vision to life? Get in touch, and let’s build
-            something great together.
-          </p>
-          <p className="flex-grow-0 flex-shrink-0 w-[409.35px] text-[26px] font-bold text-left text-black">
+          <a
+            href="mailto:hello@web41.agency"
+            className="text-[26px] font-bold text-left text-black hover:underline"
+          >
             hello@web41.agency
+          </a>
+          <a
+            href="mailto:hello@web41.agency"
+            aria-label="Send us an email"
+            className="flex justify-center items-center w-20 h-20 rounded-full bg-accent border-4 border-bg_item transition-transform hover:scale-105"
+          >
+            <Icon id="icon-send" width={32} height={32} />
+          </a>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-start w-full lg:w-[584px] gap-4"
+        >
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Name"
+            required
+            className={inputClass}
+          />
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Contact email"
+            required
+            className={inputClass}
+          />
+          <textarea
+            name="message"
+            value={form.message}
+            onChange={handleChange}
+            placeholder="Type your message"
+            rows={5}
+            className={`${inputClass} h-[147px] resize-none`}
+          />
+          <p className="text-sm text-left text-black/70">
+            By filling out the form I agree to Privacy Policy and Terms of Use
           </p>
-          <div className="flex flex-row-reverse justify-center items-center flex-grow-0 flex-shrink-0 relative space-x-[-12px] space-x-reverse">
-            <svg
-              width={88}
-              height={89}
-              viewBox="0 0 88 89"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="flex-grow-0 flex-shrink-0 w-20 h-20 relative"
-              preserveAspectRatio="none"
-            >
-              <rect
-                x={2}
-                y="2.5"
-                width={84}
-                height={84}
-                rx={42}
-                fill="#DBFF04"
-              />
-              <rect
-                x={2}
-                y="2.5"
-                width={84}
-                height={84}
-                rx={42}
-                stroke="#F9F9F9"
-                stroke-width={4}
-              />
-              <path
-                d="M58.6482 30.8137L24 42.8345L39.9099 49.552M58.6482 30.8137L46.6274 65.4619L39.9099 49.552M58.6482 30.8137L39.9099 49.552"
-                stroke="black"
-                stroke-width="0.8"
-              />
-            </svg>
-            <div className="flex-grow-0 flex-shrink-0 w-20 h-20 relative overflow-hidden rounded-[903.95px] bg-white border-4 border-[#f9f9f9]" />
-            <div className="flex-grow-0 flex-shrink-0 w-20 h-20 relative overflow-hidden rounded-[903.95px] bg-white border-4 border-[#f9f9f9]" />
-          </div>
-        </div>
-        <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[584px] gap-4">
-          <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-16 relative overflow-hidden gap-2.5 px-6 py-[18px] rounded bg-white">
-            <p className="flex-grow-0 flex-shrink-0 text-lg text-center text-[#868686]">
-              Name
-            </p>
-          </div>
-          <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-16 relative overflow-hidden gap-2.5 px-6 py-[18px] rounded bg-white">
-            <p className="flex-grow-0 flex-shrink-0 text-lg text-center text-[#868686]">
-              Contact email
-            </p>
-          </div>
-          <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 h-[147px] relative overflow-hidden gap-2.5 px-6 py-[18px] rounded bg-white">
-            <p className="flex-grow-0 flex-shrink-0 text-lg text-center text-[#868686]">
-              Type your message
-            </p>
-          </div>
-          <div className="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-1 px-6 py-4 rounded-[100px] bg-black">
-            <p className="flex-grow-0 flex-shrink-0 text-lg font-bold text-left text-white">
-              Send Message
-            </p>
-          </div>
-        </div>
+          <button
+            type="submit"
+            className="flex justify-center items-center w-full gap-1 px-6 py-4 rounded-[100px] bg-black text-lg font-bold text-white cursor-pointer transition-opacity hover:opacity-90"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
-    </div>
+    </section>
   );
 };

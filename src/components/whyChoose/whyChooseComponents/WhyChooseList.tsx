@@ -12,9 +12,9 @@ interface HowItWorksList {
 }
 export const WhyChooseList: React.FC<HowItWorksList> = ({ mainContent }) => {
   return (
-    <ul className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-4">
+    <ul className="flex flex-col lg:flex-row justify-start items-start self-stretch gap-10 lg:gap-4">
       {mainContent.map((item) => (
-        <li key={item.iconId}>
+        <li key={item.iconId} className="w-full lg:flex-1">
           <WhyChooseItem
             iconId={item.iconId}
             title={item.title}

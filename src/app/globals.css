@@ -38,27 +38,27 @@ body {
 }
 
 .container {
-  @apply flex w-full max-w-[1440px] px-20 mx-auto;
+  @apply flex w-full max-w-[1440px] px-4 mx-auto lg:px-20;
 }
 
-.swiper-wrapper{
+/* Marquee-style sliders only (tech stack). Scoped so regular sliders
+   (portfolio) keep Swiper's default sizing. */
+.swiper.marquee {
+  width: auto;
+  height: 100%;
+}
+.swiper.marquee .swiper-wrapper {
   display: flex !important;
   transition-timing-function: linear !important;
   width: auto;
 }
-.swiper {
-  width: auto;
-  height: 100%;
-}
- .swiper-slide {
-  text-align: center;
-  background: red;
-   height: auto;
-   display: flex;
-  
+.swiper.marquee .swiper-slide {
+  display: flex;
+  height: auto;
   justify-content: center;
-  align-items: center; 
- }  
+  align-items: center;
+  text-align: center;
+}
 
 .gradient-techstack_slider{
   background: linear-gradient(90deg, #fff 3.76%, rgba(255, 255, 255, 0) 8.67%, rgba(255, 255, 255, 0) 90.53%, #fff 96.75%);

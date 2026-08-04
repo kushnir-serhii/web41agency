@@ -1,0 +1,33 @@
+{
+  // Auto-import always uses the "@/..." alias instead of relative "../../"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.autoImportFileExcludePatterns": ["**/node_modules/.bin/**"],
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  // Use the workspace TypeScript so the Next.js plugin + paths are respected
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // On Ctrl+S: add missing imports, drop unused ones, sort them, then format
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports.ts": "explicit",
+    "source.removeUnusedImports.ts": "explicit",
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  // Built-in formatter (no extra dependency). Swap to "esbenp.prettier-vscode"
+  // if you install the Prettier extension.
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
+}

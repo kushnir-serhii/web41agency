@@ -8,9 +8,9 @@ export const HowItWorksList: React.FC<HowItWorksListProps> = ({
 }) => {
 
   return (
-    <ul className="flex flex-wrap justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-6">
+    <ul className="flex flex-wrap justify-start items-stretch self-stretch gap-6">
       {howItWorksArray.map((item) => (
-        <li key={item.logoId}>
+        <li key={item.logoId} className="w-full lg:w-[calc(50%-12px)]">
           <HowItWorksItem
             logoId={item.logoId}
             title={item.title}

@@ -1,36 +1,35 @@
+"use client";
+
+import { useState } from "react";
+import { servicesContent } from "@/content/servicesContent";
+import { ServiceItem } from "./servicesComponents/ServiceItem";
+
 export const Services = () => {
-  
-  return (<div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-8">
-  <div className="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 px-20">
-    <p className="flex-grow w-[1280px] text-6xl font-semibold text-left text-black">
-      Services
-    </p>
-  </div>
-  <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0">
-    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[120px] relative gap-4 px-20 py-6">
-      <p className="flex-grow-0 flex-shrink-0 text-[32px] text-left text-black">
-        JS Development
-      </p>
-    </div>
-    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[120px] relative gap-4 px-20 py-6">
-      <p className="flex-grow-0 flex-shrink-0 text-[32px] text-left text-black">
-        JavaScript Development
-      </p>
-    </div>
-    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[120px] relative gap-4 px-20 py-6">
-      <p className="flex-grow-0 flex-shrink-0 text-[32px] text-left text-black">
-        API Integrations
-      </p>
-    </div>
-    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[120px] relative gap-4 px-20 py-6">
-      <p className="flex-grow-0 flex-shrink-0 text-[32px] text-left text-black">
-        UI/UX Design
-      </p>
-    </div>
-    <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-[120px] relative gap-4 px-20 py-6">
-      <p className="flex-grow-0 flex-shrink-0 text-[32px] text-left text-black">
-        Branding
-      </p>
-    </div>
-  </div>
-</div>)}
+  const { sectionTitle, services } = servicesContent;
+  const [openTitle, setOpenTitle] = useState<string | null>(null);
+
+  return (
+    <section className="w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8">
+      <div className="w-full px-4 lg:px-20">
+        <h2 className="w-full text-4xl lg:text-6xl font-semibold text-left text-black">
+          {sectionTitle}
+        </h2>
+      </div>
+
+      <ul className="flex flex-col items-start w-full">
+        {services.map((service) => (
+          <ServiceItem
+            key={service.title}
+            {...service}
+            isOpen={openTitle === service.title}
+            onToggle={() =>
+              setOpenTitle((prev) =>
+                prev === service.title ? null : service.title
+              )
+            }
+          />
+        ))}
+      </ul>
+    </section>
+  );
+};

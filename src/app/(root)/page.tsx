@@ -1,35 +1,28 @@
-import dynamic from "next/dynamic";
-
+import { Hero } from "@/components/hero/Hero";
 import { About } from "@/components/about/About";
 import { Faq } from "@/components/faq/Faq";
-import { Hero } from "@/components/hero/Hero";
-// import { GoogleBtn } from "@/components/ui/GoogleBtn";
 import { HowItWorks } from "@/components/howItWorks/HowItWorks";
+import { LetsTalk } from "@/components/letsTalk/LetsTalk";
+import { Portfolio } from "@/components/portfolio/Portfolio";
 import { Services } from "@/components/services/Services";
 import { WhyChoose } from "@/components/whyChoose/WhyChoose";
 import { howItWorksContent } from "@/content/howItWorksContent";
+import { portfolioContent } from "@/content/portfolioContent";
 import { whyChooseContent } from "@/content/whyChooseContent";
-
-
-const DynamicTechStack = dynamic(() => import("@/components/techStack/TechStack").then((module) => module.TechStack));
-
+import { TechStack } from "@/components/techStack/TechStack";
 
 export default function Home() {
   return (
-    <div className="items-center justify-items-center pb-40 gap-16">
+    <div className="flex flex-col items-center w-full">
       <Hero />
-      {/* <About /> */}
-      {/* <Services /> */}
-      {/* <DynamicTechStack /> */}
-      <div className="flex-1">
-
-      {/* <GoogleBtn /> */}
-      </div>
-      {/* <HowItWorks content={howItWorksContent} /> */}
-      {/* <Faq /> */}
-      {/* <WhyChoose content={whyChooseContent} /> */}
-
-      {/* <HorizontalSlider /> */}
+      <About />
+      <Services />
+      <TechStack />
+      <Portfolio content={portfolioContent} />
+      <HowItWorks content={howItWorksContent} />
+      <Faq />
+      <WhyChoose content={whyChooseContent} />
+      <LetsTalk />
     </div>
   );
 }
