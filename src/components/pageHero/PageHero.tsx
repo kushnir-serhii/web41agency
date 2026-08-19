@@ -64,9 +64,9 @@ export const PageHero: React.FC<PageHeroProps> = ({
           <p className="w-full opacity-80 text-lg text-left text-black">
             {description}
           </p>
-          <div className="flex justify-start items-center gap-2 lg:gap-0 self-stretch">
-            <Button text={primaryButton} fill />
-            <Button text={secondaryButton} />
+          <div className="flex flex-col md:flex-row justify-start items-center gap-2 pb-4 md:gap-0 self-stretch">
+            <Button text={primaryButton}className="w-full md:w-auto" />
+            <Button text={secondaryButton} btnType="ghost" className="w-full md:w-auto" />
           </div>
         </div>
       </div>

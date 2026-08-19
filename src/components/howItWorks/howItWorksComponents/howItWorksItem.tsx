@@ -18,7 +18,7 @@ export const HowItWorksItem: React.FC<HowItWorksItemProps> = ({ logoId, title, d
         </div>
       )}
 
-      <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
+      <div className="flex flex-col justify-start items-start h-1/2 gap-2">
         <h3 className="self-stretch w-full text-2xl lg:text-[32px] font-bold text-left text-black">
           {/* Launch &amp; Grow */}
           {title}

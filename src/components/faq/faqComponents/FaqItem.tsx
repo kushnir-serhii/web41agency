@@ -16,7 +16,7 @@ export const FaqItem: React.FC<FaqItemProps> = ({
 }) => {
   return (
     <li
-      className={`w-full transition-colors ${isOpen ? "bg-bg_item" : "bg-white hover:bg-bg_item"}`}
+      className={`w-full rounded-lg transition-colors ${isOpen ? "bg-bg_item" : "bg-white hover:bg-bg_item"}`}
     >
       <button
         type="button"
