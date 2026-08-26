@@ -35,12 +35,12 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       tags: ['Design', 'Mobile App', 'Expo', 'Chat AI'],
       href: '/portfolio',
     },
-    // {
-    //   image: projectCatoshi,
-    //   title: 'Catoshi - Crypto Dashboard with AI-powered Forecasting',
-    //   tags: ['Design', 'Development', 'AI', 'Dashboard', 'Landing Page'],
-    //   href: '/portfolio',
-    // },
+    {
+      image: projectCatoshi,
+      title: 'Catoshi - Crypto Dashboard with AI-powered Forecasting',
+      tags: ['Design', 'Development', 'AI', 'Dashboard', 'Landing Page'],
+      href: '/portfolio',
+    },
     {
       image: projectNuance,
       title: 'Nuance - AI Powered Web Application',
