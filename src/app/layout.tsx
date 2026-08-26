@@ -41,13 +41,8 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
-  icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+  icons: { icon: "/favicon.png", apple: "/apple-touch-icon.png" },
 };
-
-// export const metadata: Metadata = {
-//   title: "web41studio",
-//   description: "Web development studio",
-// };
 
 export default function RootLayout({
   children,

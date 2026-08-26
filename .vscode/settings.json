@@ -19,15 +19,18 @@
     "source.organizeImports": "explicit",
     "source.fixAll.eslint": "explicit"
   },
-  // Built-in formatter (no extra dependency). Swap to "esbenp.prettier-vscode"
-  // if you install the Prettier extension.
+  // Use Prettier for formatting
   "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.requireConfig": true
 }

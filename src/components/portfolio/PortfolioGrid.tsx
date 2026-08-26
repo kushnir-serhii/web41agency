@@ -16,7 +16,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ projects }) => {
       <div className="flex flex-col gap-16 lg:gap-20">
         {leftColumn.map((project) => (
           <ProjectCard
-            key={project.image}
+            key={project.title}
             {...project}
             imageClassName={cardImage}
           />
@@ -27,7 +27,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ projects }) => {
       <div className="flex flex-col gap-16 lg:gap-20 lg:mt-[150px]">
         {rightColumn.map((project) => (
           <ProjectCard
-            key={project.image}
+            key={project.title}
             {...project}
             imageClassName={cardImage}
           />

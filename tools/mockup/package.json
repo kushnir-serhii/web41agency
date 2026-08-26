@@ -1,0 +1,15 @@
+{
+  "name": "web41-mockup",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Screenshot a page and render it into a device mockup at portfolio size. Isolated from the site's own dependencies.",
+  "scripts": {
+    "mockup": "node capture.mjs",
+    "all": "node capture.mjs --all",
+    "postinstall": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
+  }
+}

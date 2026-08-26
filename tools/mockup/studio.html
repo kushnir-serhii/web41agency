@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web41 Mockup Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --ink:        #0A0A0B;
+    --panel:      #131316;
+    --raise:      #1B1B20;
+    --raise-hi:   #24242B;
+    --line:       #2B2B32;
+    --text:       #F4F4F1;
+    --muted:      #8B8B93;
+    --accent:     #DBFF04;
+    --accent-ink: #0A0A0B;
+
+    --f-display: "Bricolage Grotesque", "Archivo", system-ui, sans-serif;
+    --f-ui:      "Archivo", system-ui, -apple-system, sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --r-sm: 6px;
+    --r-md: 10px;
+    --r-lg: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--f-ui);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- shell ---------- */
+
+  .app {
+    display: grid;
+    grid-template-columns: 328px minmax(0, 1fr);
+    min-height: 100vh;
+  }
+
+  .rail {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .rail-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 26px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .brand { display: flex; flex-direction: column; gap: 6px; }
+
+  .brand h1 {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .brand h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .brand p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12.5px;
+    max-width: 34ch;
+  }
+
+  /* ---------- control groups ---------- */
+
+  .grp { display: flex; flex-direction: column; gap: 11px; }
+
+  .grp-head {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .grp-num {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .grp-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .grp-note {
+    margin-left: auto;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    color: var(--muted);
+  }
+
+  /* ---------- drop zone ---------- */
+
+  .drop {
+    border: 1px dashed var(--line);
+    border-radius: var(--r-md);
+    background: var(--raise);
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .18s ease, background .18s ease;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .drop:hover, .drop:focus-visible { border-color: var(--accent); background: var(--raise-hi); }
+  .drop.is-over { border-color: var(--accent); background: var(--raise-hi); color: var(--text); }
+
+  .drop strong { color: var(--text); font-weight: 600; font-size: 13.5px; }
+  .drop span { font-family: var(--f-mono); font-size: 10.5px; }
+
+  .loaded {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    background: var(--raise);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 10px 12px;
+  }
+  .loaded.on { display: flex; }
+
+  .hint {
+    margin: 0;
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: var(--muted);
+    border-left: 2px solid var(--line);
+    padding-left: 10px;
+  }
+
+  .loaded-name {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+  }
+  .loaded-dim { font-family: var(--f-mono); font-size: 10.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: var(--f-ui);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .link-btn:hover { color: var(--accent); }
+
+  /* ---------- segmented / chips ---------- */
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .chip {
+    font-family: var(--f-ui);
+    font-size: 12.5px;
+    color: var(--muted);
+    background: var(--raise);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 6px 13px;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .chip:hover { color: var(--text); border-color: var(--raise-hi); }
+  .chip[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+
+  /* swatch row */
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .sw {
+    width: 46px; height: 34px;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: transform .15s ease;
+  }
+  .sw:hover { transform: translateY(-1px); }
+  .sw[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(219,255,4,.22); }
+
+  .sw-label {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--muted);
+    display: block;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .sw-wrap { display: flex; flex-direction: column; }
+
+  /* ---------- slider ---------- */
+
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+
+  .row-label { font-size: 12.5px; color: var(--muted); }
+  .row-val { font-family: var(--f-mono); font-size: 11.5px; color: var(--text); font-variant-numeric: tabular-nums; }
+
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%;
+    height: 3px;
+    background: var(--line);
+    border-radius: 3px;
+    outline: none;
+    margin: 4px 0 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--panel);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--panel);
+  }
+  input[type="range"]:focus-visible { box-shadow: 0 0 0 2px rgba(219,255,4,.3); }
+
+  /* ---------- toggle ---------- */
+
+  .toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; cursor: pointer; user-select: none;
+  }
+  .toggle input { position: absolute; opacity: 0; pointer-events: none; }
+  .track {
+    width: 36px; height: 20px; border-radius: 100px;
+    background: var(--raise-hi); border: 1px solid var(--line);
+    position: relative; transition: background .18s ease, border-color .18s ease;
+    flex-shrink: 0;
+  }
+  .track::after {
+    content: ""; position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--muted); transition: transform .18s ease, background .18s ease;
+  }
+  .toggle input:checked + .track { background: var(--accent); border-color: var(--accent); }
+  .toggle input:checked + .track::after { transform: translateX(16px); background: var(--accent-ink); }
+  .toggle input:focus-visible + .track { box-shadow: 0 0 0 2px rgba(219,255,4,.3); }
+
+  /* ---------- export bar ---------- */
+
+  .export {
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+    padding: 16px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .export-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--f-mono); font-size: 11px; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .export-meta b { color: var(--text); font-weight: 500; }
+
+  .btn {
+    font-family: var(--f-ui);
+    font-weight: 600;
+    font-size: 14px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--accent);
+    border-radius: var(--r-md);
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: filter .15s ease;
+    width: 100%;
+  }
+  .btn:hover:not(:disabled) { filter: brightness(1.08); }
+  .btn:disabled { opacity: .34; cursor: not-allowed; }
+  .btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+  .status {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--muted);
+    min-height: 15px;
+    text-align: center;
+  }
+  .status.err { color: #FF8A7A; }
+  .status.ok  { color: var(--accent); }
+
+  /* ---------- stage ---------- */
+
+  .stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background:
+      radial-gradient(120% 90% at 50% 0%, #17171B 0%, var(--ink) 62%);
+    min-width: 0;
+  }
+
+  .canvas-hold {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  canvas {
+    width: min(100%, 880px);
+    height: auto;
+    border-radius: var(--r-lg);
+    box-shadow: 0 24px 70px rgba(0,0,0,.62), 0 0 0 1px var(--line);
+    display: block;
+  }
+
+  .stage-cap {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .02em;
+  }
+
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; }
+    .rail { height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); order: 2; }
+    .stage { order: 1; padding: 24px 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="app">
+  <aside class="rail">
+    <div class="rail-scroll">
+
+      <div class="brand">
+        <h1>Mockup <em>Studio</em></h1>
+        <p>Drop a screenshot, get a portfolio-ready device render. No Figma, no design file.</p>
+      </div>
+
+      <!-- 01 SOURCE -->
+      <section class="grp">
+        <div class="grp-head">
+          <span class="grp-num">01</span>
+          <span class="grp-title">Source</span>
+          <span class="grp-note" id="srcNote">empty</span>
+        </div>
+
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose or drop a screenshot">
+          <strong>Drop a screenshot</strong>
+          <span>click &middot; drag &middot; or paste (⌘/Ctrl+V)</span>
+        </div>
+
+        <div class="loaded" id="loaded">
+          <span class="loaded-name" id="loadedName"></span>
+          <span class="loaded-dim" id="loadedDim"></span>
+          <button class="link-btn" id="clearBtn" type="button">clear</button>
+        </div>
+
+        <div class="chips" role="group" aria-label="Screenshot framing" id="fitChips">
+          <button class="chip" type="button" data-fit="top" aria-pressed="true">Crop to top</button>
+          <button class="chip" type="button" data-fit="whole" aria-pressed="false">Fit whole page</button>
+        </div>
+
+        <p class="hint">Laptop and Browser want a desktop screenshot. Phone wants a mobile one — a desktop capture gets cropped to a narrow strip.</p>
+
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp" hidden>
+      </section>
+
+      <!-- 02 DEVICE -->
+      <section class="grp">
+        <div class="grp-head">
+          <span class="grp-num">02</span>
+          <span class="grp-title">Device</span>
+        </div>
+
+        <div class="chips" role="group" aria-label="Device type" id="deviceChips">
+          <button class="chip" type="button" data-device="laptop" aria-pressed="true">Laptop</button>
+          <button class="chip" type="button" data-device="phone"  aria-pressed="false">Phone</button>
+          <button class="chip" type="button" data-device="browser" aria-pressed="false">Browser</button>
+        </div>
+
+        <div class="chips" role="group" aria-label="Frame finish" id="finishChips">
+          <button class="chip" type="button" data-finish="silver" aria-pressed="true">Silver</button>
+          <button class="chip" type="button" data-finish="black"  aria-pressed="false">Space black</button>
+        </div>
+
+        <div>
+          <div class="row">
+            <span class="row-label">Size</span>
+            <span class="row-val" id="sizeVal">78%</span>
+          </div>
+          <input type="range" id="size" min="45" max="96" value="78" aria-label="Device size">
+        </div>
+      </section>
+
+      <!-- 03 SCENE -->
+      <section class="grp">
+        <div class="grp-head">
+          <span class="grp-num">03</span>
+          <span class="grp-title">Scene</span>
+        </div>
+
+        <div class="swatches" role="group" aria-label="Background" id="bgSwatches">
+          <div class="sw-wrap">
+            <button class="sw" type="button" data-bg="dark" aria-pressed="true"
+              style="background:radial-gradient(circle at 50% 32%, #303036 0%, #0C0C0E 72%)"></button>
+            <span class="sw-label">studio</span>
+          </div>
+          <div class="sw-wrap">
+            <button class="sw" type="button" data-bg="light" aria-pressed="false"
+              style="background:radial-gradient(circle at 50% 32%, #FFF 0%, #D2D3D6 78%)"></button>
+            <span class="sw-label">light</span>
+          </div>
+          <div class="sw-wrap">
+            <button class="sw" type="button" data-bg="acid" aria-pressed="false"
+              style="background:#DBFF04"></button>
+            <span class="sw-label">acid</span>
+          </div>
+          <div class="sw-wrap">
+            <button class="sw" type="button" data-bg="ink" aria-pressed="false"
+              style="background:#000"></button>
+            <span class="sw-label">ink</span>
+          </div>
+          <div class="sw-wrap">
+            <button class="sw" type="button" data-bg="custom" aria-pressed="false" id="customSw"
+              style="background:#3E5BFF"></button>
+            <span class="sw-label">custom</span>
+          </div>
+        </div>
+
+        <input type="color" id="customColor" value="#3E5BFF" hidden>
+
+        <label class="toggle">
+          <span class="row-label">Floor reflection</span>
+          <input type="checkbox" id="reflect" checked>
+          <span class="track"></span>
+        </label>
+
+        <label class="toggle">
+          <span class="row-label">Screen glare</span>
+          <input type="checkbox" id="glare" checked>
+          <span class="track"></span>
+        </label>
+      </section>
+
+      <!-- 04 OUTPUT -->
+      <section class="grp">
+        <div class="grp-head">
+          <span class="grp-num">04</span>
+          <span class="grp-title">Output</span>
+        </div>
+
+        <div class="chips" role="group" aria-label="Output size" id="sizeChips">
+          <button class="chip" type="button" data-w="628"  data-h="500"  aria-pressed="true">628 × 500</button>
+          <button class="chip" type="button" data-w="1256" data-h="1000" aria-pressed="false">@2x</button>
+          <button class="chip" type="button" data-w="1600" data-h="1000" aria-pressed="false">Wide</button>
+          <button class="chip" type="button" data-w="1200" data-h="1200" aria-pressed="false">Square</button>
+        </div>
+
+        <div class="chips" role="group" aria-label="File format" id="fmtChips">
+          <button class="chip" type="button" data-fmt="webp" aria-pressed="true">WebP</button>
+          <button class="chip" type="button" data-fmt="png"  aria-pressed="false">PNG</button>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="export">
+      <div class="export-meta">
+        <span>portfolio card</span>
+        <b id="dimOut">628 × 500 · webp</b>
+      </div>
+      <button class="btn" id="saveBtn" type="button" disabled>Save image</button>
+      <div class="status" id="status"></div>
+    </div>
+  </aside>
+
+  <main class="stage">
+    <div class="canvas-hold">
+      <canvas id="cv" width="628" height="500"></canvas>
+      <div class="stage-cap" id="cap">628 × 500 — drop a screenshot to begin</div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var cv  = document.getElementById("cv");
+  var ctx = cv.getContext("2d");
+
+  var S = {
+    img: null,
+    name: "mockup",
+    fit: "top",
+    device: "laptop",
+    finish: "silver",
+    size: 78,
+    bg: "dark",
+    custom: "#3E5BFF",
+    reflect: true,
+    glare: true,
+    w: 628, h: 500,
+    fmt: "webp"
+  };
+
+  /* ---------------- helpers ---------------- */
+
+  function rr(g, x, y, w, h, r) {
+    if (w <= 0 || h <= 0) return;
+    var m = Math.min(w, h) / 2;
+    if (typeof r === "number") r = [r, r, r, r];
+    r = r.map(function (v) { return Math.max(0, Math.min(v, m)); });
+    g.beginPath();
+    g.moveTo(x + r[0], y);
+    g.lineTo(x + w - r[1], y);
+    g.arcTo(x + w, y, x + w, y + r[1], r[1]);
+    g.lineTo(x + w, y + h - r[2]);
+    g.arcTo(x + w, y + h, x + w - r[2], y + h, r[2]);
+    g.lineTo(x + r[3], y + h);
+    g.arcTo(x, y + h, x, y + h - r[3], r[3]);
+    g.lineTo(x, y + r[0]);
+    g.arcTo(x, y, x + r[0], y, r[0]);
+    g.closePath();
+  }
+
+  function vgrad(g, x, y0, y1, stops) {
+    var lg = g.createLinearGradient(x, y0, x, y1);
+    stops.forEach(function (s) { lg.addColorStop(s[0], s[1]); });
+    return lg;
+  }
+
+  function metal(g, x, y, w, h, finish, dark) {
+    // dark = true -> the base (slightly deeper tone than the lid)
+    if (finish === "black") {
+      return vgrad(g, x, y, y + h, dark
+        ? [[0, "#2E2F34"], [0.55, "#212227"], [1, "#141518"]]
+        : [[0, "#3A3B41"], [0.5, "#2A2B30"], [1, "#1C1D21"]]);
+    }
+    return vgrad(g, x, y, y + h, dark
+      ? [[0, "#DCDEE3"], [0.55, "#C0C2C9"], [1, "#9DA0A8"]]
+      : [[0, "#E7E8EC"], [0.5, "#CFD1D7"], [1, "#B2B4BC"]]);
+  }
+
+  function edgeLine(finish) {
+    return finish === "black" ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.55)";
+  }
+
+  /* Draw the screenshot into a rounded rect. */
+  function shot(g, x, y, w, h, rad) {
+    g.save();
+    rr(g, x, y, w, h, rad);
+    g.clip();
+
+    g.fillStyle = "#0B0B0D";
+    g.fillRect(x, y, w, h);
+
+    if (S.img) {
+      var iw = S.img.naturalWidth, ih = S.img.naturalHeight;
+      var sc, dw, dh, dx, dy;
+      if (S.fit === "whole") {
+        sc = Math.min(w / iw, h / ih);
+        dw = iw * sc; dh = ih * sc;
+        dx = x + (w - dw) / 2; dy = y + (h - dh) / 2;
+        g.fillStyle = "#FFFFFF";
+        g.fillRect(x, y, w, h);
+      } else {
+        // match the page width, keep the top of the page, let the fold cut it
+        sc = w / iw;
+        if (ih * sc < h) sc = h / ih;
+        dw = iw * sc; dh = ih * sc;
+        dx = x + (w - dw) / 2; dy = y;
+      }
+      g.imageSmoothingQuality = "high";
+      g.drawImage(S.img, dx, dy, dw, dh);
+    } else {
+      // empty state, drawn inside the screen
+      g.fillStyle = "#0F0F12";
+      g.fillRect(x, y, w, h);
+      g.fillStyle = "rgba(219,255,4,0.85)";
+      g.font = "600 " + Math.max(9, w * 0.036).toFixed(1) + 'px "IBM Plex Mono", monospace';
+      g.textAlign = "center";
+      g.textBaseline = "middle";
+      g.fillText("DROP A SCREENSHOT", x + w / 2, y + h / 2);
+    }
+
+    if (S.glare) {
+      var gl = g.createLinearGradient(x, y, x + w * 0.62, y + h);
+      gl.addColorStop(0, "rgba(255,255,255,0.085)");
+      gl.addColorStop(0.42, "rgba(255,255,255,0.018)");
+      gl.addColorStop(0.43, "rgba(255,255,255,0)");
+      g.fillStyle = gl;
+      g.fillRect(x, y, w, h);
+    }
+
+    g.restore();
+  }
+
+  /* ---------------- devices ---------------- */
+  /* Each builder returns {w, h, draw(g)} in device-local coordinates. */
+
+  function laptop(lidW) {
+    var bez   = lidW * 0.016;
+    var scrW  = lidW - bez * 2;
+    var scrH  = scrW * 10 / 16;
+    var lidH  = scrH + bez * 2;
+    var lidR  = lidW * 0.019;
+    var scrR  = lidR * 0.5;
+    var baseW = lidW * 1.075;
+    var baseH = lidW * 0.023;
+    var lidX  = (baseW - lidW) / 2;
+
+    return {
+      w: baseW,
+      h: lidH + baseH,
+      draw: function (g) {
+        // lid shell
+        g.fillStyle = metal(g, lidX, 0, lidW, lidH, S.finish, false);
+        rr(g, lidX, 0, lidW, lidH, lidR);
+        g.fill();
+
+        // outer hairline
+        g.strokeStyle = edgeLine(S.finish);
+        g.lineWidth = Math.max(1, lidW * 0.0012);
+        rr(g, lidX + 0.5, 0.5, lidW - 1, lidH - 1, lidR);
+        g.stroke();
+
+        // black bezel plate
+        g.fillStyle = "#0A0A0C";
+        rr(g, lidX + bez * 0.45, bez * 0.45, lidW - bez * 0.9, lidH - bez * 0.9, lidR * 0.8);
+        g.fill();
+
+        // screen
+        shot(g, lidX + bez, bez, scrW, scrH, scrR);
+
+        // notch
+        var nW = lidW * 0.135, nH = bez * 0.92;
+        g.fillStyle = "#0A0A0C";
+        rr(g, lidX + lidW / 2 - nW / 2, bez * 0.45, nW, nH, [0, 0, nH * 0.5, nH * 0.5]);
+        g.fill();
+
+        // base
+        var by = lidH;
+        g.fillStyle = metal(g, 0, by, baseW, baseH, S.finish, true);
+        rr(g, 0, by, baseW, baseH, [baseH * 0.1, baseH * 0.1, baseH * 0.75, baseH * 0.75]);
+        g.fill();
+
+        // hinge shadow under the lid
+        g.fillStyle = "rgba(0,0,0,0.30)";
+        g.fillRect(lidX, by, lidW, baseH * 0.16);
+
+        // front finger groove
+        var gW = baseW * 0.13, gH = baseH * 0.42;
+        g.fillStyle = S.finish === "black" ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.20)";
+        rr(g, baseW / 2 - gW / 2, by + baseH - gH, gW, gH, [gH * 0.6, gH * 0.6, 0, 0]);
+        g.fill();
+      }
+    };
+  }
+
+  function phone(phH) {
+    var phW  = phH * 0.468;
+    var bez  = phW * 0.030;
+    var r    = phW * 0.155;
+    var scrR = r - bez;
+
+    return {
+      w: phW * 1.03,
+      h: phH,
+      draw: function (g) {
+        var x = (phW * 1.03 - phW) / 2;
+
+        // side buttons
+        g.fillStyle = S.finish === "black" ? "#2A2B30" : "#B7B9C0";
+        rr(g, x - phW * 0.014, phH * 0.20, phW * 0.016, phH * 0.052, phW * 0.008); g.fill();
+        rr(g, x - phW * 0.014, phH * 0.28, phW * 0.016, phH * 0.082, phW * 0.008); g.fill();
+        rr(g, x - phW * 0.014, phH * 0.38, phW * 0.016, phH * 0.082, phW * 0.008); g.fill();
+        rr(g, x + phW - phW * 0.002, phH * 0.30, phW * 0.016, phH * 0.10, phW * 0.008); g.fill();
+
+        // shell
+        g.fillStyle = metal(g, x, 0, phW, phH, S.finish, false);
+        rr(g, x, 0, phW, phH, r);
+        g.fill();
+
+        g.strokeStyle = edgeLine(S.finish);
+        g.lineWidth = Math.max(1, phW * 0.004);
+        rr(g, x + 0.5, 0.5, phW - 1, phH - 1, r);
+        g.stroke();
+
+        // bezel plate
+        g.fillStyle = "#08080A";
+        rr(g, x + bez * 0.45, bez * 0.45, phW - bez * 0.9, phH - bez * 0.9, r * 0.94);
+        g.fill();
+
+        // screen
+        shot(g, x + bez, bez, phW - bez * 2, phH - bez * 2, scrR);
+
+        // dynamic island
+        var iW = phW * 0.30, iH = phW * 0.078;
+        g.fillStyle = "#050506";
+        rr(g, x + phW / 2 - iW / 2, bez + phW * 0.036, iW, iH, iH / 2);
+        g.fill();
+      }
+    };
+  }
+
+  function browser(winW) {
+    var chrome = winW * 0.052;
+    var body   = winW * 10 / 16;
+    var r      = winW * 0.014;
+    var light  = S.finish === "silver";
+
+    return {
+      w: winW,
+      h: chrome + body,
+      draw: function (g) {
+        // chrome bar
+        g.fillStyle = light
+          ? vgrad(g, 0, 0, chrome, [[0, "#F2F2F4"], [1, "#E3E3E7"]])
+          : vgrad(g, 0, 0, chrome, [[0, "#2C2D33"], [1, "#232429"]]);
+        rr(g, 0, 0, winW, chrome + r, [r, r, 0, 0]);
+        g.fill();
+
+        // traffic lights
+        var d = chrome * 0.26, cy = chrome / 2, cx = chrome * 0.62;
+        ["#FF5F57", "#FEBC2E", "#28C840"].forEach(function (c, i) {
+          g.fillStyle = c;
+          g.beginPath();
+          g.arc(cx + i * d * 1.85, cy, d / 2, 0, Math.PI * 2);
+          g.fill();
+        });
+
+        // address pill
+        var pw = winW * 0.34, ph = chrome * 0.52;
+        g.fillStyle = light ? "#FFFFFF" : "#17181C";
+        rr(g, winW / 2 - pw / 2, cy - ph / 2, pw, ph, ph / 2);
+        g.fill();
+        g.fillStyle = light ? "rgba(0,0,0,0.20)" : "rgba(255,255,255,0.24)";
+        rr(g, winW / 2 - pw / 2 + ph * 0.5, cy - ph * 0.09, pw * 0.42, ph * 0.18, ph * 0.09);
+        g.fill();
+
+        // viewport
+        shot(g, 0, chrome, winW, body, [0, 0, r, r]);
+
+        // frame hairline
+        g.strokeStyle = light ? "rgba(0,0,0,0.10)" : "rgba(255,255,255,0.08)";
+        g.lineWidth = Math.max(1, winW * 0.0012);
+        rr(g, 0.5, 0.5, winW - 1, chrome + body - 1, r);
+        g.stroke();
+      }
+    };
+  }
+
+  /* ---------------- scene ---------------- */
+
+  var SCENES = {
+    dark:  { base: "#0C0C0E", light: "rgba(255,255,255,0.11)", shadow: 0.55, refl: 0.30, floor: "rgba(255,255,255,0.030)" },
+    light: { base: "#E9E9EA", light: "rgba(255,255,255,0.95)", shadow: 0.26, refl: 0.20, floor: "rgba(0,0,0,0.040)" },
+    acid:  { base: "#DBFF04", light: "rgba(255,255,255,0.42)", shadow: 0.24, refl: 0.16, floor: "rgba(0,0,0,0.055)" },
+    ink:   { base: "#000000", light: "rgba(255,255,255,0.055)", shadow: 0.60, refl: 0.22, floor: "rgba(255,255,255,0.020)" }
+  };
+
+  function scene() {
+    if (S.bg === "custom") {
+      return { base: S.custom, light: "rgba(255,255,255,0.28)", shadow: 0.34, refl: 0.20, floor: "rgba(0,0,0,0.05)" };
+    }
+    return SCENES[S.bg];
+  }
+
+  function drawBackground(sc) {
+    var W = cv.width, H = cv.height;
+    ctx.fillStyle = sc.base;
+    ctx.fillRect(0, 0, W, H);
+
+    var rg = ctx.createRadialGradient(W / 2, H * 0.30, 0, W / 2, H * 0.30, Math.max(W, H) * 0.78);
+    rg.addColorStop(0, sc.light);
+    rg.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = rg;
+    ctx.fillRect(0, 0, W, H);
+
+    var fg = ctx.createLinearGradient(0, H * 0.58, 0, H);
+    fg.addColorStop(0, "rgba(0,0,0,0)");
+    fg.addColorStop(1, sc.floor);
+    ctx.fillStyle = fg;
+    ctx.fillRect(0, H * 0.58, W, H * 0.42);
+  }
+
+  function build() {
+    var W = cv.width, H = cv.height;
+    var k = S.size / 100;
+    var d;
+
+    if (S.device === "phone") {
+      d = phone(H * k * 0.94);
+    } else if (S.device === "browser") {
+      d = browser(W * k);
+    } else {
+      d = laptop(W * k);
+    }
+
+    // never let the device overflow the frame
+    var maxH = H * (S.reflect ? 0.74 : 0.84);
+    var maxW = W * 0.94;
+    var f = Math.min(1, maxH / d.h, maxW / d.w);
+    if (f < 1) {
+      if (S.device === "phone")        d = phone(H * k * 0.94 * f);
+      else if (S.device === "browser") d = browser(W * k * f);
+      else                             d = laptop(W * k * f);
+    }
+    return d;
+  }
+
+  function render() {
+    var W = cv.width, H = cv.height;
+    var sc = scene();
+    var d  = build();
+
+    drawBackground(sc);
+
+    // device onto its own layer, so it can be mirrored cleanly
+    var layer = document.createElement("canvas");
+    layer.width  = Math.ceil(d.w) + 2;
+    layer.height = Math.ceil(d.h) + 2;
+    var lg = layer.getContext("2d");
+    lg.translate(1, 1);
+    d.draw(lg);
+
+    var cx = W / 2;
+    var top = (H - d.h) / 2 - (S.reflect ? H * 0.055 : 0);
+    var dx  = cx - layer.width / 2;
+    var bottom = top + d.h;
+
+    // contact shadow
+    ctx.save();
+    var sh = ctx.createRadialGradient(cx, bottom, 0, cx, bottom, d.w * 0.56);
+    sh.addColorStop(0, "rgba(0,0,0," + sc.shadow + ")");
+    sh.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = sh;
+    ctx.save();
+    ctx.translate(cx, bottom);
+    ctx.scale(1, 0.17);
+    ctx.beginPath();
+    ctx.arc(0, 0, d.w * 0.56, 0, Math.PI * 2);
+    ctx.restore();
+    ctx.fill();
+    ctx.restore();
+
+    // reflection
+    if (S.reflect) {
+      var reflH = Math.min(layer.height, Math.max(0, H - bottom));
+      var ref = document.createElement("canvas");
+      ref.width = layer.width; ref.height = layer.height;
+      var rg2 = ref.getContext("2d");
+      rg2.translate(0, layer.height);
+      rg2.scale(1, -1);
+      rg2.drawImage(layer, 0, 0);
+      rg2.setTransform(1, 0, 0, 1, 0, 0);
+      rg2.globalCompositeOperation = "destination-in";
+      // strongest where it meets the device (y = 0), gone well before the floor
+      var fade = rg2.createLinearGradient(0, 0, 0, layer.height * 0.22);
+      fade.addColorStop(0, "rgba(0,0,0," + sc.refl + ")");
+      fade.addColorStop(1, "rgba(0,0,0,0)");
+      rg2.fillStyle = fade;
+      rg2.fillRect(0, 0, ref.width, ref.height);
+      ctx.drawImage(ref, 0, 0, ref.width, reflH, dx, bottom - 1, ref.width, reflH);
+    }
+
+    ctx.drawImage(layer, dx, top - 1);
+  }
+
+  /* ---------------- ui wiring ---------------- */
+
+  function group(id, attr, apply) {
+    var host = document.getElementById(id);
+    host.addEventListener("click", function (e) {
+      var b = e.target.closest("[" + attr + "]");
+      if (!b || !host.contains(b)) return;
+      Array.prototype.forEach.call(host.querySelectorAll("[" + attr + "]"), function (x) {
+        x.setAttribute("aria-pressed", String(x === b));
+      });
+      apply(b);
+      render();
+      meta();
+    });
+  }
+
+  group("fitChips",    "data-fit",    function (b) { S.fit    = b.dataset.fit; });
+  group("deviceChips", "data-device", function (b) { S.device = b.dataset.device; });
+  group("finishChips", "data-finish", function (b) { S.finish = b.dataset.finish; });
+  group("fmtChips",    "data-fmt",    function (b) { S.fmt    = b.dataset.fmt; });
+
+  group("sizeChips", "data-w", function (b) {
+    S.w = +b.dataset.w; S.h = +b.dataset.h;
+    cv.width = S.w; cv.height = S.h;
+  });
+
+  group("bgSwatches", "data-bg", function (b) {
+    S.bg = b.dataset.bg;
+    if (S.bg === "custom") document.getElementById("customColor").click();
+  });
+
+  document.getElementById("customColor").addEventListener("input", function (e) {
+    S.custom = e.target.value;
+    document.getElementById("customSw").style.background = S.custom;
+    S.bg = "custom";
+    Array.prototype.forEach.call(document.querySelectorAll("#bgSwatches [data-bg]"), function (x) {
+      x.setAttribute("aria-pressed", String(x.dataset.bg === "custom"));
+    });
+    render();
+  });
+
+  var sizeEl = document.getElementById("size");
+  sizeEl.addEventListener("input", function () {
+    S.size = +sizeEl.value;
+    document.getElementById("sizeVal").textContent = S.size + "%";
+    render();
+  });
+
+  document.getElementById("reflect").addEventListener("change", function (e) {
+    S.reflect = e.target.checked; render();
+  });
+  document.getElementById("glare").addEventListener("change", function (e) {
+    S.glare = e.target.checked; render();
+  });
+
+  /* ---------------- file input ---------------- */
+
+  var drop = document.getElementById("drop");
+  var file = document.getElementById("file");
+
+  drop.addEventListener("click", function () { file.click(); });
+  drop.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); file.click(); }
+  });
+
+  ["dragenter", "dragover"].forEach(function (t) {
+    drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add("is-over"); });
+  });
+  ["dragleave", "drop"].forEach(function (t) {
+    drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove("is-over"); });
+  });
+  drop.addEventListener("drop", function (e) {
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) load(e.dataTransfer.files[0]);
+  });
+
+  file.addEventListener("change", function () {
+    if (file.files && file.files[0]) load(file.files[0]);
+  });
+
+  window.addEventListener("paste", function (e) {
+    var items = (e.clipboardData || {}).items || [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf("image") === 0) { load(items[i].getAsFile()); break; }
+    }
+  });
+
+  document.getElementById("clearBtn").addEventListener("click", function () {
+    S.img = null; S.name = "mockup";
+    document.getElementById("loaded").classList.remove("on");
+    document.getElementById("srcNote").textContent = "empty";
+    document.getElementById("saveBtn").disabled = true;
+    file.value = "";
+    render(); meta();
+  });
+
+  function slug(n) {
+    return (n || "mockup").replace(/\.[^.]+$/, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48) || "mockup";
+  }
+
+  function load(f) {
+    if (!f || f.type.indexOf("image") !== 0) { say("Needs a PNG, JPG or WebP image.", "err"); return; }
+    var url = URL.createObjectURL(f);
+    var im = new Image();
+    im.onload = function () {
+      S.img = im;
+      S.name = slug(f.name);
+      document.getElementById("loadedName").textContent = f.name || "pasted-image.png";
+      document.getElementById("loadedDim").textContent = im.naturalWidth + "×" + im.naturalHeight;
+      document.getElementById("loaded").classList.add("on");
+      document.getElementById("srcNote").textContent = im.naturalWidth + "×" + im.naturalHeight;
+      document.getElementById("saveBtn").disabled = false;
+      say("");
+      render(); meta();
+    };
+    im.onerror = function () { say("Could not read that image.", "err"); };
+    im.src = url;
+  }
+
+  /* ---------------- export ---------------- */
+
+  function meta() {
+    var t = S.w + " × " + S.h + " · " + S.fmt;
+    document.getElementById("dimOut").textContent = t;
+    document.getElementById("cap").textContent =
+      S.w + " × " + S.h + (S.img ? " — " + S.name + "." + S.fmt : " — drop a screenshot to begin");
+  }
+
+  function say(msg, kind) {
+    var el = document.getElementById("status");
+    el.textContent = msg || "";
+    el.className = "status" + (kind ? " " + kind : "");
+  }
+
+  var downloads = null;
+  if (window.claude && typeof window.claude.use === "function") {
+    window.claude.use("downloads").then(function (d) { downloads = d; }).catch(function () {});
+  }
+
+  document.getElementById("saveBtn").addEventListener("click", function () {
+    render();
+    var type = S.fmt === "png" ? "image/png" : "image/webp";
+    cv.toBlob(function (blob) {
+      if (!blob) { say("Export failed — try PNG.", "err"); return; }
+      var fname = S.name + "." + S.fmt;
+
+      if (downloads) {
+        say("Waiting for confirmation…");
+        downloads.save({ filename: fname, data: blob }).then(function () {
+          say("Saved " + fname, "ok");
+        }).catch(function (err) {
+          say(err && err.code === "declined" ? "Save cancelled." : "Could not save the file.", "err");
+        });
+        return;
+      }
+
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      say("Saved " + fname, "ok");
+    }, type, 0.92);
+  });
+
+  /* ---------------- programmatic API ----------------
+     Used by tools/mockup/capture.mjs so the CLI and this page share
+     one renderer. Keep the shape stable. */
+
+  function pressGroup(sel, attr, value) {
+    Array.prototype.forEach.call(document.querySelectorAll(sel + " [" + attr + "]"), function (x) {
+      x.setAttribute("aria-pressed", String(x.getAttribute(attr) === String(value)));
+    });
+  }
+
+  function sync() {
+    pressGroup("#fitChips", "data-fit", S.fit);
+    pressGroup("#deviceChips", "data-device", S.device);
+    pressGroup("#finishChips", "data-finish", S.finish);
+    pressGroup("#fmtChips", "data-fmt", S.fmt);
+    pressGroup("#bgSwatches", "data-bg", S.bg);
+    Array.prototype.forEach.call(document.querySelectorAll("#sizeChips [data-w]"), function (x) {
+      x.setAttribute("aria-pressed", String(+x.dataset.w === S.w && +x.dataset.h === S.h));
+    });
+    sizeEl.value = S.size;
+    document.getElementById("sizeVal").textContent = S.size + "%";
+    document.getElementById("reflect").checked = S.reflect;
+    document.getElementById("glare").checked = S.glare;
+    if (S.bg === "custom") document.getElementById("customSw").style.background = S.custom;
+    meta();
+  }
+
+  window.__mockup = {
+    set: function (o) {
+      o = o || {};
+      Object.keys(o).forEach(function (k) {
+        if (Object.prototype.hasOwnProperty.call(S, k) && k !== "img") S[k] = o[k];
+      });
+      if (o.w || o.h) { cv.width = S.w; cv.height = S.h; }
+      sync();
+      render();
+      return true;
+    },
+    setImage: function (src) {
+      return new Promise(function (res, rej) {
+        var im = new Image();
+        im.onload = function () {
+          S.img = im;
+          document.getElementById("saveBtn").disabled = false;
+          document.getElementById("srcNote").textContent = im.naturalWidth + "×" + im.naturalHeight;
+          render();
+          res({ w: im.naturalWidth, h: im.naturalHeight });
+        };
+        im.onerror = function () { rej(new Error("image decode failed")); };
+        im.src = src;
+      });
+    },
+    toDataURL: function (type, q) {
+      render();
+      return cv.toDataURL(type || "image/webp", q == null ? 0.92 : q);
+    }
+  };
+
+  render();
+  meta();
+})();
+</script>
+
+</body>
+</html>

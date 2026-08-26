@@ -63,3 +63,60 @@ body {
 .gradient-techstack_slider{
   background: linear-gradient(90deg, #fff 3.76%, rgba(255, 255, 255, 0) 8.67%, rgba(255, 255, 255, 0) 90.53%, #fff 96.75%);
 }
+
+/* SLIDER STYLES */
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-vertical-reverse {
+  from {
+    transform: translateY(-50%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee-horizontal {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-horizontal-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--marquee-duration) linear infinite;
+}
+
+.animate-marquee-vertical-reverse {
+  animation: marquee-vertical-reverse var(--marquee-duration) linear infinite;
+}
+
+.animate-marquee-horizontal {
+  animation: marquee-horizontal var(--marquee-duration) linear infinite;
+}
+
+.animate-marquee-horizontal-reverse {
+  animation: marquee-horizontal-reverse var(--marquee-duration) linear infinite;
+}

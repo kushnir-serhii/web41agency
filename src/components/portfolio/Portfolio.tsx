@@ -61,7 +61,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ content }) => {
           className="w-full"
         >
           {projects.map((project) => (
-            <SwiperSlide key={project.image} className="h-auto">
+            <SwiperSlide key={project.title} className="h-auto">
               <ProjectCard {...project} />
             </SwiperSlide>
           ))}

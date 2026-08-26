@@ -1,0 +1,66 @@
+{
+  "_comment": "Every entry becomes one image in public/images/projects/. `slug` names the file. Anything omitted falls back to `defaults`. Set \"skip\": true to leave one out of a run.",
+
+  "defaults": {
+    "device": "laptop",
+    "bg": "dark",
+    "finish": "silver",
+    "fit": "top",
+    "size": 78,
+    "w": 628,
+    "h": 500,
+    "wait": 1200
+  },
+
+  "projects": [
+    {
+      "slug": "projections",
+      "url": "http://localhost:3000/projections",
+      "note": "new — confirm the route and the scene you want"
+    },
+
+    {
+      "slug": "reel-reveal",
+      "url": "https://reel-reveal.vercel.app",
+      "bg": "dark",
+      "skip": true,
+      "note": "existing image was made in Figma; unskip to regenerate in the new style"
+    },
+    {
+      "slug": "qa",
+      "url": "",
+      "skip": true
+    },
+    {
+      "slug": "portfolio-dev",
+      "url": "",
+      "skip": true
+    },
+    {
+      "slug": "low-code",
+      "url": "",
+      "skip": true
+    },
+    {
+      "slug": "building",
+      "url": "",
+      "bg": "light",
+      "skip": true
+    },
+    {
+      "slug": "invest",
+      "url": "",
+      "skip": true
+    },
+    {
+      "slug": "marketing",
+      "url": "",
+      "skip": true
+    },
+    {
+      "slug": "portfolio-design",
+      "url": "",
+      "skip": true
+    }
+  ]
+}

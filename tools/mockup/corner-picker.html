@@ -1,0 +1,755 @@
+<title>Corner Picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --ink:        #0A0A0B;
+    --panel:      #131316;
+    --raise:      #1B1B20;
+    --raise-hi:   #24242B;
+    --line:       #2B2B32;
+    --text:       #F4F4F1;
+    --muted:      #8B8B93;
+    --accent:     #DBFF04;
+    --accent-ink: #0A0A0B;
+
+    --f-display: "Bricolage Grotesque", "Archivo", system-ui, sans-serif;
+    --f-ui:      "Archivo", system-ui, -apple-system, sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --r-sm: 6px;
+    --r-md: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--f-ui);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    height: 100vh;
+  }
+
+  /* ---------------- stage ---------------- */
+
+  .stage {
+    position: relative;
+    background:
+      linear-gradient(45deg, #1a1a1e 25%, transparent 25%) 0 0/20px 20px,
+      linear-gradient(-45deg, #1a1a1e 25%, transparent 25%) 0 0/20px 20px,
+      linear-gradient(45deg, transparent 75%, #1a1a1e 75%) 0 0/20px 20px,
+      linear-gradient(-45deg, transparent 75%, #1a1a1e 75%) 0 0/20px 20px,
+      var(--ink);
+    overflow: hidden;
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  .stage.empty { cursor: default; }
+
+  #stageCanvas { display: block; }
+
+  .drop-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .drop-hint-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 40px 48px;
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    background: rgba(19, 19, 22, 0.6);
+    pointer-events: auto;
+  }
+
+  .drop-hint-card strong {
+    font-family: var(--f-display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .drop-hint-card span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .drop-hint-card button {
+    margin-top: 6px;
+    font-family: var(--f-ui);
+    font-weight: 600;
+    font-size: 13.5px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--accent);
+    border-radius: var(--r-md);
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  .drop-hint-card button:hover { filter: brightness(1.08); }
+
+  .stage.drag-over .drop-hint-card { border-color: var(--accent); background: rgba(27,27,32,0.85); }
+
+  /* zoom readout, bottom-left of stage */
+  .zoom-pill {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(19,19,22,0.88);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 7px 14px;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    backdrop-filter: blur(6px);
+  }
+  .zoom-pill.on { display: flex; }
+  .zoom-pill b { color: var(--text); font-weight: 500; }
+  .zoom-pill kbd {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    background: var(--raise-hi);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+
+  /* loupe */
+  #loupe {
+    position: absolute;
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.55);
+    pointer-events: none;
+    display: none;
+    overflow: hidden;
+    z-index: 40;
+  }
+  #loupe canvas { position: absolute; image-rendering: pixelated; }
+  #loupe::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 15px; height: 1px;
+    background: var(--accent);
+    transform: translate(-50%,-50%);
+  }
+  #loupe::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 1px; height: 15px;
+    background: var(--accent);
+    transform: translate(-50%,-50%);
+  }
+  .loupe-label {
+    position: absolute;
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    color: var(--ink);
+    background: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  /* ---------------- rail ---------------- */
+
+  .rail {
+    background: var(--panel);
+    border-left: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .rail-inner {
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .brand { display: flex; flex-direction: column; gap: 6px; }
+  .brand h1 {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: 23px;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .brand h1 em { font-style: normal; color: var(--accent); }
+  .brand p { margin: 0; color: var(--muted); font-size: 12.5px; max-width: 34ch; }
+
+  .grp { display: flex; flex-direction: column; gap: 11px; }
+  .grp-head {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--line);
+  }
+  .grp-num { font-family: var(--f-mono); font-size: 11px; color: var(--accent); }
+  .grp-title { font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; }
+  .grp-note { margin-left: auto; font-family: var(--f-mono); font-size: 10.5px; color: var(--muted); }
+
+  /* corner checklist */
+  .corners { display: flex; flex-direction: column; gap: 6px; }
+  .corner-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--line);
+    background: var(--raise);
+  }
+  .corner-row.active { border-color: var(--accent); background: var(--raise-hi); }
+  .corner-row.done { opacity: 0.65; }
+  .corner-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 600;
+    border: 1.5px solid var(--line);
+    color: var(--muted);
+  }
+  .corner-row.active .corner-dot { border-color: var(--accent); color: var(--accent); }
+  .corner-row.done .corner-dot { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .corner-label { font-size: 13px; flex: 1; }
+  .corner-coord {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .corner-row.done .corner-coord { color: var(--text); }
+
+  .hint {
+    margin: 0;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--muted);
+    border-left: 2px solid var(--line);
+    padding-left: 10px;
+  }
+
+  .btn-row { display: flex; gap: 8px; }
+  .btn {
+    flex: 1;
+    font-family: var(--f-ui);
+    font-weight: 600;
+    font-size: 12.5px;
+    border-radius: var(--r-sm);
+    padding: 9px 10px;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: var(--raise);
+    color: var(--text);
+  }
+  .btn:hover:not(:disabled) { background: var(--raise-hi); }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover:not(:disabled) { filter: brightness(1.08); }
+
+  /* output */
+  .out-tabs { display: flex; gap: 6px; }
+  .out-tab {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--raise);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+  .out-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+
+  .out-box {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    background: var(--raise);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 12px 14px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text);
+    min-height: 88px;
+  }
+  .out-box.empty { color: var(--muted); }
+
+  .copy-status {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--accent);
+    min-height: 14px;
+    text-align: center;
+  }
+
+  input[type="file"] { display: none; }
+
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+    .rail { height: auto; border-left: none; border-top: 1px solid var(--line); }
+  }
+</style>
+
+<div class="app">
+  <div class="stage empty" id="stage">
+    <canvas id="stageCanvas"></canvas>
+
+    <div class="drop-hint" id="dropHint">
+      <div class="drop-hint-card">
+        <strong>Drop a scene photo</strong>
+        <span>the laptop/phone photo whose screen you want to map</span>
+        <button type="button" id="pickBtn">Choose a file</button>
+      </div>
+    </div>
+
+    <div class="zoom-pill" id="zoomPill">
+      <span>scroll to zoom</span> · <span>drag to pan</span> · <b id="zoomVal">100%</b>
+    </div>
+
+    <div id="loupe"><canvas id="loupeCanvas" width="168" height="168"></canvas><div class="loupe-label" id="loupeLabel">TL</div></div>
+  </div>
+
+  <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
+
+  <aside class="rail">
+    <div class="rail-inner">
+
+      <div class="brand">
+        <h1>Corner <em>Picker</em></h1>
+        <p>Click the 4 screen corners on a scene photo. Get exact pixel coordinates back — no guessing from zoomed crops.</p>
+      </div>
+
+      <section class="grp">
+        <div class="grp-head">
+          <span class="grp-num">01</span>
+          <span class="grp-title">Corners</span>
+          <span class="grp-note" id="progressNote">0 / 4</span>
+        </div>
+
+        <div class="corners" id="corners">
+          <div class="corner-row" data-i="0"><span class="corner-dot">TL</span><span class="corner-label">Top-left</span><span class="corner-coord">—</span></div>
+          <div class="corner-row" data-i="1"><span class="corner-dot">TR</span><span class="corner-label">Top-right</span><span class="corner-coord">—</span></div>
+          <div class="corner-row" data-i="2"><span class="corner-dot">BR</span><span class="corner-label">Bottom-right</span><span class="corner-coord">—</span></div>
+          <div class="corner-row" data-i="3"><span class="corner-dot">BL</span><span class="corner-label">Bottom-left</span><span class="corner-coord">—</span></div>
+        </div>
+
+        <p class="hint">Click in order: top-left → top-right → bottom-right → bottom-left, tracing the true corners of the display glass (not the outer bezel). Scroll to zoom in first — the loupe shows a magnified crosshair for the exact pixel. Drag any placed dot to nudge it.</p>
+
+        <div class="btn-row">
+          <button class="btn" id="undoBtn" disabled>Undo last</button>
+          <button class="btn" id="resetBtn" disabled>Reset</button>
+        </div>
+      </section>
+
+      <section class="grp">
+        <div class="grp-head">
+          <span class="grp-num">02</span>
+          <span class="grp-title">Coordinates</span>
+        </div>
+
+        <div class="out-tabs" role="group" aria-label="Output format">
+          <button class="out-tab" type="button" data-fmt="py" aria-pressed="true">Python</button>
+          <button class="out-tab" type="button" data-fmt="json" aria-pressed="false">JSON</button>
+          <button class="out-tab" type="button" data-fmt="css" aria-pressed="false">clip-path</button>
+        </div>
+
+        <div class="out-box empty" id="outBox">place all 4 corners to see coordinates</div>
+
+        <div class="btn-row">
+          <button class="btn primary" id="copyBtn" disabled>Copy</button>
+        </div>
+        <div class="copy-status" id="copyStatus"></div>
+      </section>
+
+    </div>
+  </aside>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var stage = document.getElementById("stage");
+  var canvas = document.getElementById("stageCanvas");
+  var ctx = canvas.getContext("2d");
+  var dropHint = document.getElementById("dropHint");
+  var zoomPill = document.getElementById("zoomPill");
+  var zoomVal = document.getElementById("zoomVal");
+  var loupe = document.getElementById("loupe");
+  var loupeCanvas = document.getElementById("loupeCanvas");
+  var loupeCtx = loupeCanvas.getContext("2d");
+  var loupeLabel = document.getElementById("loupeLabel");
+  var fileInput = document.getElementById("file");
+  var pickBtn = document.getElementById("pickBtn");
+
+  var img = null;           // the loaded HTMLImageElement
+  var view = { scale: 1, ox: 0, oy: 0 };  // image->canvas transform
+  var points = [];          // up to 4 {x,y} in IMAGE pixel space
+  var labels = ["TL", "TR", "BR", "BL"];
+  var dragIndex = -1;
+  var lastPointer = null;
+
+  var LABEL_NAMES = { TL: "Top-left", TR: "Top-right", BR: "Bottom-right", BL: "Bottom-left" };
+
+  /* ---------------- canvas sizing ---------------- */
+
+  function resizeCanvas() {
+    var r = stage.getBoundingClientRect();
+    canvas.width = Math.round(r.width * devicePixelRatio);
+    canvas.height = Math.round(r.height * devicePixelRatio);
+    canvas.style.width = r.width + "px";
+    canvas.style.height = r.height + "px";
+    draw();
+  }
+  window.addEventListener("resize", resizeCanvas);
+
+  function fitImage() {
+    var r = stage.getBoundingClientRect();
+    var pad = 40;
+    var sx = (r.width - pad * 2) / img.naturalWidth;
+    var sy = (r.height - pad * 2) / img.naturalHeight;
+    view.scale = Math.min(sx, sy, 1);
+    view.ox = (r.width - img.naturalWidth * view.scale) / 2;
+    view.oy = (r.height - img.naturalHeight * view.scale) / 2;
+  }
+
+  /* image-space -> canvas CSS-pixel space */
+  function toCanvas(p) {
+    return { x: p.x * view.scale + view.ox, y: p.y * view.scale + view.oy };
+  }
+  /* canvas CSS-pixel space -> image-space */
+  function toImage(p) {
+    return { x: (p.x - view.ox) / view.scale, y: (p.y - view.oy) / view.scale };
+  }
+
+  function draw() {
+    var r = stage.getBoundingClientRect();
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    ctx.clearRect(0, 0, r.width, r.height);
+    if (!img) return;
+
+    ctx.imageSmoothingEnabled = view.scale < 1;
+    ctx.drawImage(img, view.ox, view.oy, img.naturalWidth * view.scale, img.naturalHeight * view.scale);
+
+    // quad
+    if (points.length >= 2) {
+      ctx.beginPath();
+      var p0 = toCanvas(points[0]);
+      ctx.moveTo(p0.x, p0.y);
+      for (var i = 1; i < points.length; i++) {
+        var p = toCanvas(points[i]);
+        ctx.lineTo(p.x, p.y);
+      }
+      if (points.length === 4) ctx.closePath();
+      ctx.strokeStyle = "#DBFF04";
+      ctx.lineWidth = 1.6;
+      ctx.setLineDash([5, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      if (points.length === 4) {
+        ctx.fillStyle = "rgba(219,255,4,0.10)";
+        ctx.fill();
+      }
+    }
+
+    // points
+    points.forEach(function (p, i) {
+      var c = toCanvas(p);
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = "#0A0A0B";
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#DBFF04";
+      ctx.stroke();
+
+      ctx.font = "600 10px 'IBM Plex Mono', monospace";
+      ctx.fillStyle = "#DBFF04";
+      ctx.textAlign = "center";
+      var above = i < 2;
+      ctx.fillText(labels[i], c.x, above ? c.y - 12 : c.y + 20);
+    });
+  }
+
+  /* ---------------- loading an image ---------------- */
+
+  function loadFile(f) {
+    if (!f || f.type.indexOf("image") !== 0) return;
+    var url = URL.createObjectURL(f);
+    var im = new Image();
+    im.onload = function () {
+      img = im;
+      points = [];
+      stage.classList.remove("empty");
+      dropHint.style.display = "none";
+      zoomPill.classList.add("on");
+      fitImage();
+      resizeCanvas();
+      syncUI();
+    };
+    im.src = url;
+  }
+
+  fileInput.addEventListener("change", function () {
+    if (fileInput.files[0]) loadFile(fileInput.files[0]);
+  });
+  pickBtn.addEventListener("click", function () { fileInput.click(); });
+
+  ["dragenter", "dragover"].forEach(function (t) {
+    stage.addEventListener(t, function (e) { e.preventDefault(); stage.classList.add("drag-over"); });
+  });
+  ["dragleave", "drop"].forEach(function (t) {
+    stage.addEventListener(t, function (e) { e.preventDefault(); stage.classList.remove("drag-over"); });
+  });
+  stage.addEventListener("drop", function (e) {
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+  });
+  window.addEventListener("paste", function (e) {
+    var items = (e.clipboardData || {}).items || [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf("image") === 0) { loadFile(items[i].getAsFile()); break; }
+    }
+  });
+
+  /* ---------------- zoom / pan ---------------- */
+
+  stage.addEventListener("wheel", function (e) {
+    if (!img) return;
+    e.preventDefault();
+    var r = stage.getBoundingClientRect();
+    var mx = e.clientX - r.left, my = e.clientY - r.top;
+    var before = toImage({ x: mx, y: my });
+
+    var factor = Math.exp(-e.deltaY * 0.0012);
+    view.scale = Math.min(16, Math.max(0.05, view.scale * factor));
+
+    var after = toCanvas(before);
+    view.ox += mx - after.x;
+    view.oy += my - after.y;
+
+    zoomVal.textContent = Math.round(view.scale * 100) + "%";
+    draw();
+  }, { passive: false });
+
+  var panning = false, panStart = null, viewStart = null;
+
+  function hitTestPoint(canvasPos) {
+    for (var i = 0; i < points.length; i++) {
+      var c = toCanvas(points[i]);
+      var d = Math.hypot(c.x - canvasPos.x, c.y - canvasPos.y);
+      if (d <= 10) return i;
+    }
+    return -1;
+  }
+
+  stage.addEventListener("pointerdown", function (e) {
+    if (!img) return;
+    var r = stage.getBoundingClientRect();
+    var cp = { x: e.clientX - r.left, y: e.clientY - r.top };
+    var hit = hitTestPoint(cp);
+
+    if (hit >= 0) {
+      dragIndex = hit;
+      stage.setPointerCapture(e.pointerId);
+      return;
+    }
+
+    if (e.button === 2 || e.shiftKey || points.length >= 4) {
+      panning = true;
+      panStart = cp;
+      viewStart = { ox: view.ox, oy: view.oy };
+      stage.setPointerCapture(e.pointerId);
+      return;
+    }
+
+    // place next point
+    var ip = toImage(cp);
+    ip.x = Math.round(ip.x); ip.y = Math.round(ip.y);
+    points.push(ip);
+    draw();
+    syncUI();
+  });
+
+  stage.addEventListener("pointermove", function (e) {
+    var r = stage.getBoundingClientRect();
+    var cp = { x: e.clientX - r.left, y: e.clientY - r.top };
+    lastPointer = cp;
+
+    if (dragIndex >= 0) {
+      var ip = toImage(cp);
+      points[dragIndex] = { x: Math.round(ip.x), y: Math.round(ip.y) };
+      draw();
+      syncUI();
+      showLoupe(cp, dragIndex);
+      return;
+    }
+    if (panning) {
+      view.ox = viewStart.ox + (cp.x - panStart.x);
+      view.oy = viewStart.oy + (cp.y - panStart.y);
+      draw();
+      return;
+    }
+    if (img && points.length < 4) {
+      showLoupe(cp, points.length);
+    } else {
+      loupe.style.display = "none";
+    }
+  });
+
+  window.addEventListener("pointerup", function () {
+    dragIndex = -1;
+    panning = false;
+    loupe.style.display = "none";
+  });
+
+  stage.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  stage.addEventListener("pointerleave", function () { loupe.style.display = "none"; });
+
+  function showLoupe(cp, idx) {
+    if (!img || idx > 3) { loupe.style.display = "none"; return; }
+    loupe.style.display = "block";
+    var size = 168, zoom = 4.5;
+    loupe.style.left = (cp.x - size / 2) + "px";
+    loupe.style.top = (cp.y - size - 22) + "px";
+    loupeLabel.textContent = labels[idx] || "";
+
+    var ip = toImage(cp);
+    loupeCtx.imageSmoothingEnabled = false;
+    loupeCtx.fillStyle = "#0A0A0B";
+    loupeCtx.fillRect(0, 0, size, size);
+    var srcW = size / zoom, srcH = size / zoom;
+    loupeCtx.drawImage(
+      img,
+      ip.x - srcW / 2, ip.y - srcH / 2, srcW, srcH,
+      0, 0, size, size
+    );
+  }
+
+  /* ---------------- side panel sync ---------------- */
+
+  var undoBtn = document.getElementById("undoBtn");
+  var resetBtn = document.getElementById("resetBtn");
+  var copyBtn = document.getElementById("copyBtn");
+  var progressNote = document.getElementById("progressNote");
+  var outBox = document.getElementById("outBox");
+  var copyStatus = document.getElementById("copyStatus");
+  var fmt = "py";
+
+  function syncUI() {
+    progressNote.textContent = points.length + " / 4";
+    undoBtn.disabled = points.length === 0;
+    resetBtn.disabled = points.length === 0;
+
+    document.querySelectorAll(".corner-row").forEach(function (row) {
+      var i = +row.dataset.i;
+      row.classList.toggle("done", i < points.length);
+      row.classList.toggle("active", i === points.length);
+      var coord = row.querySelector(".corner-coord");
+      coord.textContent = i < points.length ? "(" + points[i].x + ", " + points[i].y + ")" : "—";
+    });
+
+    var ready = points.length === 4;
+    copyBtn.disabled = !ready;
+    outBox.classList.toggle("empty", !ready);
+    outBox.textContent = ready ? render(fmt) : "place all 4 corners to see coordinates";
+  }
+
+  function render(f) {
+    var p = points;
+    if (f === "json") {
+      return JSON.stringify({
+        TL: [p[0].x, p[0].y], TR: [p[1].x, p[1].y],
+        BR: [p[2].x, p[2].y], BL: [p[3].x, p[3].y]
+      }, null, 2);
+    }
+    if (f === "css") {
+      var pct = p.map(function (pt) {
+        return (pt.x / img.naturalWidth * 100).toFixed(2) + "% " + (pt.y / img.naturalHeight * 100).toFixed(2) + "%";
+      });
+      return "clip-path: polygon(" + pct.join(", ") + ");";
+    }
+    return "QUAD = [(" + p[0].x + "," + p[0].y + "), (" + p[1].x + "," + p[1].y + "), (" +
+      p[2].x + "," + p[2].y + "), (" + p[3].x + "," + p[3].y + ")]  # TL TR BR BL";
+  }
+
+  document.querySelectorAll(".out-tab").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll(".out-tab").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      fmt = b.dataset.fmt;
+      syncUI();
+    });
+  });
+
+  undoBtn.addEventListener("click", function () { points.pop(); draw(); syncUI(); });
+  resetBtn.addEventListener("click", function () { points = []; draw(); syncUI(); });
+
+  copyBtn.addEventListener("click", function () {
+    var text = render(fmt);
+    var done = function () {
+      copyStatus.textContent = "Copied — paste it in the chat";
+      setTimeout(function () { copyStatus.textContent = ""; }, 2200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+    } else {
+      fallbackCopy(text, done);
+    }
+  });
+
+  function fallbackCopy(text, done) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) {}
+    ta.remove();
+  }
+
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && points.length) { points.pop(); draw(); syncUI(); }
+    if ((e.key === "z" && (e.metaKey || e.ctrlKey)) && points.length) { points.pop(); draw(); syncUI(); }
+  });
+
+  syncUI();
+  resizeCanvas();
+})();
+</script>

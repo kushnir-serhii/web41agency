@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { IProject } from "@/content/portfolioContent";
+import { IProject } from '@/content/portfolioContent';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProjectCardProps extends IProject {
   /* Sizing for the cover — the slider uses fixed heights, the grid an aspect ratio. */
@@ -12,13 +12,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   tags,
   href,
-  imageClassName = "h-[240px] lg:h-[371px]",
+  imageClassName = 'h-[240px] lg:h-[371px]',
 }) => {
   return (
     <Link href={href} className="flex flex-col items-start gap-4 w-full group">
-      <div
-        className={`relative w-full rounded-lg overflow-hidden ${imageClassName}`}
-      >
+      <div className={`relative w-full rounded-lg overflow-hidden ${imageClassName}`}>
         <Image
           src={image}
           alt={title}

@@ -1,20 +1,23 @@
-export const heroImagesArray_1 = [
-  "/images/hero/build.webp",
-  "/images/hero/low_code.webp",
-  "/images/hero/investico_1.webp",
-];
-export const heroImagesArray_2 = [
-  "/images/hero/investico.webp",
-  "/images/hero/reel.webp",
-  "/images/hero/marketing.webp",
-];
-export const heroImagesArray_3 = [
-  "/images/hero/cyber.webp",
-  "/images/hero/low_1.webp",
-  "/images/hero/full_stack.webp",
-];
-export const heroImagesArray_4 = [
-  "/images/hero/qa.webp",
-  "/images/hero/project_image_4.webp",
-  "/images/hero/low.webp",
-];
+import {
+  heroBuild,
+  heroCalmisuApp,
+  heroCatoshiMobile,
+  heroCyber,
+  heroFullStack,
+  heroInvestico,
+  heroInvestico1,
+  heroLow,
+  heroLow1,
+  heroLowCode,
+  heroMarketing,
+  heroMemAcademy,
+  heroNuance,
+  heroProjectImage4,
+  heroQa,
+  heroReel,
+} from '../../public/images';
+
+export const heroImagesArray_1 = [heroBuild, heroLowCode, heroCalmisuApp, heroInvestico1];
+export const heroImagesArray_2 = [heroInvestico, heroReel, heroCatoshiMobile, heroMarketing];
+export const heroImagesArray_3 = [heroCyber, heroMemAcademy, heroLow1, heroFullStack];
+export const heroImagesArray_4 = [heroQa, heroProjectImage4, heroLow, heroNuance];
