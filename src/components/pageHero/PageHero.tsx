@@ -50,22 +50,17 @@ export const PageHero: React.FC<PageHeroProps> = ({
       <div className="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row items-start lg:items-center lg:justify-between px-4 lg:px-20 pt-[160px] pb-0 lg:pt-25 gap-10 lg:gap-0 overflow-hidden">
         <h1 className="w-full lg:max-w-[760px] text-[60px] lg:text-[88px] font-bold leading-tight text-left">
           {heading.map(({ text, muted }, index) => (
-            <span
-              key={index}
-              className={muted ? "text-[#656973]/12" : "text-black"}
-            >
-              {index > 0 ? " " : ""}
+            <span key={index} className={muted ? 'text-[#656973]/12' : 'text-black'}>
+              {index > 0 ? ' ' : ''}
               {text}
             </span>
           ))}
         </h1>
 
         <div className="flex flex-col items-start w-full lg:max-w-[410px] gap-6 lg:gap-0 lg:justify-between lg:h-[238px]">
-          <p className="w-full opacity-80 text-lg text-left text-black">
-            {description}
-          </p>
-          <div className="flex flex-col md:flex-row justify-start items-center gap-2 pb-4 md:gap-0 self-stretch">
-            <Button text={primaryButton}className="w-full md:w-auto" />
+          <p className="w-full opacity-80 text-lg text-left text-black">{description}</p>
+          <div className="flex flex-col md:flex-row justify-start items-center gap-2 pb-4 self-stretch">
+            <Button text={primaryButton} className="w-full md:w-auto" />
             <Button text={secondaryButton} btnType="ghost" className="w-full md:w-auto" />
           </div>
         </div>

@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Icon } from "@/components/ui/Icon";
+import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
+import { useState } from 'react';
 
 const inputClass =
-  "w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-[#868686] outline-none focus:ring-2 focus:ring-black/10";
+  'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-[#868686] outline-none focus:ring-2 focus:ring-black/10';
 
 export const LetsTalk = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -30,8 +29,8 @@ export const LetsTalk = () => {
             Let&rsquo;s Talk
           </h2>
           <p className="text-lg text-left text-black">
-            Ready to bring your vision to life? Get in touch, and let&rsquo;s
-            build something great together.
+            Ready to bring your vision to life? Get in touch, and let&rsquo;s build something great
+            together.
           </p>
           <a
             href="mailto:hello@web41.agency"
@@ -81,12 +80,7 @@ export const LetsTalk = () => {
           <p className="text-sm text-left text-black/70">
             By filling out the form I agree to Privacy Policy and Terms of Use
           </p>
-          <button
-            type="submit"
-            className="flex justify-center items-center w-full gap-1 px-6 py-4 rounded-[100px] bg-black text-lg font-bold text-white cursor-pointer transition-opacity hover:opacity-90"
-          >
-            Send Message
-          </button>
+          <Button text="Send Message" className="w-full" />
         </form>
       </div>
     </section>

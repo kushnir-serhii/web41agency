@@ -1,10 +1,12 @@
-import { Hero } from "@/components/hero/Hero";
+import { LetsTalk } from '@/components/letsTalk/LetsTalk';
+import { WhyChoose } from '@/components/whyChoose/WhyChoose';
+import { whyChooseContent } from '@/content/whyChooseContent';
 
 export default function AboutUsPage() {
   return (
     <div className="container flex-col">
-          <h1>About us page</h1>
-          <Hero />
+      <WhyChoose content={whyChooseContent} />
+      <LetsTalk />
     </div>
   );
 }

@@ -37,7 +37,7 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
     },
     {
       image: projectCatoshi,
-      title: 'Catoshi - Crypto Dashboard with AI-powered Forecasting',
+      title: 'Catoshi - AI-powered Forecasting Crypto Dashboard',
       tags: ['Design', 'Development', 'AI', 'Dashboard', 'Landing Page'],
       href: '/portfolio',
     },

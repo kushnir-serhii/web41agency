@@ -3,5 +3,4 @@ export  const navBarArray = [
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/contacts", label: "Contacts" },
-  { href: "/blog", label: "Blog" },
 ];
