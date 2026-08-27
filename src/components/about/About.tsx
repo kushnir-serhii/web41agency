@@ -47,7 +47,7 @@ export const About = () => {
             solution, we&rsquo;ve got you covered.
           </p>
         </div>
-        <Button text="Free Consultation" fill />
+        <Button text="Free Consultation" />
       </div>
 
       {/* The circles run into the section's bottom padding, as in the design */}

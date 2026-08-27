@@ -1,5 +1,5 @@
-import { Button } from "../ui/Button";
-import { WhyChooseList } from "./whyChooseComponents/WhyChooseList";
+import { Button } from '../ui/Button';
+import { WhyChooseList } from './whyChooseComponents/WhyChooseList';
 
 export interface IWhyChooseContent {
   sectionTitle: string;
@@ -26,7 +26,7 @@ export const WhyChoose: React.FC<WhyChooseProps> = ({ content }) => {
         {sectionTitle}
       </h2>
       <WhyChooseList mainContent={mainContent} />
-      <Button text={textButton} fill />
+      <Button text={textButton} />
     </div>
   );
 };
