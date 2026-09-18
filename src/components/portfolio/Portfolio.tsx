@@ -33,7 +33,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ content }) => {
               type="button"
               aria-label="Previous project"
               onClick={() => swiperRef.current?.slidePrev()}
-              className="flex items-center p-2.5 rounded-full bg-white/75 cursor-pointer transition-colors hover:bg-white"
+              className="flex size-11 items-center justify-center rounded-full bg-white/75 cursor-pointer transition-colors hover:bg-white"
             >
               <Icon id="icon-arrow" width={20} height={20} />
             </button>
@@ -41,7 +41,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ content }) => {
               type="button"
               aria-label="Next project"
               onClick={() => swiperRef.current?.slideNext()}
-              className="flex items-center p-2.5 rounded-full bg-white/75 cursor-pointer transition-colors hover:bg-white"
+              className="flex size-11 items-center justify-center rounded-full bg-white/75 cursor-pointer transition-colors hover:bg-white"
             >
               <Icon id="icon-arrow" width={20} height={20} className="rotate-180" />
             </button>

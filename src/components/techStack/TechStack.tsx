@@ -1,17 +1,20 @@
 "use client";
 
 import { MySlider } from "../slider/Slider";
-import { techStackIconsArray } from "@/content/techStackIconsArray";
+import { techStackIconsArray, techStackNames } from "@/content/techStackIconsArray";
+import { useReducedMotion } from "motion/react";
 import { Icon } from "../ui/Icon";
 
 export const TechStack = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="flex flex-col justify-between gap-10 lg:gap-20 py-20 lg:py-40 w-full max-w-[1440px]">
       <h2 className="container mr-auto text-4xl lg:text-6xl font-semibold text-left text-black">
         Tech Stack
       </h2>
       <div className="relative w-full">
-        <div className="absolute flex z-10 top-0 h-full gradient-techstack_slider w-full" />
+        <div aria-hidden="true" className="absolute flex z-10 top-0 h-full gradient-techstack_slider w-full" />
         <MySlider
           contentArray={techStackIconsArray}
           className="w-auto marquee"
@@ -20,9 +23,7 @@ export const TechStack = () => {
             spaceBetween: 16,
             loop: true,
             freeMode: true,
-            autoplay: {
-              delay: 0,
-            },
+            autoplay: reduceMotion ? false : { delay: 0 },
             speed: 6800,
             breakpoints: {
               320: { slidesPerView: 3 }, // For mobile screens
@@ -33,7 +34,12 @@ export const TechStack = () => {
             },
           }}
           slide={(item) => (
-            <Icon id={item} height={60} className="w-full max-w-[130px]" />
+            <Icon
+              id={item}
+              height={60}
+              label={techStackNames[item]}
+              className="w-full max-w-[130px]"
+            />
           )}
         />
       </div>

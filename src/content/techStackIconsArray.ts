@@ -15,3 +15,21 @@ export const techStackIconsArray = [
   "icon-typescript",
   "icon-webflow",
 ];
+
+export const techStackNames: Record<string, string> = {
+  "icon-adobe": "Adobe",
+  "icon-ai": "Adobe Illustrator",
+  "icon-css": "CSS",
+  "icon-figma": "Figma",
+  "icon-fraimer": "Framer",
+  "icon-html": "HTML",
+  "icon-js": "JavaScript",
+  "icon-lottie": "Lottie",
+  "icon-nextjs": "Next.js",
+  "icon-node": "Node.js",
+  "icon-react": "React",
+  "icon-redux": "Redux",
+  "icon-tailwind": "Tailwind CSS",
+  "icon-typescript": "TypeScript",
+  "icon-webflow": "Webflow",
+};

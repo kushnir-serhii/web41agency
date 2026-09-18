@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/footer/Footer";
 import fixelDisplay from "@/fonts/fixelDisplay";
-import { SITE_NAME, SITE_URL } from "@/utils/site";
+import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from "@/utils/site";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -59,7 +59,7 @@ const organizationJsonLd = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.png`,
-  email: "hello@web41.agency",
+  email: CONTACT_EMAIL,
   sameAs: [
     "https://www.instagram.com/web41.agency/",
     "https://www.dribbble.com/web41",

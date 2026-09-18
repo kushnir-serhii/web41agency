@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { CONSULTATION_HREF } from "@/content/ctaLinks";
 import { navBarArray } from "@/content/navBarArray";
 import { NavBarItem } from "./NavBarItem";
 
@@ -28,13 +30,12 @@ export const NavBar: React.FC<NavBarProps> = ({ isFooter }) => {
       ))}
       {!isFooter && (
         <li>
-          <button
-            type="button"
-            aria-label="Free Quote"
+          <Link
+            href={CONSULTATION_HREF}
             className="flex justify-center items-center px-4 py-2 rounded-[100px] text-white bg-black"
           >
             Free Quote
-          </button>
+          </Link>
         </li>
       )}
     </ul>

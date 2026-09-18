@@ -20,6 +20,15 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment
+
+Copy `.env.example` to `.env.local` and fill in the values. Set the same keys in Vercel (Project Settings → Environment Variables).
+
+- `NEXT_PUBLIC_SITE_URL` — public origin without a trailing slash, e.g. `https://web41agency.com`
+- `NEXT_PUBLIC_CONTACT_EMAIL` — contact email shown on the site and used in `mailto:` links
+
+Empty values fall back to defaults in `src/utils/site.ts`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
