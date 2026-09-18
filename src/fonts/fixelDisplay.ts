@@ -1,22 +1,10 @@
 import localFont from "next/font/local";
 
 const fixelDisplay = localFont({
+  // Only these 4 weights are actually used across the site (font-normal,
+  // font-medium, font-semibold, font-bold) — the other 5 weights were
+  // preloaded but never referenced.
   src: [
-    {
-      path: "../../public/fonts/fixelDisplay/FixelDisplay-Thin.woff2",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fixelDisplay/FixelDisplay-ExtraLight.woff2",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fixelDisplay/FixelDisplay-Light.woff2",
-      weight: "300",
-      style: "normal",
-    },
     {
       path: "../../public/fonts/fixelDisplay/FixelDisplay-Regular.woff2",
       weight: "400",
@@ -35,16 +23,6 @@ const fixelDisplay = localFont({
     {
       path: "../../public/fonts/fixelDisplay/FixelDisplay-Bold.woff2",
       weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fixelDisplay/FixelDisplay-ExtraBold.woff2",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/fixelDisplay/FixelDisplay-Black.woff2",
-      weight: "900",
       style: "normal",
     },
   ],
