@@ -6,9 +6,11 @@ import { portfolioContent } from "@/content/portfolioContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Web41",
+  // The root layout's template appends " | Web41 Agency" — do not repeat it here.
+  title: "Portfolio",
   description:
     "We create sleek, high-performing websites tailored to your needs. Explore our portfolio and see how we bring ideas to life.",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioPage() {

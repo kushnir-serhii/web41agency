@@ -11,6 +11,8 @@ interface ServiceItemProps extends IService {
 export const ServiceItem: React.FC<ServiceItemProps> = ({
   title,
   description,
+  price,
+  timeline,
   isOpen,
   onToggle,
 }) => {
@@ -47,14 +49,17 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
           />
         </div>
 
-        <p
-          className={`w-full lg:w-1/2 opacity-80 text-lg text-black transition-all duration-300
-            lg:block lg:opacity-0 lg:group-hover:opacity-80 ${
-              isOpen ? "block" : "hidden"
+        <div
+          className={`flex flex-col w-full lg:w-1/2 gap-2 transition-all duration-300
+            lg:opacity-0 lg:group-hover:opacity-80 ${
+              isOpen ? "opacity-80" : "hidden lg:flex"
             }`}
         >
-          {description}
-        </p>
+          <p className="opacity-80 text-lg text-black">{description}</p>
+          <p className="text-base text-black/70">
+            {price} · {timeline}
+          </p>
+        </div>
       </button>
     </li>
   );
