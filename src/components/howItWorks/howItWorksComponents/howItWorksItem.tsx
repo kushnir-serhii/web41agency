@@ -1,4 +1,4 @@
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from '@/components/ui/Icon';
 
 export interface HowItWorksItemProps {
   logoId: string;
@@ -22,7 +22,7 @@ export const HowItWorksItem: React.FC<HowItWorksItemComponentProps> = ({
         aria-hidden="true"
         className="absolute top-6 right-6 lg:top-8 lg:right-8 text-5xl lg:text-6xl font-bold leading-none text-black/40"
       >
-        {String(step).padStart(2, "0")}
+        {String(step).padStart(2, '0')}
       </span>
 
       <div className="flex justify-center items-center rounded-full shrink-0 size-20 bg-accent">
@@ -33,9 +33,7 @@ export const HowItWorksItem: React.FC<HowItWorksItemComponentProps> = ({
         <h3 className="self-stretch w-full text-2xl lg:text-[32px] font-bold text-left text-black">
           {title}
         </h3>
-        <p className="self-stretch w-full opacity-80 text-lg text-left text-black">
-          {description}
-        </p>
+        <p className="self-stretch w-full opacity-80 text-lg text-left text-black">{description}</p>
       </div>
     </div>
   );

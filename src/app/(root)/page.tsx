@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { About } from '@/components/about/About';
 import { Faq } from '@/components/faq/Faq';
 import { Hero } from '@/components/hero/Hero';
@@ -10,7 +12,6 @@ import { WhyChoose } from '@/components/whyChoose/WhyChoose';
 import { howItWorksContent } from '@/content/howItWorksContent';
 import { portfolioContent } from '@/content/portfolioContent';
 import { whyChooseContent } from '@/content/whyChooseContent';
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },

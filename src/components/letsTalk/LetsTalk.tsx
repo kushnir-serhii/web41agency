@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
+import { useId, useState } from 'react';
+
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { CONTACT_EMAIL } from '@/utils/site';
-import Link from 'next/link';
-import { useId, useState } from 'react';
 
 const inputClass =
   'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-[#6b6b6b] outline-none focus-visible:ring-2 focus-visible:ring-black';
@@ -35,7 +36,10 @@ export const LetsTalk = () => {
   };
 
   return (
-    <section id="lets-talk" className="scroll-mt-24 w-full max-w-[1440px] mx-auto px-4 lg:px-20 pb-20">
+    <section
+      id="lets-talk"
+      className="scroll-mt-24 w-full max-w-[1440px] mx-auto px-4 lg:px-20 pb-20"
+    >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 overflow-hidden p-6 lg:p-12 rounded-lg bg-bg_item">
         <div className="flex flex-col items-start w-full lg:w-[369px] gap-6">
           <h2 className="text-4xl lg:text-6xl font-semibold text-left text-black">

@@ -1,15 +1,16 @@
-"use client";
+'use client';
 
-import { NavBar } from "@/components/layout/navBar/NavBar";
-import { NavBarItem } from "@/components/layout/navBar/NavBarItem";
-import { Icon } from "@/components/ui/Icon";
-import { Logo } from "@/components/ui/Logo";
-import { CONSULTATION_HREF } from "@/content/ctaLinks";
-import { navBarArray } from "@/content/navBarArray";
-import { AnimatePresence, motion } from "motion/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { AnimatePresence, motion } from 'motion/react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+
+import { NavBar } from '@/components/layout/navBar/NavBar';
+import { NavBarItem } from '@/components/layout/navBar/NavBarItem';
+import { Icon } from '@/components/ui/Icon';
+import { Logo } from '@/components/ui/Logo';
+import { CONSULTATION_HREF } from '@/content/ctaLinks';
+import { navBarArray } from '@/content/navBarArray';
 
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ export const Header: React.FC = () => {
         {/* Mobile hamburger */}
         <button
           type="button"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
           className="lg:hidden flex size-11 items-center justify-center rounded-full"
@@ -52,17 +53,13 @@ export const Header: React.FC = () => {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className="lg:hidden absolute top-full left-2 right-2 mt-2 z-50 rounded-3xl bg-white/90 backdrop-blur-[100px] shadow-xl overflow-hidden"
           >
             <ul className="flex flex-col py-4">
               {navBarArray.map(({ href, label }, index) => (
                 <li key={index} onClick={() => setIsOpen(false)}>
-                  <NavBarItem
-                    link={href}
-                    text={label}
-                    isActive={pathname === href}
-                  />
+                  <NavBarItem link={href} text={label} isActive={pathname === href} />
                 </li>
               ))}
               <li className="px-4 pt-2">

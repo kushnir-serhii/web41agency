@@ -1,8 +1,9 @@
-import { SITE_NAME } from "@/utils/site";
-import Link from "next/link";
+import Link from 'next/link';
+
+import { SITE_NAME } from '@/utils/site';
 
 const linkClass =
-  "flex-grow-0 flex-shrink-0 text-[15px] text-center text-[#f9f9f9] hover:underline";
+  'flex min-h-11 items-center justify-center flex-grow-0 flex-shrink-0 text-[15px] text-center text-[#f9f9f9] hover:underline';
 
 export const PrivacyAndTerms: React.FC = () => {
   return (

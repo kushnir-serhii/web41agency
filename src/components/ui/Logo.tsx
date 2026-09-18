@@ -1,29 +1,29 @@
-import Link from "next/link";
-import { Icon } from "./Icon";
+import Link from 'next/link';
 
+import { Icon } from './Icon';
 
 interface LogoProps {
-    widthIcon?: number;
-    heightIcon?: number;
-    color?: string;
-    fontSize?: string;
-    /* Tailwind sizing for the icon — wins over the width/height attributes,
+  widthIcon?: number;
+  heightIcon?: number;
+  color?: string;
+  fontSize?: string;
+  /* Tailwind sizing for the icon — wins over the width/height attributes,
        so the logo can scale per breakpoint. */
-    iconClassName?: string;
+  iconClassName?: string;
 }
 
 export const Logo: React.FC<LogoProps> = ({
   widthIcon = 30,
   heightIcon = 30,
-  color = "text-black",
-  fontSize = "text-[20px]",
-  iconClassName = "",
+  color = 'text-black',
+  fontSize = 'text-[20px]',
+  iconClassName = '',
 }) => {
   return (
     <Link
       href="/"
       className={`flex justify-center items-center ${
-        widthIcon === 30 ? "gap-2" : "gap-4 lg:gap-8"
+        widthIcon === 30 ? 'gap-2' : 'gap-4 lg:gap-8'
       }`}
       aria-label="web41 home"
     >

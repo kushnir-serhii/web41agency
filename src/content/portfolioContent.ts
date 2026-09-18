@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image';
+
 import {
   projectBuilding,
   projectCalmisuApp,
@@ -43,7 +44,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'AI Powered Movie Matching Web Application and Website',
       tags: ['Design', 'Development', 'OpenAI'],
       industry: 'Entertainment',
-      summary: 'A web app that uses OpenAI to match people with films they will actually want to watch.',
+      summary:
+        'A web app that uses OpenAI to match people with films they will actually want to watch.',
     },
     {
       slug: 'calmisu',
@@ -59,7 +61,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'Catoshi - AI-powered Forecasting Crypto Dashboard',
       tags: ['Design', 'Development', 'AI', 'Dashboard', 'Landing Page'],
       industry: 'Fintech / Crypto',
-      summary: 'A crypto dashboard that turns market data and news into probability-based forecasts.',
+      summary:
+        'A crypto dashboard that turns market data and news into probability-based forecasts.',
     },
     {
       slug: 'nuance',
@@ -75,7 +78,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'Website for QA Freelancer',
       tags: ['Design', 'Development', 'Portfolio'],
       industry: 'Software QA',
-      summary: 'A portfolio website that presents a freelance QA engineer’s services and experience.',
+      summary:
+        'A portfolio website that presents a freelance QA engineer’s services and experience.',
     },
     {
       slug: 'full-stack-developer-portfolio',
@@ -83,7 +87,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'Full Stack Developer Portfolio Website',
       tags: ['Design', 'Development', 'Landing Page'],
       industry: 'Software Development',
-      summary: 'A one-page portfolio that shows a full stack developer’s skills and projects at a glance.',
+      summary:
+        'A one-page portfolio that shows a full stack developer’s skills and projects at a glance.',
     },
     {
       slug: 'low-code-landing-page',
@@ -91,7 +96,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'Low Code Mobile Development Landing Page',
       tags: ['Design', 'Low-Code', 'Landing Page'],
       industry: 'Mobile Development',
-      summary: 'A landing page that explains a low-code mobile development offer and turns visitors into leads.',
+      summary:
+        'A landing page that explains a low-code mobile development offer and turns visitors into leads.',
     },
     {
       slug: 'construction-company-website',
@@ -99,7 +105,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'Corporate Website for Construction Company',
       tags: ['Design', 'Development', 'Corporate Website'],
       industry: 'Construction',
-      summary: 'A corporate website that presents a construction company’s services and completed work.',
+      summary:
+        'A corporate website that presents a construction company’s services and completed work.',
     },
     {
       slug: 'saas-landing-page',
@@ -107,7 +114,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'Landing Page for Saas Platform',
       tags: ['Design', 'Dashboard', 'Landing Page'],
       industry: 'SaaS',
-      summary: 'A landing page that shows off a SaaS platform’s dashboard and explains the product in seconds.',
+      summary:
+        'A landing page that shows off a SaaS platform’s dashboard and explains the product in seconds.',
     },
     {
       slug: 'digital-marketing-website',
@@ -115,7 +123,8 @@ export const portfolioContent: { sectionTitle: string; projects: IProject[] } = 
       title: 'Digital Marketing Website',
       tags: ['Design', 'Corporate Website', 'Marketing'],
       industry: 'Marketing',
-      summary: 'A corporate website for a digital marketing agency, built to present its services clearly.',
+      summary:
+        'A corporate website for a digital marketing agency, built to present its services clearly.',
     },
     {
       slug: 'designer-portfolio',

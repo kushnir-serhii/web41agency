@@ -1,4 +1,7 @@
 import { FlatCompat } from '@eslint/eslintrc';
+import prettierConfig from 'eslint-config-prettier';
+import prettierPlugin from 'eslint-plugin-prettier';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -6,23 +9,24 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
-export default [
+const eslintConfig = [
+  { ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts', 'tools/**'] },
+
   // Extend Next.js recommended rules
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
 
+  // Turn off core rules that conflict with Prettier
+  prettierConfig,
+
   // Prettier integration
   {
-    plugins: {
-      prettier: require('eslint-plugin-prettier'),
-    },
-    rules: {
-      'prettier/prettier': 'error',
-    },
+    plugins: { prettier: prettierPlugin },
+    rules: { 'prettier/prettier': 'error' },
   },
 
   // Simple import sort
   {
-    plugins: { 'simple-import-sort': require('eslint-plugin-simple-import-sort') },
+    plugins: { 'simple-import-sort': simpleImportSort },
     rules: {
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
@@ -39,36 +43,4 @@ export default [
   },
 ];
 
-// import { dirname } from "path";
-// import { fileURLToPath } from "url";
-// import { FlatCompat } from "@eslint/eslintrc";
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
-
-// const compat = new FlatCompat({
-//   baseDirectory: __dirname,
-// });
-
-// const eslintConfig = [
-//   ...compat.extends("next/core-web-vitals", "next/typescript"),
-// ];
-
-// export default eslintConfig;
-
-// import { dirname } from "path";
-// import { fileURLToPath } from "url";
-// import { FlatCompat } from "@eslint/eslintrc";
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
-
-// const compat = new FlatCompat({
-//   baseDirectory: __dirname,
-// });
-
-// const eslintConfig = [
-//   ...compat.extends("next/core-web-vitals", "next/typescript"),
-// ];
-
-// export default eslintConfig;
+export default eslintConfig;

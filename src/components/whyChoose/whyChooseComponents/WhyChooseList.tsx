@@ -1,4 +1,4 @@
-import { WhyChooseItem } from "./WhyChooseItem";
+import { WhyChooseItem } from './WhyChooseItem';
 
 interface HowItWorksList {
   mainContent: {
@@ -15,11 +15,7 @@ export const WhyChooseList: React.FC<HowItWorksList> = ({ mainContent }) => {
     <ul className="flex flex-col lg:flex-row justify-start items-start self-stretch gap-10 lg:gap-4">
       {mainContent.map((item) => (
         <li key={item.iconId} className="w-full lg:flex-1">
-          <WhyChooseItem
-            iconId={item.iconId}
-            title={item.title}
-            description={item.description}
-          />
+          <WhyChooseItem iconId={item.iconId} title={item.title} description={item.description} />
         </li>
       ))}
     </ul>

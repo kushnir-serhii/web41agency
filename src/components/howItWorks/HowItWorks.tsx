@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/Button";
-import { HowItWorksItemProps } from "./howItWorksComponents/howItWorksItem";
-import { HowItWorksList } from "./howItWorksComponents/HowItWorksList";
+import { Button } from '@/components/ui/Button';
+
+import { HowItWorksItemProps } from './howItWorksComponents/howItWorksItem';
+import { HowItWorksList } from './howItWorksComponents/HowItWorksList';
 
 interface HowItWorksCta {
   title: string;
@@ -31,9 +32,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ content }) => {
         />
         {cta && (
           <div className="flex flex-col justify-between items-start gap-10 min-h-[351px] p-6 lg:p-8 rounded-lg bg-accent lg:col-start-2 lg:row-start-2">
-            <h3 className="text-2xl lg:text-[32px] font-bold text-left text-black">
-              {cta.title}
-            </h3>
+            <h3 className="text-2xl lg:text-[32px] font-bold text-left text-black">{cta.title}</h3>
             <Button text={cta.text} href={cta.href} />
           </div>
         )}

@@ -1,12 +1,14 @@
-import { LetsTalk } from "@/components/letsTalk/LetsTalk";
-import { PageHero } from "@/components/pageHero/PageHero";
-import { CONTACT_EMAIL } from "@/utils/site";
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
+
+import { LetsTalk } from '@/components/letsTalk/LetsTalk';
+import { PageHero } from '@/components/pageHero/PageHero';
+import { CONTACT_EMAIL } from '@/utils/site';
 
 export const metadata: Metadata = {
-  title: "Contacts",
-  description: "Get in touch with Web41 Agency — tell us what you need and we'll come back with a plan and a price.",
-  alternates: { canonical: "/contacts" },
+  title: 'Contacts',
+  description:
+    "Get in touch with Web41 Agency — tell us what you need and we'll come back with a plan and a price.",
+  alternates: { canonical: '/contacts' },
 };
 
 // TODO(content): messengers and a physical address are placeholders below —
@@ -16,15 +18,12 @@ export default function ContactsPage() {
   return (
     <div className="flex flex-col items-center w-full">
       <PageHero
-        heading={[
-          { text: "Let's Talk" },
-          { text: "About Your Project", muted: true },
-        ]}
+        heading={[{ text: "Let's Talk" }, { text: 'About Your Project', muted: true }]}
         description="Email us, send a message below, or reach out on messengers — whatever's easiest for you."
       />
       <div className="container flex-col gap-2 pb-10">
         <p className="text-lg text-black">
-          <span className="font-semibold">Email:</span>{" "}
+          <span className="font-semibold">Email:</span>{' '}
           <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
             {CONTACT_EMAIL}
           </a>

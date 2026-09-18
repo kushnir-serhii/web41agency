@@ -1,10 +1,12 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { CONSULTATION_HREF } from "@/content/ctaLinks";
-import { navBarArray } from "@/content/navBarArray";
-import { NavBarItem } from "./NavBarItem";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import { CONSULTATION_HREF } from '@/content/ctaLinks';
+import { navBarArray } from '@/content/navBarArray';
+
+import { NavBarItem } from './NavBarItem';
 
 interface NavBarProps {
   children?: React.ReactNode;
@@ -13,11 +15,7 @@ interface NavBarProps {
 export const NavBar: React.FC<NavBarProps> = ({ isFooter }) => {
   const pathName = usePathname();
   return (
-    <ul
-      className={`flex justify-between items-center ${
-        isFooter ? "flex-col" : "w-full"
-      }`}
-    >
+    <ul className={`flex justify-between items-center ${isFooter ? 'flex-col' : 'w-full'}`}>
       {navBarArray.map(({ href, label }, index) => (
         <li key={index}>
           <NavBarItem

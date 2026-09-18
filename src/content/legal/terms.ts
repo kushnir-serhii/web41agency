@@ -1,5 +1,6 @@
 // TODO(legal): generic template — review before relying on it
 import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '@/utils/site';
+
 import type { LegalDocument } from './types';
 
 export const termsOfUse: LegalDocument = {

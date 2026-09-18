@@ -1,8 +1,12 @@
-import { ICaseStudy } from '@/content/caseStudiesContent';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type CaseHeroProps = Pick<ICaseStudy, 'title' | 'industry' | 'summary' | 'cover' | 'tags' | 'liveUrl'>;
+import { ICaseStudy } from '@/content/caseStudiesContent';
+
+type CaseHeroProps = Pick<
+  ICaseStudy,
+  'title' | 'industry' | 'summary' | 'cover' | 'tags' | 'liveUrl'
+>;
 
 export const CaseHero: React.FC<CaseHeroProps> = ({
   title,
@@ -15,7 +19,10 @@ export const CaseHero: React.FC<CaseHeroProps> = ({
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col items-start gap-10 px-4 lg:px-20 pt-[140px] lg:pt-[120px] pb-10">
       <nav aria-label="Breadcrumb" className="text-lg text-black/60">
-        <Link href="/portfolio" className="hover:text-black focus-visible:text-black underline-offset-4 hover:underline">
+        <Link
+          href="/portfolio"
+          className="hover:text-black focus-visible:text-black underline-offset-4 hover:underline"
+        >
           Portfolio
         </Link>
         <span className="px-2" aria-hidden="true">

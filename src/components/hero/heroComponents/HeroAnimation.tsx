@@ -4,6 +4,7 @@ import {
   heroImagesArray_3,
   heroImagesArray_4,
 } from '@/content/heroImagesArray';
+
 import { HeroAnimationItem } from './HeroAnimationItem';
 
 export const HeroAnimation: React.FC = () => {

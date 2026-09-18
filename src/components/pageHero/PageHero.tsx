@@ -1,6 +1,6 @@
-import { Circle } from "@/components/circle/Circle";
-import { Button } from "@/components/ui/Button";
-import { CONSULTATION_HREF, PROJECTS_HREF } from "@/content/ctaLinks";
+import { Circle } from '@/components/circle/Circle';
+import { Button } from '@/components/ui/Button';
+import { CONSULTATION_HREF, PROJECTS_HREF } from '@/content/ctaLinks';
 
 export interface IHeadingPart {
   text: string;
@@ -23,8 +23,8 @@ interface PageHeroProps {
 export const PageHero: React.FC<PageHeroProps> = ({
   heading,
   description,
-  primaryButton = "Free Consultation",
-  secondaryButton = "View Projects",
+  primaryButton = 'Free Consultation',
+  secondaryButton = 'View Projects',
   primaryHref = CONSULTATION_HREF,
   secondaryHref = PROJECTS_HREF,
   hideSecondary = false,

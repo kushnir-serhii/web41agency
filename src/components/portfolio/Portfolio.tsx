@@ -1,13 +1,16 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { Swiper as SwiperCore } from "swiper/types";
-import "swiper/css";
-import { Icon } from "@/components/ui/Icon";
-import { ProjectCard } from "./portfolioComponents/ProjectCard";
-import { IProject } from "@/content/portfolioContent";
+import 'swiper/css';
+
+import { useRef } from 'react';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperCore } from 'swiper/types';
+
+import { Icon } from '@/components/ui/Icon';
+import { IProject } from '@/content/portfolioContent';
+
+import { ProjectCard } from './portfolioComponents/ProjectCard';
 
 interface PortfolioProps {
   content: {

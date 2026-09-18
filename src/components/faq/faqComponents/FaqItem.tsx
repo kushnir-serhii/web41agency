@@ -1,22 +1,17 @@
-"use client";
+'use client';
 
-import { Icon } from "@/components/ui/Icon";
-import { IFaqItem } from "@/content/faqContent";
+import { Icon } from '@/components/ui/Icon';
+import { IFaqItem } from '@/content/faqContent';
 
 interface FaqItemProps extends IFaqItem {
   isOpen: boolean;
   onToggle: () => void;
 }
 
-export const FaqItem: React.FC<FaqItemProps> = ({
-  question,
-  answer,
-  isOpen,
-  onToggle,
-}) => {
+export const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, onToggle }) => {
   return (
     <li
-      className={`w-full rounded-lg transition-colors ${isOpen ? "bg-bg_item" : "bg-white hover:bg-bg_item"}`}
+      className={`w-full rounded-lg transition-colors ${isOpen ? 'bg-bg_item' : 'bg-white hover:bg-bg_item'}`}
     >
       <button
         type="button"
@@ -29,13 +24,13 @@ export const FaqItem: React.FC<FaqItemProps> = ({
           id="icon-add"
           width={24}
           height={24}
-          className={`shrink-0 duration-300 ${isOpen ? "rotate-45" : "rotate-0"}`}
+          className={`shrink-0 duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`}
         />
       </button>
 
       <div
         className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
         }`}
       >
         <div className="overflow-hidden">

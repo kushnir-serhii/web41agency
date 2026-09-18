@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import { MySlider } from "../slider/Slider";
-import { techStackIconsArray, techStackNames } from "@/content/techStackIconsArray";
-import { useReducedMotion } from "motion/react";
-import { Icon } from "../ui/Icon";
+import { useReducedMotion } from 'motion/react';
+
+import { techStackIconsArray, techStackNames } from '@/content/techStackIconsArray';
+
+import { MySlider } from '../slider/Slider';
+import { Icon } from '../ui/Icon';
 
 export const TechStack = () => {
   const reduceMotion = useReducedMotion();
@@ -14,7 +16,10 @@ export const TechStack = () => {
         Tech Stack
       </h2>
       <div className="relative w-full">
-        <div aria-hidden="true" className="absolute flex z-10 top-0 h-full gradient-techstack_slider w-full" />
+        <div
+          aria-hidden="true"
+          className="absolute flex z-10 top-0 h-full gradient-techstack_slider w-full"
+        />
         <MySlider
           contentArray={techStackIconsArray}
           className="w-auto marquee"
