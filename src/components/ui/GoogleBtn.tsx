@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
 export const GoogleBtn: React.FC = () => {
   const onClick = () => {
-    console.log("first");
+    console.log('first');
   };
   // ['#4285F4', '#34A853', '#FBBC05', '#EA4335']
   return (
@@ -20,14 +20,22 @@ export const GoogleBtn: React.FC = () => {
   );
 };
 
-{/* <div className="flex w-1/2 h-full flex-col items-center justify-center">
-          <div className="w-full flex aspect-1/2"> */}
-            {/* <div className="w-full full bg-gradient-to-r from-[#34A853]/0 via-[#34A853] to-[#34A853]/0 mr-[-8px]" />
+{
+  /* <div className="flex w-1/2 h-full flex-col items-center justify-center">
+          <div className="w-full flex aspect-1/2"> */
+}
+{
+  /* <div className="w-full full bg-gradient-to-r from-[#34A853]/0 via-[#34A853] to-[#34A853]/0 mr-[-8px]" />
 
             <div className="w-full full bg-gradient-to-r from-[#FBBC05]/0  to-[#FBBC05]"></div>
             <div className="w-full h-full bg-linear-to-r from-[#EA4335]/0 to-[#EA4335]"></div>
-            <div className="w-full h-full bg-linear-to-r from-purple-400/0 to-purple-400"></div> */}
-        //   </div>
+            <div className="w-full h-full bg-linear-to-r from-purple-400/0 to-purple-400"></div> */
+}
+//   </div>
 
-          {/* <div className="w-full aspect-1/2 bg-[#4285F4]" /> */}
-        {/* </div> */}
+{
+  /* <div className="w-full aspect-1/2 bg-[#4285F4]" /> */
+}
+{
+  /* </div> */
+}

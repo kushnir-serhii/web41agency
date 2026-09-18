@@ -1,6 +1,7 @@
+import type { Metadata } from 'next';
+
 import { LetsTalk } from '@/components/letsTalk/LetsTalk';
 import { privacyPolicy } from '@/content/legal/privacy';
-import type { Metadata } from 'next';
 
 const { title, description, lastUpdated, intro, sections } = privacyPolicy;
 

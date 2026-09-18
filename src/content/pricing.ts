@@ -7,6 +7,6 @@ export const PRICING = {
   branding: 800, // TODO(owner): confirm
 } as const;
 
-export const formatUsd = (usd: number) => `$${usd.toLocaleString("en-US")}`;
+export const formatUsd = (usd: number) => `$${usd.toLocaleString('en-US')}`;
 
 export const formatPrice = (usd: number) => `From ${formatUsd(usd)}`;

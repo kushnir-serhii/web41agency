@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { servicesContent } from "@/content/servicesContent";
-import { ServiceItem } from "./servicesComponents/ServiceItem";
+import { useState } from 'react';
+
+import { servicesContent } from '@/content/servicesContent';
+
+import { ServiceItem } from './servicesComponents/ServiceItem';
 
 export const Services = () => {
   const { sectionTitle, services } = servicesContent;
-  const [openTitle, setOpenTitle] = useState<string | null>(
-    services[0]?.title ?? null
-  );
+  const [openTitle, setOpenTitle] = useState<string | null>(services[0]?.title ?? null);
 
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8">
@@ -24,11 +24,7 @@ export const Services = () => {
             key={service.title}
             {...service}
             isOpen={openTitle === service.title}
-            onToggle={() =>
-              setOpenTitle((prev) =>
-                prev === service.title ? null : service.title
-              )
-            }
+            onToggle={() => setOpenTitle((prev) => (prev === service.title ? null : service.title))}
           />
         ))}
       </ul>

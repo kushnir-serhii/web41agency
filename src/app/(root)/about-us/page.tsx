@@ -1,7 +1,8 @@
+import type { Metadata } from 'next';
+
 import { LetsTalk } from '@/components/letsTalk/LetsTalk';
 import { WhyChoose } from '@/components/whyChoose/WhyChoose';
 import { whyChooseContent } from '@/content/whyChooseContent';
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About Us',

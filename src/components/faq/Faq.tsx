@@ -1,8 +1,10 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { faqContent } from "@/content/faqContent";
-import { FaqItem } from "./faqComponents/FaqItem";
+import { useState } from 'react';
+
+import { faqContent } from '@/content/faqContent';
+
+import { FaqItem } from './faqComponents/FaqItem';
 
 export const Faq = () => {
   const { sectionTitle, questions } = faqContent;
@@ -23,9 +25,7 @@ export const Faq = () => {
             {...item}
             isOpen={openQuestion === item.question}
             onToggle={() =>
-              setOpenQuestion((prev) =>
-                prev === item.question ? null : item.question
-              )
+              setOpenQuestion((prev) => (prev === item.question ? null : item.question))
             }
           />
         ))}

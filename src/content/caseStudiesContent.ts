@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image';
+
 import {
   heroCatoshiMobile,
   projectBuilding,
@@ -59,9 +60,7 @@ export interface ICaseStudy {
 
 /* Same order as the portfolio cards, so "Next project" follows the grid. */
 export const caseStudies: ICaseStudy[] = [
-  /* TODO(owner): review — drafted from the project title and tags.
-     TODO(owner): real numbers — add client, year, results and live URL if they can be shared.
-     The cover asset is named "reel-reveal": confirm the product name before using it here. */
+  /* Source: serhii-k_stack projects.ts (reel-reveal). */
   {
     slug: 'ai-movie-matching',
     title: 'AI Movie Matching App',
@@ -75,36 +74,51 @@ export const caseStudies: ICaseStudy[] = [
     },
     tags: ['Design', 'Development', 'OpenAI'],
     facts: [
-      { label: 'Role', value: 'Design & development' },
-      { label: 'Deliverables', value: 'Web app + website' },
-      { label: 'AI', value: 'OpenAI' },
+      { label: 'Role', value: 'Full stack development' },
+      { label: 'Team', value: 'One engineer, end to end' },
+      { label: 'Timeline', value: '4 months' },
+      { label: 'Year', value: '2024' },
     ],
     blocks: [
       {
         heading: 'The problem',
         paragraphs: [
           'Choosing a film takes longer than watching one. Streaming catalogues are huge, and genre filters and star ratings say little about whether a film fits what someone is in the mood for tonight.',
-          'The brief was a product that asks a few simple questions and answers with a short list of films that fit, plus a website that explains the idea to new visitors.',
+          'Existing platforms lean on basic genre filtering. There was no AI-driven matching that understands nuanced preferences, so the brief was a product that asks a few simple questions and answers with films that fit.',
         ],
       },
       {
         heading: 'What we built',
         paragraphs: [
-          'We designed and developed both parts: the web application where the matching happens, and the website that introduces the product and brings people into it.',
-          'The matching step is powered by OpenAI, so preferences can be described in plain words rather than squeezed into fixed filters.',
+          'We built the full stack from scratch: a preference quiz on the front end, and OpenAI on the back end turning the answers into personalised recommendations.',
+          'A second AI feature suggests similar movies based on a title the user already likes, independent of the quiz.',
         ],
         bullets: [
-          'User flow designed around a quick answer, not a long questionnaire',
-          'OpenAI-powered matching from preferences written in natural language',
-          'A marketing website that shares one visual language with the app',
+          'Quiz-driven OpenAI recommendations',
+          'Similar-movies matching from a title the user picks',
+          'Google authentication, with user data stored in MongoDB',
+          'TMDB API for posters, ratings and cast, and Stripe for payments',
         ],
       },
     ],
-    results: [], // TODO(owner): real numbers
-    stack: ['OpenAI'], // TODO(owner): review — add the rest of the stack
+    results: [
+      { label: 'AI-driven features (quiz + similar movies)', value: '2' },
+    ],
+    stack: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'useSWR',
+      'React Hook Form',
+      'MongoDB',
+      'OpenAI API',
+      'TMDB API',
+      'Stripe',
+    ],
+    liveUrl: 'https://www.reel-reveal.club/',
   },
-  /* TODO(owner): review — drafted from the project title and tags.
-     TODO(owner): real numbers — add client, year, results and store links if they can be shared. */
+  /* Source: serhii-k_stack projects.ts (calmisu). */
   {
     slug: 'calmisu',
     title: 'Calmisu',
@@ -118,33 +132,47 @@ export const caseStudies: ICaseStudy[] = [
     },
     tags: ['Design', 'Mobile App', 'Expo', 'Chat AI'],
     facts: [
-      { label: 'Role', value: 'Design & development' },
-      { label: 'Platform', value: 'Mobile app' },
+      { label: 'Role', value: 'Solo full-stack developer' },
+      { label: 'Platform', value: 'Mobile app + landing site' },
       { label: 'Framework', value: 'Expo' },
+      { label: 'Status', value: 'Live since 2026' },
     ],
     blocks: [
       {
         heading: 'The problem',
         paragraphs: [
-          'Most mindfulness apps are libraries of audio tracks. People open them with good intentions and close them without knowing where to start.',
-          'Calmisu needed to feel personal from the first screen: a calm interface and a conversation that meets people where they are.',
+          'Most anxiety apps compete on the same handful of breathing and meditation exercises, with no visual hook and no organic growth engine.',
+          'Calmisu needed a real differentiator and a way to be found without paid acquisition.',
         ],
       },
       {
         heading: 'What we built',
         paragraphs: [
-          'We designed the app and built it with Expo, so one codebase serves both iOS and Android.',
-          'At its centre is an AI chat companion. Instead of picking from a menu, people describe how they feel and the app responds.',
+          'The app leads with calligraphy tracing, a meditative and tactile alternative to yet another breathing timer, alongside guided breathing, nature soundscapes and a reflective AI chat with safety guardrails.',
+          'It ships with an Astro landing site and blog built for search from the ground up, so it can grow organically on a zero-dollar marketing budget.',
         ],
         bullets: [
-          'Quiet, low-contrast interface designed for short daily sessions',
-          'AI chat as the main way into the app',
-          'One Expo codebase for iOS and Android',
+          'Calligraphy tracing, breathing, soundscapes and AI chat in one calming flow',
+          'Subscriptions through RevenueCat and funnel tracking with Firebase Analytics',
+          'Technical SEO: JSON-LD structured data, Core Web Vitals fixes and a long-tail blog',
+          'Landing site in four languages: English, Polish, Ukrainian and Spanish',
         ],
       },
     ],
-    results: [], // TODO(owner): real numbers
-    stack: ['Expo', 'React Native'], // TODO(owner): review — add the rest of the stack
+    results: [
+      { label: 'Core relaxation techniques', value: '4' },
+      { label: 'SEO-optimised blog articles shipped', value: '6' },
+      { label: 'Languages on the landing site', value: '4' },
+    ],
+    stack: [
+      'React Native (Expo)',
+      'TypeScript',
+      'Neon',
+      'RevenueCat',
+      'Firebase Analytics',
+      'Astro',
+    ],
+    liveUrl: 'https://calmisu.com',
   },
   {
     slug: 'catoshi',
@@ -162,6 +190,7 @@ export const caseStudies: ICaseStudy[] = [
       { label: 'Role', value: 'Design & development' },
       { label: 'Team', value: 'One engineer, end to end' },
       { label: 'Timeline', value: 'First working version in ~1 month' },
+      { label: 'Year', value: '2026' },
       { label: 'Status', value: 'In active development' },
     ],
     blocks: [
@@ -211,61 +240,72 @@ export const caseStudies: ICaseStudy[] = [
       'TypeScript',
       'Tailwind CSS',
       'Neon Postgres',
+      'pgvector',
+      'Claude API',
       'Vercel',
       'GitHub Actions',
       'CoinGecko API',
       'Binance public API',
-      'AI forecasting',
     ],
     gallery: [
       {
         src: heroCatoshiMobile,
         alt: 'Catoshi dashboard on mobile',
-        caption: 'The same forecast view on mobile — the dashboard is read on a phone as often as on a desktop.',
+        caption:
+          'The same forecast view on mobile — the dashboard is read on a phone as often as on a desktop.',
       },
     ],
-    results: [], // TODO(owner): real numbers — e.g. the forecast hit rate once it is published
+    results: [
+      { label: 'Free data sources integrated', value: '4+' },
+      { label: 'Market-state vector for analog search', value: '16-dim' },
+    ], // TODO(owner): add the forecast hit rate once it is published
   },
-  /* TODO(owner): review — drafted from the project title and tags.
-     TODO(owner): real numbers — add client, year, results and live URL if they can be shared. */
+  /* Source: serhii-k_stack projects.ts (nuance, shown there as "Workplace English"). */
   {
     slug: 'nuance',
     title: 'Nuance',
     cardTitle: 'Nuance - AI Powered Web Application',
     industry: 'AI Software',
     summary:
-      'An AI-powered web application built on OpenAI, designed and developed end to end — from the first screens to a working product.',
+      'An AI-powered workplace communication platform that helps non-native English speakers master the social nuance of global tech companies through realistic scenarios and instant AI feedback.',
     cover: {
       src: projectNuance,
       alt: 'Nuance AI web application interface',
     },
     tags: ['Design', 'Development', 'OpenAI'],
     facts: [
-      { label: 'Role', value: 'Design & development' },
-      { label: 'Platform', value: 'Web application' },
-      { label: 'AI', value: 'OpenAI' },
+      { label: 'Role', value: 'Full stack development' },
+      { label: 'Team', value: 'Designer and engineer' },
+      { label: 'Timeline', value: '1 month' },
+      { label: 'Year', value: '2026' },
     ],
     blocks: [
       {
         heading: 'The problem',
         paragraphs: [
-          'AI features are easy to demo and hard to turn into a product people return to. The model is only half of it; the rest is an interface that makes the output clear and useful.',
+          'International professionals often know the grammar but struggle with the unwritten rules of workplace communication: how to disagree, push back, give feedback and manage up without appearing difficult.',
         ],
       },
       {
         heading: 'What we built',
         paragraphs: [
-          'We designed the interface and developed the application around OpenAI, keeping the AI step behind a simple, focused workflow.',
+          'The project started as a Lovable prototype. We took it over, refactored and extended it into a working product built around realistic workplace scenarios.',
+          'Users write a response and AI scores it for social appropriateness, strategic effectiveness and cultural awareness, with actionable feedback.',
         ],
         bullets: [
-          'Product design from user flow to final screens',
-          'Front end and OpenAI integration developed in-house',
-          'An interface that keeps the AI output readable and easy to act on',
+          'Scenario-based learning: feedback, managing up, conflict and disagreement',
+          'AI response evaluation with a score and up to three attempts per scenario',
+          'Searchable phrase library comparing ineffective and effective wording',
+          'Progress tracking, daily missions, coaching insights and voice input',
         ],
       },
     ],
-    results: [], // TODO(owner): real numbers
-    stack: ['OpenAI'], // TODO(owner): review — add the rest of the stack
+    results: [
+      { label: 'Learning modules', value: '8' },
+      { label: 'Attempts per scenario', value: '3' },
+    ],
+    stack: ['React', 'Vite', 'TypeScript', 'Lovable', 'Claude Code', 'OpenAI API', 'Supabase'],
+    liveUrl: 'https://julia-builds.github.io/nuance/',
   },
   /* TODO(owner): review — drafted from the project title and tags.
      TODO(owner): real numbers — add client, year, results and live URL if they can be shared. */

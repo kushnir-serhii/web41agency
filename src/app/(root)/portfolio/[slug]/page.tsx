@@ -1,3 +1,6 @@
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import { CaseBlocks } from '@/components/caseStudy/CaseBlocks';
 import { CaseCta } from '@/components/caseStudy/CaseCta';
 import { CaseFacts } from '@/components/caseStudy/CaseFacts';
@@ -8,8 +11,6 @@ import { CaseStack } from '@/components/caseStudy/CaseStack';
 import { LetsTalk } from '@/components/letsTalk/LetsTalk';
 import { caseStudies, getCaseStudy } from '@/content/caseStudiesContent';
 import { SITE_URL } from '@/utils/site';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 interface CasePageProps {
   params: Promise<{ slug: string }>;

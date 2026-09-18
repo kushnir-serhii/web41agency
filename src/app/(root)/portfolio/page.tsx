@@ -1,16 +1,17 @@
-import { About } from "@/components/about/About";
-import { LetsTalk } from "@/components/letsTalk/LetsTalk";
-import { PageHero } from "@/components/pageHero/PageHero";
-import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
-import { portfolioContent } from "@/content/portfolioContent";
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
+
+import { About } from '@/components/about/About';
+import { LetsTalk } from '@/components/letsTalk/LetsTalk';
+import { PageHero } from '@/components/pageHero/PageHero';
+import { PortfolioGrid } from '@/components/portfolio/PortfolioGrid';
+import { portfolioContent } from '@/content/portfolioContent';
 
 export const metadata: Metadata = {
   // The root layout's template appends " | Web41 Agency" — do not repeat it here.
-  title: "Portfolio",
+  title: 'Portfolio',
   description:
-    "We create sleek, high-performing websites tailored to your needs. Explore our portfolio and see how we bring ideas to life.",
-  alternates: { canonical: "/portfolio" },
+    'We create sleek, high-performing websites tailored to your needs. Explore our portfolio and see how we bring ideas to life.',
+  alternates: { canonical: '/portfolio' },
 };
 
 export default function PortfolioPage() {
@@ -18,9 +19,9 @@ export default function PortfolioPage() {
     <div className="flex flex-col items-center w-full">
       <PageHero
         heading={[
-          { text: "Our Work:", muted: true },
-          { text: "Websites" },
-          { text: "that Drive Results", muted: true },
+          { text: 'Our Work:', muted: true },
+          { text: 'Websites' },
+          { text: 'that Drive Results', muted: true },
         ]}
         description="We create sleek, high-performing websites tailored to your needs. Explore our portfolio below and see how we bring ideas to life."
         hideSecondary

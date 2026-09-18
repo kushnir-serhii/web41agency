@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
-import { Swiper as SwiperCore } from "swiper/types";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import React from "react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import React from 'react';
+import { useRef } from 'react';
+import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperCore } from 'swiper/types';
 
 interface MySliderProps<T> {
   contentArray: T[];
@@ -58,16 +59,16 @@ export const MySlider = <T,>({
     </div>
   );
 };
- // const sliderReversConfig = {
-  //   direction: "vertical",
-  //   spaceBetween: 16,
-  //   slidesPerView: 2,
-  //   freeMode: true,
-  //   autoplay: {
-  //     delay: 0,
-  //     disableOnInteraction: false,
-  //     reverseDirection: true,
-  //   },
-  //   loop: true,
-  //   speed: 10000,
-  // };
+// const sliderReversConfig = {
+//   direction: "vertical",
+//   spaceBetween: 16,
+//   slidesPerView: 2,
+//   freeMode: true,
+//   autoplay: {
+//     delay: 0,
+//     disableOnInteraction: false,
+//     reverseDirection: true,
+//   },
+//   loop: true,
+//   speed: 10000,
+// };

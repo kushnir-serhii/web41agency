@@ -1,6 +1,7 @@
+import Link from 'next/link';
+
 import { Button } from '@/components/ui/Button';
 import { ICaseStudy } from '@/content/caseStudiesContent';
-import Link from 'next/link';
 
 interface CaseCtaProps {
   nextCase?: Pick<ICaseStudy, 'slug' | 'title'>;
@@ -22,7 +23,12 @@ export const CaseCta: React.FC<CaseCtaProps> = ({ nextCase }) => {
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
           <Button text="Free Consultation" href="/contacts" className="w-full sm:w-auto" />
-          <Button text="All projects" btnType="ghost" href="/portfolio" className="w-full sm:w-auto" />
+          <Button
+            text="All projects"
+            btnType="ghost"
+            href="/portfolio"
+            className="w-full sm:w-auto"
+          />
         </div>
       </div>
 

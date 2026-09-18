@@ -1,6 +1,7 @@
-import { IProject } from '@/content/portfolioContent';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { IProject } from '@/content/portfolioContent';
 
 interface ProjectCardProps extends IProject {
   /* Sizing for the cover — the slider uses fixed heights, the grid an aspect ratio. */
@@ -18,7 +19,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   imageClassName = 'h-[240px] lg:h-[371px]',
 }) => {
   return (
-    <Link href={`/portfolio/${slug}`} className="flex flex-col items-start gap-4 w-full h-full group">
+    <Link
+      href={`/portfolio/${slug}`}
+      className="flex flex-col items-start gap-4 w-full h-full group rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+    >
       <div className={`relative w-full rounded-lg overflow-hidden ${imageClassName}`}>
         <Image
           src={image}
@@ -51,7 +55,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </li>
           ))}
         </ul>
-        <span className="mt-2 text-lg font-bold text-black underline underline-offset-4 group-hover:no-underline">
+        <span className="mt-2 text-lg font-bold text-black underline underline-offset-4 group-hover:no-underline group-focus-visible:no-underline">
           Read the case study &rarr;
         </span>
       </div>
