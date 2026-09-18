@@ -6,7 +6,9 @@ import { ServiceItem } from "./servicesComponents/ServiceItem";
 
 export const Services = () => {
   const { sectionTitle, services } = servicesContent;
-  const [openTitle, setOpenTitle] = useState<string | null>(null);
+  const [openTitle, setOpenTitle] = useState<string | null>(
+    services[0]?.title ?? null
+  );
 
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8">

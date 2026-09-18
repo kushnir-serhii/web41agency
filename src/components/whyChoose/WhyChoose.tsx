@@ -4,6 +4,7 @@ import { WhyChooseList } from './whyChooseComponents/WhyChooseList';
 export interface IWhyChooseContent {
   sectionTitle: string;
   textButton: string;
+  href: string;
   mainContent: {
     iconId: string;
     title: string;
@@ -18,7 +19,7 @@ interface WhyChooseProps {
   content: IWhyChooseContent;
 }
 export const WhyChoose: React.FC<WhyChooseProps> = ({ content }) => {
-  const { sectionTitle, textButton, mainContent } = content;
+  const { sectionTitle, textButton, href, mainContent } = content;
 
   return (
     <div className="w-full max-w-[1440px] mx-auto flex flex-col justify-start items-start relative gap-10 px-4 lg:px-20 py-20 lg:py-40">
@@ -26,7 +27,7 @@ export const WhyChoose: React.FC<WhyChooseProps> = ({ content }) => {
         {sectionTitle}
       </h2>
       <WhyChooseList mainContent={mainContent} />
-      <Button text={textButton} />
+      <Button text={textButton} href={href} />
     </div>
   );
 };

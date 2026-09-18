@@ -1,5 +1,6 @@
 import { LetsTalk } from "@/components/letsTalk/LetsTalk";
 import { PageHero } from "@/components/pageHero/PageHero";
+import { CONTACT_EMAIL } from "@/utils/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,8 +25,8 @@ export default function ContactsPage() {
       <div className="container flex-col gap-2 pb-10">
         <p className="text-lg text-black">
           <span className="font-semibold">Email:</span>{" "}
-          <a href="mailto:hello@web41.agency" className="hover:underline">
-            hello@web41.agency
+          <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
+            {CONTACT_EMAIL}
           </a>
         </p>
         <p className="text-lg text-black/70">

@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 
 interface CircleProps {
   size?: number;
@@ -27,6 +33,7 @@ export const Circle: React.FC<CircleProps> = ({
   description,
   children,
 }) => {
+  const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
   const rawX = useTransform(scrollY, [0, speed], [startX, 0], { clamp: true });
@@ -38,7 +45,13 @@ export const Circle: React.FC<CircleProps> = ({
   return (
     <motion.div
       className={`absolute z-[1] bg-accent rounded-full flex flex-col justify-center items-center ${className ?? ""}`}
-      style={{ top, left, width: size, height: size, x, y }}
+      style={{
+        top,
+        left,
+        width: size,
+        height: size,
+        ...(reduceMotion ? {} : { x, y }),
+      }}
     >
       <div className="flex flex-col justify-center items-center text-center">
 

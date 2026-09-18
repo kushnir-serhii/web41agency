@@ -23,6 +23,7 @@ export default function PortfolioPage() {
           { text: "that Drive Results", muted: true },
         ]}
         description="We create sleek, high-performing websites tailored to your needs. Explore our portfolio below and see how we bring ideas to life."
+        hideSecondary
       />
       <PortfolioGrid projects={portfolioContent.projects} />
       <About />

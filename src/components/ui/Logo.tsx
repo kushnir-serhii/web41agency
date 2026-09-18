@@ -25,7 +25,7 @@ export const Logo: React.FC<LogoProps> = ({
       className={`flex justify-center items-center ${
         widthIcon === 30 ? "gap-2" : "gap-4 lg:gap-8"
       }`}
-      aria-label="Logo link"
+      aria-label="web41 home"
     >
       <Icon
         id="icon-logo"

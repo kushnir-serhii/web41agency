@@ -1,8 +1,11 @@
 import { IWhyChooseContent } from "@/components/whyChoose/WhyChoose";
+import { CONSULTATION_HREF } from "@/content/ctaLinks";
+import { PRICING, formatUsd } from "@/content/pricing";
 
 export const whyChooseContent: IWhyChooseContent = {
   sectionTitle: "Why Choose Us",
   textButton: "Free Consultation",
+  href: CONSULTATION_HREF,
   mainContent: [
     {
       iconId: "icon-fast",
@@ -24,34 +27,21 @@ export const whyChooseContent: IWhyChooseContent = {
       title: "Cost-Effective",
       description: [
         {
-          text: "We tailor our pricing to fit your needs, offering both affordable  ",
+          text: "We tailor our pricing to fit your needs: ",
           highlight: false,
         },
-        { text: "no-code options ", highlight: true },
-        {
-          text: "from just ",
-          highlight: false,
-        },
-        {
-          text: "800USD ",
-          highlight: true,
-        },
-        {
-          text: "and robust ",
-          highlight: false,
-        },
-        {
-          text: "custom-built applications ",
-          highlight: true,
-        },
-        {
-          text: "from ",
-          highlight: false,
-        },
-        {
-          text: "1600USD.",
-          highlight: true,
-        },
+        { text: "landing pages ", highlight: true },
+        { text: "from ", highlight: false },
+        { text: formatUsd(PRICING.landing), highlight: true },
+        { text: ", ", highlight: false },
+        { text: "no-code sites ", highlight: true },
+        { text: "from ", highlight: false },
+        { text: formatUsd(PRICING.lowCode), highlight: true },
+        { text: " and ", highlight: false },
+        { text: "custom-built applications ", highlight: true },
+        { text: "from ", highlight: false },
+        { text: formatUsd(PRICING.custom), highlight: true },
+        { text: ".", highlight: false },
       ],
     },
     {
@@ -69,7 +59,6 @@ export const whyChooseContent: IWhyChooseContent = {
         },
       ],
     },
-    ,
   ] as {
     iconId: string;
     title: string;

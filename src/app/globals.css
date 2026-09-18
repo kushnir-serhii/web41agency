@@ -18,6 +18,7 @@
   --color-dark_text-hover: #000000;
   --color-bg_item: #f9f9f9;
   --color-bg_header: #ededed;
+  --color-muted_text: #656973;
 
   /* --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono); */
@@ -119,4 +120,31 @@ body {
 
 .animate-marquee-horizontal-reverse {
   animation: marquee-horizontal-reverse var(--marquee-duration) linear infinite;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-vertical,
+  .animate-marquee-vertical-reverse,
+  .animate-marquee-horizontal,
+  .animate-marquee-horizontal-reverse {
+    animation: none;
+  }
+}
+
+/* Keyboard focus ring. In the base layer so utilities (e.g. a negative
+   offset inside clipped containers) can still adjust it. */
+@layer base {
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+  }
+
+  footer :focus-visible {
+    outline-color: #fff;
+  }
 }
