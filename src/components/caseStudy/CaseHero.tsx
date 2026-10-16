@@ -1,22 +1,33 @@
-import { ICaseStudy } from '@/content/caseStudiesContent';
 import Image from 'next/image';
-import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
-type CaseHeroProps = Pick<ICaseStudy, 'title' | 'industry' | 'summary' | 'cover' | 'tags' | 'liveUrl'>;
+import { ICaseStudy } from '@/content/caseStudiesContent';
+import { Link } from '@/i18n/navigation';
 
-export const CaseHero: React.FC<CaseHeroProps> = ({
+type CaseHeroProps = Pick<
+  ICaseStudy,
+  'title' | 'industry' | 'summary' | 'cover' | 'tags' | 'liveUrl'
+>;
+
+export const CaseHero = async ({
   title,
   industry,
   summary,
   cover,
   tags,
   liveUrl,
-}) => {
+}: CaseHeroProps) => {
+  const t = await getTranslations('CaseStudy');
+  const tNav = await getTranslations('Nav');
+
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col items-start gap-10 px-4 lg:px-20 pt-[140px] lg:pt-[120px] pb-10">
-      <nav aria-label="Breadcrumb" className="text-lg text-black/60">
-        <Link href="/portfolio" className="hover:text-black focus-visible:text-black underline-offset-4 hover:underline">
-          Portfolio
+      <nav aria-label={t('breadcrumb')} className="text-lg text-black/60">
+        <Link
+          href="/portfolio"
+          className="hover:text-black focus-visible:text-black underline-offset-4 hover:underline"
+        >
+          {tNav('portfolio')}
         </Link>
         <span className="px-2" aria-hidden="true">
           /
@@ -51,7 +62,7 @@ export const CaseHero: React.FC<CaseHeroProps> = ({
               rel="noopener noreferrer"
               className="text-lg font-bold text-black underline underline-offset-4 hover:no-underline"
             >
-              Visit the live site
+              {t('visitLive')}
             </a>
           )}
         </div>

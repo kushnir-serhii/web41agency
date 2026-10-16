@@ -18,7 +18,10 @@ export const CaseBlocks: React.FC<CaseBlocksProps> = ({ blocks }) => {
 
           <div className="flex flex-col items-start gap-6 w-full lg:max-w-[720px]">
             {paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)} className="text-lg leading-relaxed text-left text-black">
+              <p
+                key={paragraph.slice(0, 40)}
+                className="text-lg leading-relaxed text-left text-black"
+              >
                 {paragraph}
               </p>
             ))}
@@ -26,7 +29,10 @@ export const CaseBlocks: React.FC<CaseBlocksProps> = ({ blocks }) => {
             {bullets && (
               <ul className="flex flex-col items-start gap-4 w-full">
                 {bullets.map((bullet) => (
-                  <li key={bullet} className="flex items-start gap-4 text-lg leading-relaxed text-black">
+                  <li
+                    key={bullet}
+                    className="flex items-start gap-4 text-lg leading-relaxed text-black"
+                  >
                     <span
                       aria-hidden="true"
                       className="mt-2.5 size-2.5 shrink-0 rounded-full bg-accent"

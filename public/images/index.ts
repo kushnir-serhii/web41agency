@@ -15,20 +15,24 @@ import heroNuance from './hero/nuance.webp';
 import heroProjectImage4 from './hero/project_Image_4.webp';
 import heroQa from './hero/qa.webp';
 import heroReel from './hero/reel.webp';
-
 // Project images
 import projectBuilding from './projects/building.webp';
+import projectCalmisuApp from './projects/calmisu_app.webp';
+import projectCatoshi from './projects/catoshi.webp';
 import projectInvest from './projects/invest.webp';
+import projectInvestDashboard from './projects/invest_dashboard.webp';
+import projectInvestRegister from './projects/invest_register.webp';
 import projectLowCode from './projects/low-code.webp';
 import projectMarketing from './projects/marketing.webp';
+import projectMemeAcademy from './projects/meme-academy.webp';
+import projectMeridian from './projects/meridian.webp';
+import projectMeridianCoffee from './projects/meridian_coffee.webp';
+import projectMeridianMobile from './projects/meridian_mobile.webp';
+import projectNuance from './projects/nuance_x2.png';
 import projectPortfolioDesign from './projects/portfolio-design.webp';
 import projectPortfolioDev from './projects/portfolio-dev.webp';
 import projectQa from './projects/qa.webp';
 import projectReelReveal from './projects/reel-reveal.webp';
-import projectCalmisuApp from './projects/calmisu_app.webp';
-import projectCatoshi from './projects/catoshi.webp';
-import projectNuance from './projects/nuance_x2.png';
-   
 
 // Named exports for individual images
 export {
@@ -53,8 +57,14 @@ export {
   projectCalmisuApp,
   projectCatoshi,
   projectInvest,
+  projectInvestDashboard,
+  projectInvestRegister,
   projectLowCode,
   projectMarketing,
+  projectMemeAcademy,
+  projectMeridian,
+  projectMeridianCoffee,
+  projectMeridianMobile,
   projectNuance,
   projectPortfolioDesign,
   projectPortfolioDev,

@@ -1,11 +1,17 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { faqContent } from "@/content/faqContent";
-import { FaqItem } from "./faqComponents/FaqItem";
+import { useState } from 'react';
 
-export const Faq = () => {
-  const { sectionTitle, questions } = faqContent;
+import type { IFaqItem } from '@/content/faqContent';
+
+import { FaqItem } from './faqComponents/FaqItem';
+
+interface FaqProps {
+  content: { sectionTitle: string; questions: IFaqItem[] };
+}
+
+export const Faq: React.FC<FaqProps> = ({ content }) => {
+  const { sectionTitle, questions } = content;
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   return (
@@ -23,9 +29,7 @@ export const Faq = () => {
             {...item}
             isOpen={openQuestion === item.question}
             onToggle={() =>
-              setOpenQuestion((prev) =>
-                prev === item.question ? null : item.question
-              )
+              setOpenQuestion((prev) => (prev === item.question ? null : item.question))
             }
           />
         ))}

@@ -1,13 +1,17 @@
-import { IProject } from "@/content/portfolioContent";
-import { ProjectCard } from "./portfolioComponents/ProjectCard";
+import { getTranslations } from 'next-intl/server';
+
+import { IProject } from '@/content/portfolioContent';
+
+import { ProjectCard } from './portfolioComponents/ProjectCard';
 
 interface PortfolioGridProps {
   projects: IProject[];
 }
 
-const cardImage = "aspect-[628/500]";
+const cardImage = 'aspect-[628/500]';
 
-export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ projects }) => {
+export const PortfolioGrid: React.FC<PortfolioGridProps> = async ({ projects }) => {
+  const t = await getTranslations('PortfolioPreview');
   const leftColumn = projects.filter((_, index) => index % 2 === 0);
   const rightColumn = projects.filter((_, index) => index % 2 !== 0);
 
@@ -19,6 +23,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ projects }) => {
             key={project.title}
             {...project}
             imageClassName={cardImage}
+            readLabel={t('readCaseStudy')}
           />
         ))}
       </div>
@@ -30,6 +35,7 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ projects }) => {
             key={project.title}
             {...project}
             imageClassName={cardImage}
+            readLabel={t('readCaseStudy')}
           />
         ))}
       </div>

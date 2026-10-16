@@ -1,14 +1,11 @@
-import { HowItWorksItem, HowItWorksItemProps } from "./howItWorksItem";
+import { HowItWorksItem, HowItWorksItemProps } from './howItWorksItem';
 
 interface HowItWorksListProps {
   howItWorksArray: HowItWorksItemProps[];
   className?: string;
 }
 
-export const HowItWorksList: React.FC<HowItWorksListProps> = ({
-  howItWorksArray,
-  className,
-}) => {
+export const HowItWorksList: React.FC<HowItWorksListProps> = ({ howItWorksArray, className }) => {
   return (
     <ol className={className}>
       {howItWorksArray.map((item, index) => (

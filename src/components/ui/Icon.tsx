@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface IconProps {
   id: string;
@@ -12,18 +12,16 @@ interface IconProps {
 
 export const Icon: React.FC<IconProps> = ({
   id,
-  width = "100%",
-  height = "auto",
+  width = '100%',
+  height = 'auto',
   className,
   label,
 }) => {
   // "auto" is a valid CSS value but not a valid SVG attribute length, so it has
   // to go through a class instead of the height attribute.
-  const isAutoHeight = height === "auto";
+  const isAutoHeight = height === 'auto';
 
-  const a11yProps = label
-    ? { role: "img", "aria-label": label }
-    : { "aria-hidden": true as const };
+  const a11yProps = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true as const };
 
   return (
     <svg
@@ -31,9 +29,7 @@ export const Icon: React.FC<IconProps> = ({
       height={isAutoHeight ? undefined : height}
       focusable="false"
       {...a11yProps}
-      className={`transition-all ease-in-out ${isAutoHeight ? "h-auto" : ""} ${
-        className ?? ""
-      }`}
+      className={`transition-all ease-in-out ${isAutoHeight ? 'h-auto' : ''} ${className ?? ''}`}
     >
       <use xlinkHref={`/icons/sprite.svg#${id}`} />
     </svg>

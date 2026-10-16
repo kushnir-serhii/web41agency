@@ -1,19 +1,33 @@
-"use client";
+'use client';
 
-import { NavBar } from "@/components/layout/navBar/NavBar";
-import { NavBarItem } from "@/components/layout/navBar/NavBarItem";
-import { Icon } from "@/components/ui/Icon";
-import { Logo } from "@/components/ui/Logo";
-import { CONSULTATION_HREF } from "@/content/ctaLinks";
-import { navBarArray } from "@/content/navBarArray";
-import { AnimatePresence, motion } from "motion/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { AnimatePresence, motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
+import { NavBar } from '@/components/layout/navBar/NavBar';
+import { NavBarItem } from '@/components/layout/navBar/NavBarItem';
+import { Icon } from '@/components/ui/Icon';
+import { Logo } from '@/components/ui/Logo';
+import { CONSULTATION_HREF } from '@/content/ctaLinks';
+import { navBarArray } from '@/content/navBarArray';
+import { Link, usePathname } from '@/i18n/navigation';
 
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const tHeader = useTranslations('Header');
+  const tNav = useTranslations('Nav');
+  const tCta = useTranslations('Cta');
+
+  // Lets the chat launcher hide itself (CSS-only) while the mobile menu is open.
+  useEffect(() => {
+    if (!isOpen) return;
+    document.documentElement.dataset.menuOpen = '';
+    return () => {
+      delete document.documentElement.dataset.menuOpen;
+    };
+  }, [isOpen]);
 
   return (
     <div className="relative w-full px-2 lg:px-20 max-w-[1440px] mx-auto">
@@ -21,14 +35,15 @@ export const Header: React.FC = () => {
         <Logo />
 
         {/* Desktop nav */}
-        <nav className="hidden lg:block lg:max-w-[670px] w-full xl:max-w-[793px]">
+        <nav className="hidden lg:block min-w-0 flex-1 xl:max-w-[793px] mx-2 whitespace-nowrap">
           <NavBar />
         </nav>
+        <LanguageSwitcher variant="pill" className="hidden shrink-0 lg:inline-flex" />
 
         {/* Mobile hamburger */}
         <button
           type="button"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? tHeader('closeMenu') : tHeader('openMenu')}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
           className="lg:hidden flex size-11 items-center justify-center rounded-full"
@@ -52,26 +67,25 @@ export const Header: React.FC = () => {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className="lg:hidden absolute top-full left-2 right-2 mt-2 z-50 rounded-3xl bg-white/90 backdrop-blur-[100px] shadow-xl overflow-hidden"
           >
             <ul className="flex flex-col py-4">
-              {navBarArray.map(({ href, label }, index) => (
-                <li key={index} onClick={() => setIsOpen(false)}>
-                  <NavBarItem
-                    link={href}
-                    text={label}
-                    isActive={pathname === href}
-                  />
+              {navBarArray.map(({ href, labelKey }) => (
+                <li key={href} onClick={() => setIsOpen(false)}>
+                  <NavBarItem link={href} text={tNav(labelKey)} isActive={pathname === href} />
                 </li>
               ))}
+              <li className="px-4 pt-2">
+                <LanguageSwitcher variant="full" />
+              </li>
               <li className="px-4 pt-2">
                 <Link
                   href={CONSULTATION_HREF}
                   onClick={() => setIsOpen(false)}
                   className="w-full flex justify-center items-center px-4 py-3 rounded-[100px] text-white bg-black"
                 >
-                  Free Quote
+                  {tCta('freeQuote')}
                 </Link>
               </li>
             </ul>

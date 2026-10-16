@@ -1,13 +1,17 @@
+import { getTranslations } from 'next-intl/server';
+
 interface CaseStackProps {
   stack: string[];
 }
 
-export const CaseStack: React.FC<CaseStackProps> = ({ stack }) => {
+export const CaseStack = async ({ stack }: CaseStackProps) => {
+  const t = await getTranslations('CaseStudy');
+
   return (
     <section className="w-full max-w-[1440px] mx-auto px-4 lg:px-20 py-10">
       <div className="flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-16">
         <h2 className="w-full lg:w-[380px] shrink-0 text-3xl lg:text-[40px] font-bold leading-tight text-left text-black">
-          Stack
+          {t('stack')}
         </h2>
         <ul className="flex flex-wrap items-start gap-2 w-full lg:max-w-[720px]">
           {stack.map((item) => (

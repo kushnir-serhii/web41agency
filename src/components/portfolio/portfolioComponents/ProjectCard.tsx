@@ -1,10 +1,12 @@
-import { IProject } from '@/content/portfolioContent';
 import Image from 'next/image';
-import Link from 'next/link';
+
+import { IProject } from '@/content/portfolioContent';
+import { Link } from '@/i18n/navigation';
 
 interface ProjectCardProps extends IProject {
   /* Sizing for the cover — the slider uses fixed heights, the grid an aspect ratio. */
   imageClassName?: string;
+  readLabel: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -16,9 +18,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   summary,
   metric,
   imageClassName = 'h-[240px] lg:h-[371px]',
+  readLabel,
 }) => {
   return (
-    <Link href={`/portfolio/${slug}`} className="flex flex-col items-start gap-4 w-full h-full group">
+    <Link
+      href={`/portfolio/${slug}`}
+      className="flex flex-col items-start gap-4 w-full h-full group rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+    >
       <div className={`relative w-full rounded-lg overflow-hidden ${imageClassName}`}>
         <Image
           src={image}
@@ -51,8 +57,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </li>
           ))}
         </ul>
-        <span className="mt-2 text-lg font-bold text-black underline underline-offset-4 group-hover:no-underline">
-          Read the case study &rarr;
+        <span className="mt-2 text-lg font-bold text-black underline underline-offset-4 group-hover:no-underline group-focus-visible:no-underline">
+          {readLabel} &rarr;
         </span>
       </div>
     </Link>

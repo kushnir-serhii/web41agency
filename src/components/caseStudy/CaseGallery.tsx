@@ -1,5 +1,6 @@
-import { ICaseImage } from '@/content/caseStudiesContent';
 import Image from 'next/image';
+
+import { ICaseImage } from '@/content/caseStudiesContent';
 
 interface CaseGalleryProps {
   images: ICaseImage[];

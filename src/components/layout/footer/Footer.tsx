@@ -1,7 +1,7 @@
-import { PrivacyAndTerms } from "./footerComponents/PrivacyAndTerms";
-import { SocialList } from "./footerComponents/SocialList";
-import { Logo } from "../../ui/Logo";
-import { NavBar } from "../navBar/NavBar";
+import { Logo } from '../../ui/Logo';
+import { NavBar } from '../navBar/NavBar';
+import { PrivacyAndTerms } from './footerComponents/PrivacyAndTerms';
+import { SocialList } from './footerComponents/SocialList';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,8 +10,8 @@ export const Footer: React.FC = () => {
         <Logo
           widthIcon={196}
           heightIcon={196}
-          color={"text-white"}
-          fontSize={"text-6xl lg:text-9xl"}
+          color={'text-white'}
+          fontSize={'text-6xl lg:text-9xl'}
           iconClassName="w-[110px] lg:w-[196px] h-auto"
         />
         <NavBar isFooter />
