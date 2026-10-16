@@ -1,0 +1,34 @@
+# Decisions — 005 Multilingual Site (Ukrainian)
+
+- [spec] Q: Topic → A: Add Ukrainian (uk) language to the existing English site (user prompt).
+- [spec] ASSUMED: This overrides product-definition §3.2 "Multi-language versions — out of scope (assumption)".
+- [spec] Q: Page addresses? → A: English keeps its current addresses; Ukrainian lives under /uk (e.g. /uk/services, home = /uk).
+- [spec] TECH-HINT: Locale routing with `as-needed` prefix — default locale `en` unprefixed, `uk` prefixed. No redirects for existing EN URLs.
+- [spec] Q: First-visit language? → A: Auto-detect from the browser on the home page; remember the visitor's explicit choice; direct links never redirect.
+- [spec] TECH-HINT: Accept-Language detection on `/` only; persist choice (e.g. locale cookie) set by the switcher.
+- [spec] Q: Switcher labels? → A: User delegated to a design call ("act as senior product designer, follow design system and best practices"). Decision: desktop = pill segmented toggle "EN | UA" at the right end of the header, active option on accent #DBFF04; mobile menu = full-width "English | Українська" toggle above the Free Quote button; no flags; options announced by their endonyms; "UA" chosen over "UK" to avoid confusion with the United Kingdom.
+- [spec] TECH-HINT: Reuse header pill styling (rounded-[100px], bg-accent token); new switcher component in components/layout; each option carries lang attribute + aria-current.
+- [spec] Q: Who provides Ukrainian copy? → A: Draft translation prepared during implementation; the owner proofreads it.
+- [spec] Q: Translate Privacy Policy / Terms? → A: Yes, fully; the Ukrainian pages state that the English version prevails.
+- [spec] Q: Currency for prices? → A: Prices are not shown on pages at all. The AI assistant quotes "from $X" in USD in both languages; no price display is added.
+- [spec] Q: Show visitor language in the agency's request notification? → A: Yes ("Language: Ukrainian" / "Language: English").
+- [spec] TECH-HINT: Contact form submission carries the locale; the notification email includes it.
+- [spec] Q: Chat conversation on language switch? → A: Keep the conversation; the UI and new replies follow the new language.
+- [spec] ASSUMED: Only EN + UA, with no other languages planned (user asked only for uk).
+- [spec] ASSUMED: No numeric lead-conversion target for the Ukrainian version; success = Ukrainian leads are visible via the language mark.
+- [spec] ASSUMED: Dates on Ukrainian pages use Ukrainian format; switching language lands at the top of the same page.
+- [tech] Q: Contact form backend (spec 002 not built) vs language mark on requests? → A: Don't use email; send leads to a Telegram bot. 005 builds POST /api/contact → Telegram Bot API (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID); supersedes 002's Resend plan.
+- [tech] Q: Storage for translated long content? → A: Owner asked for best practice → hybrid: next-intl messages/{en,uk}.json for UI strings; typed TS content modules split into base data + per-locale copy (`satisfies` parity), server-side getX(locale) accessors.
+- [tech] Q: Chat knowledge base on Ukrainian pages? → A: English knowledge base + Ukrainian reply rule + small uk glossary of site terms.
+- [tech] ASSUMED: i18n library = next-intl v4, localePrefix 'as-needed', built-in localeDetection and localeCookie off; custom middleware detects only on `/`; switcher sets NEXT_LOCALE cookie (1 year).
+- [tech] ASSUMED: Slugs identical across locales; only the /uk prefix differs.
+- [tech] ASSUMED: One chat sessionStorage history shared across locales (conversation kept on switch).
+- [tech] ASSUMED: uk legal date uses Intl uk-UA long form ("15 жовтня 2026 р.").
+- [tech] ASSUMED: Functional AC "arrives in the agency inbox" now means the agency Telegram chat; architecture.md needs Resend → Telegram update.
+- [tech] ASSUMED: Existing Fixel Display woff2 files cover Cyrillic; verify in the first task.
+- [tasks] ASSUMED: Tests not skipped; QA agent = playwright-qa (project-local, covers Vitest + Playwright); no staffing gaps.
+- [tasks] ASSUMED: Verify tasks are smoke checks only; all new tests batched in the final slice (6 files, grouped by area per tech spec §4).
+- [tasks] Q: Review of tasks.md → A: Looks good — keep it as saved
+- [implement] Q: next-intl install blocked by ERESOLVE (vitest ^5 needs @types/node ^22|>=24; package.json had ^20) → A: Bump @types/node to ^22, then install next-intl@^4.
+- [implement] ASSUMED: 404 pages render server-side as Next error shell (content only in RSC payload; blank without JS) — same on pre-existing portfolio/[slug] 404, so accepted as Next 15.5 behaviour; AC met with JS.
+- [implement] ASSUMED: Switcher EN option on /uk pages renders href /en/<path> (next-intl as-needed behaviour for explicit default locale) which 307s to /<path>; functionally correct, revisit in Slice 6 (hreflang/SEO) if a direct href is wanted.

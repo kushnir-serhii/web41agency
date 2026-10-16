@@ -10,3 +10,10 @@ export const SITE_URL =
 export const SITE_NAME = 'Web41 Agency';
 
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || 'hello@web41.agency';
+
+export const DEFAULT_OG_IMAGE = {
+  url: '/og.png',
+  width: 1200,
+  height: 630,
+  alt: 'Web41 Agency — web development studio',
+};

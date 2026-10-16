@@ -1,0 +1,39 @@
+# Decisions — 003 Legal pages redesign
+
+- [spec] ASSUMED: functional-spec.md is written into the existing 003 folder (README + technical-considerations already there) instead of creating a new spec index.
+- [spec] ASSUMED: layout, summary, numbered sections, TOC, contact card, LetsTalk kept at bottom, print/a11y rules — taken from README.md, not re-asked.
+- [spec] ASSUMED: "Legal" in the breadcrumb is plain text (no Legal index page exists).
+- [spec] ASSUMED: contact card heading differs per page — "Questions about this policy?" / "Questions about these terms?".
+- [spec] ASSUMED: "#" anchor click only updates the address bar and jumps; no copy-to-clipboard.
+- [spec] ASSUMED: success target "find an answer within ~30 seconds" (narrative only, not an acceptance criterion).
+- [spec] ASSUMED: Privacy summary point "No tracking or advertising cookies" stays valid — Vercel Web Analytics is cookieless (privacy.ts already says so); README's "no analytics" note is outdated.
+- [spec] TECH-HINT: reuse the existing LetsTalk section at the bottom of legal pages (header "Free Quote" points to #lets-talk).
+- [spec] TECH-HINT: keep the existing URLs /privacy-policy and /terms-of-use; links in footer, LetsTalk consent line and sitemap depend on them.
+- [spec] TECH-HINT: link previews reuse the site's standard OG image.
+- [spec] Q: Terms of Use "At a glance" points? → A: Use the proposed 4 (browse freely / prices are a guide / IP ownership / projects agreed in writing).
+- [spec] Q: Should "Legal" in the breadcrumb be a link? → A: Plain text.
+- [spec] Q: What does clicking a section "#" link do? → A: Jump + update URL only, no copy-to-clipboard.
+- [tech] Q: How should spec 003 be tested? → A: One Playwright e2e file (tests/e2e/legal-pages.spec.ts, @playwright/test devDependency, helper tests in the same file).
+- [tech] Q: Change overflow-x-hidden → overflow-x-clip in layout.tsx so sticky works? → A: Yes, global change in a separate commit, checked at 375px.
+- [tech] ASSUMED: PageHero is not reused; new LegalHero (marketing hero has no breadcrumb/chips/switcher slots).
+- [tech] ASSUMED: TOC = useActiveSection hook + LegalToc (desktop/mobile variant) rendered twice + LegalTocList; two observers on ~11 elements is acceptable.
+- [tech] ASSUMED: Button gets btnType 'accent' and renders a plain <a> for mailto:/tel:/http hrefs.
+- [tech] ASSUMED: a check symbol is added to sprite.svg and rendered via Icon (no inline SVG).
+- [tech] ASSUMED: type LegalSection is renamed to LegalSectionData to avoid a clash with the component.
+- [tech] ASSUMED: Header and Footer get print:hidden in layout.tsx (AC 2.7 print).
+- [tech] ASSUMED: privacy lastUpdated is set to the actual ship date of the two new sections (ISO).
+- [tech] ASSUMED: DEFAULT_OG_IMAGE is added to site.ts and shared by layout.tsx and buildLegalMetadata.
+- [tasks] ASSUMED: testing intent = tests wanted (Playwright e2e per tech spec); per-slice Verify is smoke-only, all tests in the final slice.
+- [tasks] ASSUMED: no QA-coded agent installed; Slice 8 uses general-purpose, UI tasks use nextjs-frontend, Playwright setup uses vercel-infra.
+- [tasks] Q: How to handle the QA staffing gap? → A: Keep the gap recorded (run /awos:hire later).
+- [tasks] Q: Is the 8-slice plan good? → A: Looks good — keep it as saved.
+- [implement] ASSUMED: privacy lastUpdated = 2026-10-14 (implementation date of the new sections); terms lastUpdated = 2026-09-18 (converted from existing display date).
+- [implement] ASSUMED: "Children" section keeps an extra line — "If you believe a child has sent us their data, email us and we will delete it." (consistent with "Your rights"; owner may remove).
+- [implement] Q: Slice 3 smoke found LegalPage container is flex-row (hero beside content) and LegalSummary uses Icon id "check" instead of "icon-check" — how to proceed? → A: Fix both, re-verify Slices 2+3 at 375/768/1280 before Slice 4.
+- [implement] ASSUMED: also fixed two defects found during the Slice 2+3 re-verify — legal grid gets print:grid-cols-1 (article was 240px wide in print) and the date chip wraps "Last updated <time>" in a span (flex collapsed the space).
+- [implement] ASSUMED: Slice 4 smoke found TOC click/hash-load highlights the previous section (band top 120px < scroll-mt 128px); fixed and re-verified per the earlier "fix defects, re-verify" answer.
+- [implement] ASSUMED: contact card supporting line = "Write to us and we will get back to you."; "Also read" link is print:hidden.
+- [implement] Q: Playwright already set up by spec 004 work (next dev webServer) — how to proceed with Slice 7? → A: Switch webServer to `next build && next start -p 3100`, keep NEXT_PUBLIC_CHAT_ENABLED=true; stop the :3000 dev server while e2e runs.
+- [implement] Q: spec 004 session reverted playwright webServer to `next dev -p 3100` and runs chat e2e concurrently — how to finish Slice 8? → A: Accept the `next dev` config, wait until :3100 is free, then finish the remaining checks.
+- [implement] ASSUMED: task 8.2 "all generated tests pass" scoped to spec 003 tests (legal-pages.spec.ts, 52/52 green); full suite had 10 chat.spec.ts (spec 004) failures — strict-mode locator clash with the sr-only live region — left to the spec 004 owner.
+- [verify] Q: Do the screenshots match the spec's look-and-feel? → A: Yes, matches

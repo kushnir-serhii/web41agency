@@ -1,5 +1,22 @@
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const nextConfig: NextConfig = {/* config options here */};
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
-export default nextConfig;
+const nextConfig: NextConfig = {
+  redirects: async () => [
+    /* The old placeholder case showed the same project, now published as a full case study. */
+    {
+      source: '/portfolio/saas-landing-page',
+      destination: '/portfolio/investico',
+      permanent: true,
+    },
+    {
+      source: '/uk/portfolio/saas-landing-page',
+      destination: '/uk/portfolio/investico',
+      permanent: true,
+    },
+  ],
+};
+
+export default withNextIntl(nextConfig);

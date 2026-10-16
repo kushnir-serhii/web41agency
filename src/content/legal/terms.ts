@@ -4,9 +4,16 @@ import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '@/utils/site';
 import type { LegalDocument } from './types';
 
 export const termsOfUse: LegalDocument = {
+  slug: 'terms-of-use',
   title: 'Terms of Use',
   description: `The terms that apply when you use the ${SITE_NAME} website.`,
-  lastUpdated: 'September 18, 2026',
+  lastUpdated: '2026-09-18',
+  summary: [
+    'You can browse the site and contact us freely.',
+    'Prices and timelines on the site are a guide, not an offer.',
+    'Our design and content belong to us; client work belongs to our clients.',
+    'Each project is agreed separately, in writing.',
+  ],
   intro: [
     `These Terms of Use apply to your use of ${SITE_URL} (the "Site"), which ${SITE_NAME} ("we", "us") operates. By using the Site you agree to these terms. If you do not agree, please do not use the Site.`,
   ],

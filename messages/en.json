@@ -1,0 +1,206 @@
+{
+  "Header": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "Footer": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "rights": "All rights reserved.",
+    "instagram": "Instagram",
+    "dribbble": "Dribbble",
+    "email": "Email us"
+  },
+  "Nav": {
+    "aboutUs": "About Us",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contacts": "Contacts"
+  },
+  "LanguageSwitcher": {
+    "groupLabel": "Language selection"
+  },
+  "Cta": {
+    "freeQuote": "Free Quote",
+    "freeConsultation": "Free Consultation",
+    "viewProjects": "View Projects"
+  },
+  "Common": {
+    "home": "Home",
+    "logoHome": "web41 home"
+  },
+  "NotFound": {
+    "heading": "Page not found",
+    "text": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to home"
+  },
+  "Meta": {
+    "default": {
+      "title": "Web41 Agency — Fast, Modern Websites for Small Businesses",
+      "description": "We rebuild slow, outdated business websites on Next.js — pages that load instantly on mobile, rank higher in Google, and are easy to update without a developer."
+    },
+    "home": {
+      "title": "Web41 Agency — Fast, Modern Websites for Small Businesses",
+      "description": "We rebuild slow, outdated business websites on Next.js — pages that load instantly on mobile, rank higher in Google, and are easy to update without a developer."
+    },
+    "aboutUs": {
+      "title": "About Us",
+      "description": "Web41 Agency builds fast, modern websites and web apps for small businesses — design, development and launch, without the agency overhead."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Websites, landing pages, redesigns, integrations and ongoing support — built on Next.js and delivered by Web41 Agency."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "We create sleek, high-performing websites tailored to your needs. Explore our portfolio and see how we bring ideas to life."
+    },
+    "contacts": {
+      "title": "Contacts",
+      "description": "Get in touch with Web41 Agency — tell us what you need and we'll come back with a plan and a price."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "How Web41 Agency collects, uses and protects the personal data you share through our website."
+    },
+    "termsOfUse": {
+      "title": "Terms of Use",
+      "description": "The terms that apply when you use the Web41 Agency website."
+    }
+  },
+  "Hero": {
+    "headingCustom": "Custom",
+    "headingMain": "Websites & Web Apps –",
+    "headingPerform": "Built to Perform",
+    "description": "From sleek Webflow sites to full-stack JS solutions, we design, develop, and launch websites that grow.",
+    "primaryButton": "Free Consultation",
+    "secondaryButton": "View Projects",
+    "slideAlt": "Slide"
+  },
+  "About": {
+    "title": "About Web41",
+    "intro": "At Web41, we build high-performance web solutions tailored to your needs.",
+    "details": "Whether you need custom-coded precision or a no-code Webflow solution, we’ve got you covered.",
+    "button": "Free Consultation",
+    "projectsLabel": "successful projects",
+    "experienceValue": "3y",
+    "experienceLabel": "combined experience",
+    "industriesValue": "10+",
+    "industriesLabel": "industries expertise"
+  },
+  "PortfolioPreview": {
+    "title": "Portfolio",
+    "previous": "Previous project",
+    "next": "Next project",
+    "readCaseStudy": "Read the case study"
+  },
+  "TechStack": {
+    "title": "Tech Stack"
+  },
+  "Services": {
+    "timeline": "Timeline: {value}",
+    "getQuote": "Get a quote"
+  },
+  "ServicesPage": {
+    "headingMain": "Services",
+    "headingMuted": "Built to Ship",
+    "description": "From a single landing page to a full custom build — pick what you need below, or get in touch and we'll scope it together."
+  },
+  "PortfolioPage": {
+    "headingLead": "Our Work:",
+    "headingMain": "Websites",
+    "headingTail": "that Drive Results",
+    "description": "We create sleek, high-performing websites tailored to your needs. Explore our portfolio below and see how we bring ideas to life."
+  },
+  "ContactsPage": {
+    "headingMain": "Let's Talk",
+    "headingMuted": "About Your Project",
+    "description": "Email us, send a message below, or reach out on messengers — whatever's easiest for you.",
+    "emailLabel": "Email:",
+    "messengersLabel": "Messengers:",
+    "addressLabel": "Address:",
+    "comingSoon": "coming soon"
+  },
+  "CaseStudy": {
+    "titleSuffix": " — Case Study",
+    "breadcrumb": "Breadcrumb",
+    "visitLive": "Visit the live site",
+    "results": "Results",
+    "stack": "Stack",
+    "ctaTitle": "Got a project like this one?",
+    "ctaText": "Tell us what you are building. We will come back with an approach, a timeline and a price before you commit to anything.",
+    "freeConsultation": "Free Consultation",
+    "allProjects": "All projects",
+    "nextProject": "Next project"
+  },
+  "Legal": {
+    "lastUpdated": "Last updated",
+    "minRead": "{minutes} min read",
+    "breadcrumbLabel": "Breadcrumb",
+    "home": "Home",
+    "legal": "Legal",
+    "onThisPage": "On this page",
+    "tableOfContents": "Table of contents",
+    "atAGlance": "At a glance",
+    "linkTo": "Link to {heading}",
+    "switcherLabel": "Legal documents",
+    "contactEmail": "Email us",
+    "contactBody": "Write to us and we will get back to you.",
+    "questionsPrivacy": "Questions about this policy?",
+    "questionsTerms": "Questions about these terms?",
+    "alsoRead": "Also read: {title} →"
+  },
+  "LetsTalk": {
+    "heading": "Let’s Talk",
+    "intro": "Ready to bring your vision to life? Get in touch, and let’s build something great together.",
+    "emailAriaLabel": "Send us an email",
+    "nameLabel": "Name",
+    "namePlaceholder": "Jane Smith",
+    "emailLabel": "Email",
+    "emailPlaceholder": "jane@company.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your project",
+    "requiredNote": "Required field",
+    "consent": "By filling out the form I agree to the <privacy>Privacy Policy</privacy> and <terms>Terms of Use</terms>.",
+    "submit": "Send Message",
+    "submitting": "Sending…",
+    "success": "Thank you! Your message has been sent. We will get back to you soon.",
+    "validation": {
+      "nameRequired": "Name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Please enter a valid email address."
+    },
+    "errors": {
+      "rateLimited": "Too many attempts. Please try again in a few minutes.",
+      "unavailable": "We could not send your message right now.",
+      "generic": "Something went wrong. Please try again.",
+      "mailtoFallback": "You can also email us at <mail>{email}</mail>."
+    }
+  },
+  "Chat": {
+    "title": "Web41 assistant",
+    "subtitle": "AI · usually replies in seconds",
+    "teaser": "Questions about your website? Ask me.",
+    "greeting": "Hi! I can help with services, pricing, timelines and how we work.",
+    "suggestions": {
+      "landingPrice": "How much is a landing page?",
+      "timeline": "How long does a site take?",
+      "webflowVsCode": "Webflow or custom code?"
+    },
+    "error": "Sorry, something went wrong. Try again or email us at",
+    "retry": "Try again",
+    "limit": "You've hit the message limit. Email us at",
+    "longChat": "This chat is getting long. Start a new one, or get a free quote and we'll answer in detail.",
+    "startOver": "Start over",
+    "handoffLine": "Want an exact quote?",
+    "handoffCta": "Get a free quote →",
+    "disclaimer": "AI can make mistakes. Prefer a human?",
+    "disclaimerLink": "Email us",
+    "openLabel": "Open chat",
+    "closeLabel": "Close chat",
+    "teaserDismissLabel": "Dismiss",
+    "composerLabel": "Message",
+    "stop": "Stop",
+    "send": "Send"
+  }
+}

@@ -1,16 +1,16 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --accent-yellow: #DBFF04;
+  --accent-yellow: #dbff04;
   --bg_item: #f9f9f9;
   --dark_text-hover: #000000;
 }
 
 @theme inline {
   /* --color-background: var(--background); */
-  --color-accent: #DBFF04;
+  --color-accent: #dbff04;
   --color-light_text: #ffffff;
   --color-dark_text: #333333;
   --color-bg_dark: #000000;
@@ -19,10 +19,10 @@
   --color-bg_item: #f9f9f9;
   --color-bg_header: #ededed;
   --color-muted_text: #656973;
+  --shadow-chat: 0 24px 64px -12px rgb(0 0 0 / 0.25);
 
   /* --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono); */
-
 }
 
 @media (prefers-color-scheme: dark) {
@@ -61,8 +61,14 @@ body {
   text-align: center;
 }
 
-.gradient-techstack_slider{
-  background: linear-gradient(90deg, #fff 3.76%, rgba(255, 255, 255, 0) 8.67%, rgba(255, 255, 255, 0) 90.53%, #fff 96.75%);
+.gradient-techstack_slider {
+  background: linear-gradient(
+    90deg,
+    #fff 3.76%,
+    rgba(255, 255, 255, 0) 8.67%,
+    rgba(255, 255, 255, 0) 90.53%,
+    #fff 96.75%
+  );
 }
 
 /* SLIDER STYLES */

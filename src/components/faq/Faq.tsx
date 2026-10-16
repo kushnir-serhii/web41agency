@@ -2,12 +2,16 @@
 
 import { useState } from 'react';
 
-import { faqContent } from '@/content/faqContent';
+import type { IFaqItem } from '@/content/faqContent';
 
 import { FaqItem } from './faqComponents/FaqItem';
 
-export const Faq = () => {
-  const { sectionTitle, questions } = faqContent;
+interface FaqProps {
+  content: { sectionTitle: string; questions: IFaqItem[] };
+}
+
+export const Faq: React.FC<FaqProps> = ({ content }) => {
+  const { sectionTitle, questions } = content;
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   return (

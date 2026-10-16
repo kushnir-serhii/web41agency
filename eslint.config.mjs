@@ -33,6 +33,32 @@ const eslintConfig = [
     },
   },
 
+  // Locale-aware navigation: ban raw next/link and next/navigation routing hooks
+  {
+    // Brace globs (*.{ts,tsx}) crash the bundled minimatch here, so list extensions explicitly.
+    files: [
+      'src/components/**/*.ts',
+      'src/components/**/*.tsx',
+      'src/app/[[]locale[]]/**/*.ts',
+      'src/app/[[]locale[]]/**/*.tsx',
+    ],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            { name: 'next/link', message: 'Use Link from @/i18n/navigation' },
+            {
+              name: 'next/navigation',
+              importNames: ['usePathname', 'useRouter', 'redirect'],
+              message: 'Use @/i18n/navigation',
+            },
+          ],
+        },
+      ],
+    },
+  },
+
   // Custom TS/React rules
   {
     rules: {

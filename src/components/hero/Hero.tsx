@@ -1,18 +1,24 @@
+import { getTranslations } from 'next-intl/server';
+
 import { PageHero } from '@/components/pageHero/PageHero';
 
 import { HeroAnimation } from './heroComponents/HeroAnimation';
 
-export const Hero: React.FC = () => {
+export const Hero = async () => {
+  const t = await getTranslations('Hero');
+
   return (
     <PageHero
       heading={[
-        { text: 'Custom', muted: true },
-        { text: 'Websites & Web Apps –' },
-        { text: 'Built to Perform', muted: true },
+        { text: t('headingCustom'), muted: true },
+        { text: t('headingMain') },
+        { text: t('headingPerform'), muted: true },
       ]}
-      description="From sleek Webflow sites to full-stack JS solutions, we design, develop, and launch websites that grow."
+      description={t('description')}
+      primaryButton={t('primaryButton')}
+      secondaryButton={t('secondaryButton')}
     >
-      <HeroAnimation />
+      <HeroAnimation slideLabel={t('slideAlt')} />
     </PageHero>
   );
 };

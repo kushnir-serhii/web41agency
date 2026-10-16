@@ -1,7 +1,7 @@
 'use client';
 
 import { Icon } from '@/components/ui/Icon';
-import { IFaqItem } from '@/content/faqContent';
+import type { IFaqItem } from '@/content/faqContent';
 
 interface FaqItemProps extends IFaqItem {
   isOpen: boolean;

@@ -1,10 +1,11 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useId } from 'react';
 
 import { Icon } from '@/components/ui/Icon';
 import { CONSULTATION_HREF } from '@/content/ctaLinks';
-import { IService } from '@/content/servicesContent';
+import type { IService } from '@/content/servicesContent';
 import { cn } from '@/utils/cn';
 
 interface ServiceItemProps extends IService {
@@ -15,11 +16,11 @@ interface ServiceItemProps extends IService {
 export const ServiceItem: React.FC<ServiceItemProps> = ({
   title,
   description,
-  price,
   timeline,
   isOpen,
   onToggle,
 }) => {
+  const t = useTranslations('Services');
   const bodyId = useId();
 
   return (
@@ -45,9 +46,6 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
         />
         <span className="relative text-xl lg:text-[32px] text-black">{title}</span>
         <span className="relative flex items-center gap-3 lg:gap-4 shrink-0">
-          <span className="rounded-full bg-accent px-3 py-1 text-sm lg:text-base font-medium text-black whitespace-nowrap">
-            {price}
-          </span>
           <Icon
             id="icon-add"
             width={24}
@@ -68,12 +66,12 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
         <div className="overflow-hidden">
           <div className="flex flex-col gap-3 px-4 lg:px-20 pb-6 lg:pb-10 lg:max-w-[760px] text-left">
             <p className="opacity-80 text-base lg:text-lg text-black">{description}</p>
-            <p className="text-base text-black/70">Timeline: {timeline}</p>
+            <p className="text-base text-black/70">{t('timeline', { value: timeline })}</p>
             <a
               href={CONSULTATION_HREF}
               className="inline-flex items-center gap-1 self-start text-base font-medium text-black underline underline-offset-4 hover:no-underline"
             >
-              Get a quote
+              {t('getQuote')}
               <span aria-hidden>
                 <Icon id="icon-arrow_outward" width={14} height={14} />
               </span>

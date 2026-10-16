@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 interface NavBarItemProps {
   link: string;
@@ -11,7 +11,7 @@ export const NavBarItem: React.FC<NavBarItemProps> = ({ link, text, isActive, is
     <Link
       href={link}
       className={`group flex justify-center items-center gap-2 text-base  transition-all duration-200 easy-in-out
-          min-h-11 px-4 py-2 ${isFooter ? 'text-light_text' : 'text-dark_text hover:text-dark_text-hover'}`}
+          min-h-11 py-2 ${isFooter ? 'px-4 text-light_text' : 'px-1 xl:px-4 text-dark_text hover:text-dark_text-hover'}`}
     >
       <div
         className={`size-2 rounded-full transition-all duration-200  ${

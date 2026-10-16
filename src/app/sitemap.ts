@@ -1,7 +1,9 @@
 import type { MetadataRoute } from 'next';
 
-import { caseStudies } from '@/content/caseStudiesContent';
-import { SITE_URL } from '@/utils/site';
+import { caseStudySlugs } from '@/content/caseStudyTitles';
+import { legalDocuments } from '@/content/legal';
+import { localeLanguages, localeUrl } from '@/i18n/metadata';
+import { routing } from '@/i18n/routing';
 
 /**
  * Only pages with real content belong here.
@@ -19,7 +21,7 @@ const ROUTES: Array<{
   { path: '/privacy-policy', priority: 0.2, changeFrequency: 'yearly' },
   { path: '/terms-of-use', priority: 0.2, changeFrequency: 'yearly' },
   // Case studies are generated from content, so the sitemap grows with them.
-  ...caseStudies.map(({ slug }) => ({
+  ...caseStudySlugs.map((slug) => ({
     path: `/portfolio/${slug}`,
     priority: 0.6,
     changeFrequency: 'monthly' as const,
@@ -27,12 +29,18 @@ const ROUTES: Array<{
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const now = new Date();
+  const legalDates = new Map(legalDocuments.en.map((doc) => [`/${doc.slug}`, doc.lastUpdated]));
 
-  return ROUTES.map(({ path, priority, changeFrequency }) => ({
-    url: `${SITE_URL}${path}`,
-    lastModified,
-    changeFrequency,
-    priority,
-  }));
+  return ROUTES.flatMap(({ path, priority, changeFrequency }) => {
+    const languages = localeLanguages(path);
+
+    return routing.locales.map((locale) => ({
+      url: localeUrl(locale, path),
+      lastModified: legalDates.get(path) ?? now,
+      changeFrequency,
+      priority,
+      alternates: { languages },
+    }));
+  });
 }

@@ -1,0 +1,40 @@
+# Decisions — 004 AI chat assistant
+
+- [spec] ASSUMED: functional-spec.md is written into the existing 004 folder (README already there) instead of creating a new spec index — same as 003.
+- [spec] ASSUMED: layout, visual style, suggested questions, handoff card, limits (20 msgs / 10 min, 60 / day, 500 chars, 20 msgs per conversation), accessibility, reduced motion, print and privacy update are taken from README.md, not re-asked.
+- [spec] ASSUMED: phase 1 lead capture = handoff to the "Let's talk" form only (README decision 2 + product definition non-goals).
+- [spec] ASSUMED: handoff from a non-home page goes to the home page's "Let's talk" form.
+- [spec] ASSUMED: first words of an answer appear within ~3 s (README gives no number).
+- [spec] ASSUMED: error bubble copy "Sorry, something went wrong. Try again or email us at [agency email]." (README gives only the shape).
+- [spec] ASSUMED: internal links in answers open in the same tab, external in a new tab.
+- [spec] ASSUMED: product metric "unanswered-question log" is not part of this spec (README puts transcript storage out of scope).
+- [spec] TECH-HINT: chat runs on the OpenAI API; model is set by config so it can change without a code change (README decision 1). Implementation is done in Claude Code.
+- [spec] TECH-HINT: assistant answers are built from the existing site content (services, pricing, FAQ, how it works, case studies, contact email) so they never drift from the site.
+- [spec] TECH-HINT: launcher reuses the 80px accent circle from LetsTalk send button; panel header reuses the site header glass; motion values same as the mobile menu in Header; reuse existing icons (send, cross) and add a chat icon.
+- [spec] TECH-HINT: conversation kept per browser tab session; chat loaded after the page so first load is unaffected; owner kill switch via an env flag.
+- [spec] TECH-HINT: monthly spend cap set in the OpenAI console (README decision 3).
+- [spec] Q: Show a teaser bubble after 20 s? → A: Yes, once per visit, with ✕; never on Privacy Policy / Terms of Use.
+- [spec] Q: Which language should the assistant answer in? → A: The visitor's language; chat buttons and labels stay English.
+- [spec] Q: "Start over" control in the panel? → A: Yes, icon button in the header next to close; disabled when empty.
+- [spec] Q: What happens when a conversation reaches 20 messages? → A: Note "This chat is getting long…" + "Start over" + "Get a free quote →"; message box disabled.
+- [spec] TECH-HINT: teaser shown once per browser session (README: sessionStorage); "Start over" clears the same stored session conversation.
+- [tech] Q: Test tooling for 004 (no runner exists)? → A: Vitest (one server-logic file) + Playwright (one e2e file, /api/chat mocked).
+- [tech] Q: Source of past-project titles for the system prompt? → A: Extract text-only src/content/caseStudyTitles.ts; caseStudiesContent.ts imports titles from it.
+- [tech] Q: Label for the $800 tier ("no-code sites" on site vs "Low Code" in spec)? → A: "Low Code" everywhere; rename on the site via shared PRICING_TIERS.
+- [tech] ASSUMED: single kill switch NEXT_PUBLIC_CHAT_ENABLED, checked in layout.tsx and in the route (503); no separate server flag, since Vercel env changes need a redeploy anyway.
+- [tech] ASSUMED: shared client/server constants in import-free src/consts/chat.ts; server files import 'server-only'.
+- [tech] ASSUMED: rate limiter is a generic src/server/rate-limit/createRateLimiter.ts (sliding-window log, in-memory, async interface), reused by spec 002.
+- [tech] ASSUMED: handoff click closes the panel and moves focus to the #lets-talk form (not back to the launcher); Esc/close still return focus to the launcher.
+- [tech] ASSUMED: mobile-menu signal = Header mirrors isOpen to html[data-menu-open]; launcher hides via CSS variant.
+- [tech] ASSUMED: in-house markdown parser (bold, lists, links), no react-markdown.
+- [tech] ASSUMED: Button.tsx extended with btnType 'accent', size 'sm', onClick for handoff/long-chat pills.
+- [tech] ASSUMED: 429 body carries reason 'burst' | 'daily'; daily limit is rolling 24 h; IPv6 bucketed by /64.
+- [tech] ASSUMED: privacy.ts has no "At a glance" block — chat section + "Who we share data with" entry added; update "At a glance" if spec 003 introduces one.
+- [implement] ASSUMED: Why Choose Us pricing sentence uses PRICING_TIERS labels as-is ("Landing Page", "Low Code", "Custom"), replacing "landing pages" / "custom-built applications" wording too.
+- [implement] ASSUMED: no separate `server-only` npm package; Next's bundler aliases it to next/dist/compiled/server-only. Vitest must alias/stub it.
+- [implement] ASSUMED: RED validation dropped for Vitest tasks 2.7 / 3.3 (awos-tune override: RED only in Feature Testing & Regression slice; code under test already exists).
+- [implement] Q: Playwright webServer — subagent switched to next build && next start (shares .next with the dev server). Keep or revert? → A: Revert to `npx next dev -p 3100`.
+- [implement] ASSUMED: e2e answer-text locators are scoped to role=log (the sr-only role=status announcer legitimately repeats the finished answer per Tech §2.5).
+- [implement] Q: Another session (web41agency-7c) is running Playwright on 3100 in this repo — how to proceed? → A: continue.
+- [implement] Q: 375px launcher overlaps Let's talk fields while scrolling — fix? → A: On mobile (<1024px) hide the launcher (and teaser) while the #lets-talk form fields are in the viewport (IntersectionObserver).
+- [implement] ASSUMED: ChatDisclaimer.tsx (tech §2.6) had no task in tasks.md; built as part of 8.2 'fix any failures' after the FS 2.2 acceptance test caught it.

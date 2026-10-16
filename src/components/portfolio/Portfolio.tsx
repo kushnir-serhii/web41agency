@@ -17,9 +17,10 @@ interface PortfolioProps {
     sectionTitle: string;
     projects: IProject[];
   };
+  labels: { previous: string; next: string; readCaseStudy: string };
 }
 
-export const Portfolio: React.FC<PortfolioProps> = ({ content }) => {
+export const Portfolio: React.FC<PortfolioProps> = ({ content, labels }) => {
   const { sectionTitle, projects } = content;
   const swiperRef = useRef<SwiperCore | null>(null);
 
@@ -34,7 +35,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ content }) => {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              aria-label="Previous project"
+              aria-label={labels.previous}
               onClick={() => swiperRef.current?.slidePrev()}
               className="flex size-11 items-center justify-center rounded-full bg-white/75 cursor-pointer transition-colors hover:bg-white"
             >
@@ -42,7 +43,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ content }) => {
             </button>
             <button
               type="button"
-              aria-label="Next project"
+              aria-label={labels.next}
               onClick={() => swiperRef.current?.slideNext()}
               className="flex size-11 items-center justify-center rounded-full bg-white/75 cursor-pointer transition-colors hover:bg-white"
             >
@@ -65,7 +66,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ content }) => {
         >
           {projects.map((project) => (
             <SwiperSlide key={project.title} className="h-auto">
-              <ProjectCard {...project} />
+              <ProjectCard {...project} readLabel={labels.readCaseStudy} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,4 +1,6 @@
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+
+import { Link } from '@/i18n/navigation';
 
 import { Icon } from './Icon';
 
@@ -19,13 +21,15 @@ export const Logo: React.FC<LogoProps> = ({
   fontSize = 'text-[20px]',
   iconClassName = '',
 }) => {
+  const tCommon = useTranslations('Common');
+
   return (
     <Link
       href="/"
       className={`flex justify-center items-center ${
         widthIcon === 30 ? 'gap-2' : 'gap-4 lg:gap-8'
       }`}
-      aria-label="web41 home"
+      aria-label={tCommon('logoHome')}
     >
       <Icon
         id="icon-logo"
