@@ -29,15 +29,16 @@ export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
       ? 'animate-marquee-horizontal-reverse'
       : 'animate-marquee-horizontal';
 
+  // Spacing after the last item is padding inside each copy, not a gap between
+  // copies: the track moves by -50%, so both halves must be exactly equal.
   const gapClass = 'gap-3 lg:gap-4';
-  const groupClass = `flex ${isVertical ? 'flex-col' : 'flex-row'} ${gapClass} shrink-0`;
+  const trailClass = isVertical ? 'pb-3 lg:pb-4' : 'pr-3 lg:pr-4';
+  const groupClass = `flex ${isVertical ? 'flex-col' : 'flex-row'} ${gapClass} ${trailClass} shrink-0`;
 
   return (
     <div className="relative flex-1 h-full overflow-hidden">
       <div
-        className={`absolute flex ${gapClass} w-full ${
-          isVertical ? 'flex-col' : 'flex-row'
-        } ${animationClass}`}
+        className={`absolute flex w-full ${isVertical ? 'flex-col' : 'flex-row'} ${animationClass}`}
         style={
           {
             '--marquee-duration': `${speed}s`,

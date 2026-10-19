@@ -20,7 +20,7 @@ export const LanguageSwitcher: React.FC<ILanguageSwitcherProps> = ({ variant, cl
       role="group"
       aria-label={t('groupLabel')}
       className={cn(
-        'gap-1 rounded-[100px] bg-bg_header/30 p-1 backdrop-blur-[100px]',
+        'gap-1 rounded-[100px] bg-bg_header/30 p-1',
         variant === 'pill' ? 'inline-flex' : 'flex w-full',
         className,
       )}
