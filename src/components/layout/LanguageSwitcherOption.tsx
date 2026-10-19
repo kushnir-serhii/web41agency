@@ -55,7 +55,7 @@ export const LanguageSwitcherOption: React.FC<ILanguageSwitcherOptionProps> = ({
       onClick={handleClick}
       className={cn(
         baseClasses,
-        'text-black/60 transition-colors hover:text-black focus-visible:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black',
+        'text-black/60 transition-colors hover:bg-black/5 hover:text-black focus-visible:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black',
       )}
     >
       {label}

@@ -53,7 +53,7 @@ export const PageHero = async ({
 
       {/* Desktop circle: rests top-left, behind the first heading word. */}
       <Circle
-        size={260}
+        size={320}
         top={-112}
         left="max(0px, calc(50% - 708px))"
         startX={0}
