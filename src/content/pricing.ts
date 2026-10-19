@@ -8,7 +8,7 @@ export const formatUsd = (usd: number) => `$${usd.toLocaleString('en-US')}`;
 
 /* Text-only tiers shared by the page copy and the chat prompt. */
 export const PRICING_TIERS = [
-  { key: 'landing', label: 'Landing Page', usd: PRICING.landing },
-  { key: 'lowCode', label: 'Low Code', usd: PRICING.lowCode },
-  { key: 'custom', label: 'Custom', usd: PRICING.custom },
+  { key: 'landing', label: 'Landing page', usd: PRICING.landing },
+  { key: 'lowCode', label: 'Webflow site', usd: PRICING.lowCode },
+  { key: 'custom', label: 'Custom web app', usd: PRICING.custom },
 ] as const satisfies readonly { key: keyof typeof PRICING; label: string; usd: number }[];

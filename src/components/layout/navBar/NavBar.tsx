@@ -32,7 +32,7 @@ export const NavBar: React.FC<NavBarProps> = ({ isFooter }) => {
         <li>
           <Link
             href={CONSULTATION_HREF}
-            className="flex justify-center items-center px-3 xl:px-4 py-2 rounded-[100px] text-white bg-black"
+            className="flex min-h-11 justify-center items-center px-3 xl:px-4 py-2 rounded-[100px] text-white bg-black"
           >
             {tCta('freeQuote')}
           </Link>

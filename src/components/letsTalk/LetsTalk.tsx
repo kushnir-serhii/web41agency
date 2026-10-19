@@ -5,6 +5,7 @@ import { useId, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Link, usePathname } from '@/i18n/navigation';
 import { trackEvent } from '@/utils/analytics';
 import { CONTACT_EMAIL } from '@/utils/site';
@@ -12,13 +13,13 @@ import { CONTACT_EMAIL } from '@/utils/site';
 import { RequiredMark } from './RequiredMark';
 
 const inputClass =
-  'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-[#6b6b6b] outline-none focus-visible:ring-2 focus-visible:ring-black';
+  'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-[#6b6b6b] outline-none focus-visible:ring-2 focus-visible:ring-black aria-invalid:ring-2 aria-invalid:ring-black';
 
 const labelClass = 'text-base font-medium text-black';
 
 const fieldClass = 'flex flex-col w-full gap-2';
 
-const errorClass = 'text-sm text-left text-black';
+const errorClass = 'flex items-start gap-2 text-sm font-medium text-left text-black';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -159,20 +160,18 @@ export const LetsTalk = () => {
     <section
       id="lets-talk"
       tabIndex={-1}
-      className="scroll-mt-24 outline-none w-full max-w-[1440px] mx-auto px-4 lg:px-20 pb-20"
+      className="scroll-mt-24 outline-none w-full max-w-[1440px] mx-auto px-4 lg:px-20 section-y"
     >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 overflow-hidden p-6 lg:p-12 rounded-lg bg-bg_item">
         <div className="flex flex-col items-start w-full lg:w-[369px] gap-6">
-          <h2 className="text-4xl lg:text-6xl font-semibold text-left text-black">
-            {t('heading')}
-          </h2>
+          <SectionHeading>{t('heading')}</SectionHeading>
           <p className="text-lg text-left text-black">{t('intro')}</p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
             onClick={() =>
               trackEvent({ name: 'email_click', props: { location: 'lets_talk_link', locale } })
             }
-            className="inline-flex min-h-11 max-w-full items-center text-[22px] sm:text-[26px] font-bold text-left text-black hover:underline [overflow-wrap:anywhere]"
+            className="inline-flex min-h-11 max-w-full items-center text-2xl font-bold text-left text-black hover:underline [overflow-wrap:anywhere]"
           >
             {CONTACT_EMAIL}
           </a>
@@ -215,6 +214,7 @@ export const LetsTalk = () => {
             />
             {fieldErrors.name && (
               <p id={`${fieldId}-name-error`} className={errorClass}>
+                <Icon id="icon-cross" width={12} height={12} className="mt-1 shrink-0" />
                 {t(`validation.${fieldErrors.name}`)}
               </p>
             )}
@@ -240,6 +240,7 @@ export const LetsTalk = () => {
             />
             {fieldErrors.email && (
               <p id={`${fieldId}-email-error`} className={errorClass}>
+                <Icon id="icon-cross" width={12} height={12} className="mt-1 shrink-0" />
                 {t(`validation.${fieldErrors.email}`)}
               </p>
             )}
@@ -275,12 +276,18 @@ export const LetsTalk = () => {
           <p className="text-sm text-left text-black/80">
             {t.rich('consent', {
               privacy: (chunks) => (
-                <Link href="/privacy-policy" className="text-black underline underline-offset-2">
+                <Link
+                  href="/privacy-policy"
+                  className="inline-block py-1 text-black underline underline-offset-2"
+                >
                   {chunks}
                 </Link>
               ),
               terms: (chunks) => (
-                <Link href="/terms-of-use" className="text-black underline underline-offset-2">
+                <Link
+                  href="/terms-of-use"
+                  className="inline-block py-1 text-black underline underline-offset-2"
+                >
                   {chunks}
                 </Link>
               ),
@@ -292,6 +299,7 @@ export const LetsTalk = () => {
             disabled={isSubmitting}
             className="w-full"
           />
+          <p className="text-sm text-left text-black/80">{t('afterSubmit')}</p>
           <div role="status" aria-live="polite" className="w-full">
             {status.state === 'success' && (
               <p className="text-base font-medium text-left text-black">{t('success')}</p>

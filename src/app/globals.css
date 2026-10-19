@@ -153,3 +153,12 @@ body {
     caret-color: #000;
   }
 }
+
+/* One vertical rhythm: every home section owns its own 56px (mobile) / 80px (desktop)
+   top and bottom padding, so no section depends on its neighbour's spacing. */
+@utility section-y {
+  padding-block: 3.5rem;
+  @media (min-width: 64rem) {
+    padding-block: 5rem;
+  }
+}

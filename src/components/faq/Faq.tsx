@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import type { IFaqItem } from '@/content/faqContent';
 
 import { FaqItem } from './faqComponents/FaqItem';
@@ -15,11 +16,9 @@ export const Faq: React.FC<FaqProps> = ({ content }) => {
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8">
+    <section className="w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8 section-y">
       <div className="w-full px-4 lg:px-20">
-        <h2 className="w-full text-4xl lg:text-6xl font-semibold text-left text-black">
-          {sectionTitle}
-        </h2>
+        <SectionHeading>{sectionTitle}</SectionHeading>
       </div>
 
       <ul className="flex flex-col items-start w-full">

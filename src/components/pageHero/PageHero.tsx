@@ -63,7 +63,7 @@ export const PageHero = async ({
         className="hidden lg:block"
       />
 
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row items-start lg:items-center lg:justify-between px-4 lg:px-20 pt-[136px] lg:pt-25 pb-0 gap-10 lg:gap-0 overflow-hidden">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row items-start lg:items-center lg:justify-between px-4 lg:px-20 pt-[120px] lg:pt-25 pb-8 lg:pb-14 gap-6 lg:gap-12 overflow-hidden">
         <h1 className="w-full min-w-0 lg:max-w-[760px] text-[clamp(2.25rem,10.5vw,3.75rem)] md:text-[60px] lg:text-[clamp(4rem,6.5vw,5.5rem)] font-bold leading-[1.08] lg:leading-tight text-left">
           {heading.map(({ text, muted }, index) => (
             <span key={index} className={muted ? 'text-muted_text' : 'text-black'}>
@@ -73,12 +73,12 @@ export const PageHero = async ({
           ))}
         </h1>
 
-        <div className="flex flex-col items-start w-full lg:max-w-[410px] gap-6 lg:gap-0 lg:justify-between lg:h-[238px]">
+        <div className="flex flex-col items-start w-full lg:max-w-[410px] gap-6">
           <p className="w-full opacity-80 text-lg text-left text-black">{description}</p>
           {/* Wraps instead of clipping when longer (uk) labels outgrow the 410px aside. */}
-          <div className="flex flex-col md:flex-row md:flex-wrap justify-start items-center gap-2 pb-4 self-stretch">
+          <div className="flex flex-col md:flex-row md:flex-wrap justify-start items-center gap-2 self-stretch">
             <Button
-              text={primaryButton ?? t('freeConsultation')}
+              text={primaryButton ?? t('freeQuote')}
               href={primaryHref}
               className="w-full md:w-auto"
             />

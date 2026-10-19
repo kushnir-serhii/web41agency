@@ -59,7 +59,7 @@ test.describe('URLs and rendering', { tag: SPEC_TAGS }, () => {
     expect(res?.status()).toBe(200);
     expect(new URL(page.url()).pathname).toBe('/services');
     expect(await htmlLang(page)).toBe('en');
-    await expect(page.getByRole('link', { name: 'Free Quote' }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Get a free quote' }).first()).toBeVisible();
   });
 
   test('/uk/services renders Ukrainian with lang, title and the hreflang pair', async ({
@@ -69,7 +69,9 @@ test.describe('URLs and rendering', { tag: SPEC_TAGS }, () => {
     expect(res?.status()).toBe(200);
     expect(await htmlLang(page)).toBe('uk');
     await expect(page).toHaveTitle(/Послуги/);
-    await expect(page.getByRole('link', { name: 'Безкоштовна оцінка' }).first()).toBeVisible();
+    await expect(
+      page.getByRole('link', { name: 'Отримати безкоштовну оцінку' }).first(),
+    ).toBeVisible();
 
     const alt = (hreflang: string) =>
       page.locator(`link[rel="alternate"][hreflang="${hreflang}"]`).getAttribute('href');
@@ -125,13 +127,13 @@ test.describe('language switcher', { tag: SPEC_TAGS }, () => {
     );
     await expect(switcher(page).getByText('EN', { exact: true })).toHaveAccessibleName('English');
     const ua = toUk(page);
-    await expect(ua).toHaveText('UA');
+    await expect(ua).toHaveText('UK');
     await expect(ua).toHaveAttribute('lang', 'uk');
     await expect(ua).not.toHaveAttribute('aria-current', /.*/);
 
     await page.goto('/uk/services');
     await expect(ukSwitcher(page)).toBeVisible();
-    await expect(ukSwitcher(page).getByText('UA', { exact: true })).toHaveAttribute(
+    await expect(ukSwitcher(page).getByText('UK', { exact: true })).toHaveAttribute(
       'aria-current',
       'true',
     );
@@ -182,7 +184,7 @@ test.describe('language switcher', { tag: SPEC_TAGS }, () => {
     await page.evaluate(() => {
       (window as unknown as { __marker: number }).__marker = 1;
     });
-    const active = ukSwitcher(page).getByText('UA', { exact: true });
+    const active = ukSwitcher(page).getByText('UK', { exact: true });
     await expect(ukSwitcher(page).getByRole('link', { name: 'Українська' })).toHaveCount(0);
     await active.click();
     expect(new URL(page.url()).pathname).toBe('/uk/services');
@@ -228,7 +230,7 @@ test.describe('language switcher on mobile', { tag: SPEC_TAGS }, () => {
 
     const menu = page.locator('#mobile-menu');
     const groupBox = (await group.boundingBox())!;
-    const quoteBox = (await menu.getByRole('link', { name: 'Free Quote' }).boundingBox())!;
+    const quoteBox = (await menu.getByRole('link', { name: 'Get a free quote' }).boundingBox())!;
     expect(groupBox.y + groupBox.height).toBeLessThanOrEqual(quoteBox.y);
     expect(groupBox.width).toBeGreaterThan(250);
 

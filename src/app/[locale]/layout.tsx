@@ -9,6 +9,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { ChatLoader } from '@/components/chat/ChatLoader';
 import { Footer } from '@/components/layout/footer/Footer';
 import { Header } from '@/components/layout/Header';
+import { SkipLink } from '@/components/layout/SkipLink';
 import fixelDisplay from '@/fonts/fixelDisplay';
 import { localeUrl, OG_LOCALES } from '@/i18n/metadata';
 import { routing } from '@/i18n/routing';
@@ -87,6 +88,7 @@ const CLIENT_NAMESPACES = [
   'Cta',
   'LanguageSwitcher',
   'Services',
+  'PortfolioPreview',
   'Common',
   'LetsTalk',
   'Chat',
@@ -123,12 +125,15 @@ export default async function LocaleLayout({
               __html: JSON.stringify(organizationJsonLd).replace(/</g, '\u003c'),
             }}
           />
+          <SkipLink />
           <div className="flex flex-col justify-between items-center w-full min-h-screen pt-4 bg-white overflow-x-clip">
             <div className="relative w-full">
               <div className="sticky top-4 left-0 right-0 z-100 print:hidden">
                 <Header />
               </div>
-              {children}
+              <main id="main" tabIndex={-1} className="outline-none">
+                {children}
+              </main>
             </div>
             <div className="print:hidden w-full">
               <Footer />

@@ -137,7 +137,7 @@ components:
 
 **Creative North Star: "The Signal in the Room"**
 
-The site is a white room with black type and one lime signal. Everything structural is monochrome: ink-black headlines, white space, pale grey panels. One color, Signal Lime, marks where to look or what to do: the drifting hero circle, the active language, an open accordion row, the step badge, the chat launcher. The visitor is usually a skeptical buyer checking whether Web41 is real, and the restraint does the persuading: big bold type, short copy and real project imagery, with nothing decorative between them and the next step.
+The site is a white room with black type and one lime signal. Everything structural is monochrome: ink-black headlines, white space, pale grey panels. One color, Signal Lime, marks where to look or what to do: the drifting hero circle, the active language, an open accordion row, the primary call to action, the chat launcher. The visitor is usually a skeptical buyer checking whether Web41 is real, and the restraint does the persuading: big bold type, short copy and real project imagery, with nothing decorative between them and the next step.
 
 The mood is confident, airy and direct. Density is low. Headlines run large (60–88px display, 36–60px section heads), body copy sits at 18px at 80% opacity, and sections breathe with 80px gutters on desktop. Motion is slow and physical, never flashy: the lime circle rises in and drifts with scroll on a soft spring, project covers zoom 5% on hover, accordions open on a 300ms grid-row transition, and every effect yields to `prefers-reduced-motion`.
 
@@ -156,7 +156,7 @@ Components are confident and tactile: 56px pill buttons in bold type that lift 2
 A gallery-white, ink-black palette with one acidic lime signal.
 
 ### Primary
-- **Signal Lime** (#dbff04): The only chromatic color. It marks attention and state: the hero circle, 80px icon badges in Why Choose and How It Works, the halo behind an open or hovered service row, the active language pill, the open-menu close button, the chat launcher, and `button-accent`. Text on it is always ink black (lime fails as a text color on white).
+- **Signal Lime** (#dbff04): The only chromatic color. It marks attention and state: the hero circle, the speed circle in About, the halo behind an open or hovered service row, the active language pill, the open-menu close button, the chat launcher, and `button-accent` (the lime pill in the How It Works CTA card). Icon badges are black outline circles, not lime. Text on it is always ink black (lime fails as a text color on white).
 
 ### Neutral
 - **Ink Black** (#000000): Headlines, primary buttons, the footer background, user chat bubbles and the default focus ring. Body text is ink black at 80% opacity rather than a separate grey.
@@ -167,10 +167,10 @@ A gallery-white, ink-black palette with one acidic lime signal.
 - **Frost Grey** (#ededed): The sticky header pill, used at 30% opacity behind a 100px backdrop blur.
 - **Placeholder Grey** (#6b6b6b): Form placeholder text only.
 
-Supporting alphas of Ink Black carry secondary text: 70–80% for body and meta copy, 60% for labels and inactive language options, 40% for the decorative step numbers, and 10% for hairline borders and chip outlines.
+Supporting alphas of Ink Black carry secondary text: 70–80% for body and meta copy, 60% for labels and inactive language options, 55% for the decorative step numbers, and 10% for hairline borders and chip outlines.
 
 ### Named Rules
-**The One Signal Rule.** Signal Lime is the only hue on the page and covers well under 10% of any viewport. It marks attention, state or the next action. Never use it as a section background, a text color or decoration.
+**The One Signal Rule.** Signal Lime is the only hue on the page and covers well under 10% of any viewport. It marks attention, state or the next action. Never use it as a section background, a card fill, a text color or decoration. The How It Works CTA card is Mist Grey and carries its lime only in the pill button; only one About stat circle is lime.
 
 **The Opacity, Not Greys Rule.** Secondary text is Ink Black at reduced opacity (80 / 70 / 60%), not new grey hexes. Slate Mute exists only for the muted headline words.
 
@@ -183,7 +183,7 @@ Supporting alphas of Ink Black carry secondary text: 70–80% for body and meta 
 
 ### Hierarchy
 - **Display** (700, 60px mobile / 88px desktop, line-height 1.25): Page-hero H1 only. Mixes Ink Black and Slate Mute spans; max width about 760px.
-- **Headline** (600, sometimes 700, 36px mobile / 60px desktop): Section H2s (Services, How It Works, FAQ, Let's Talk, Tech Stack). Case-study and legal H2s step down to 30/40px and 24/30px.
+- **Headline** (600, 36px mobile / 60px desktop): Section H2s (About, Why Choose, Services, Portfolio, How It Works, FAQ, Let's Talk, Tech Stack), all weight 600 via the shared `SectionHeading`. Case-study and legal H2s step down to 30/40px and 24/30px.
 - **Title** (700 or 600, 24px mobile / 32px desktop, line-height 1.2): Card and project titles. Accordion questions and service names use the same 32px size at weight 400, so they read as rows rather than headings.
 - **Body** (400, 18px, normal line-height): Descriptions and answers, Ink Black at 80% opacity, max about 760px (accordions) or 410px (hero aside). Inline emphasis is weight 700, never color.
 - **Body Small** (400, 16px): Nav links, meta lines, timelines, inline links.
@@ -198,7 +198,7 @@ Supporting alphas of Ink Black carry secondary text: 70–80% for body and meta 
 
 The page is a single centred column, max 1440px wide, with 16px side gutters on mobile and 80px from `lg` (1024px) up; the header pill and footer content cap at 1280px inside it. Breakpoints are Tailwind defaults, and the main switch is at `lg`: hero copy goes from stacked to a two-column headline + aside, nav collapses into a hamburger and dropdown below it, and button pairs stack full-width below `md`.
 
-Sections stack vertically with generous rhythm: 80px bottom padding at section ends, 40px gaps between major blocks, 24px inside stacks of copy, 8px between related lines. Card padding is 24px mobile / 32px desktop; the Let's Talk panel goes to 48px. Accordion rows (Services, FAQ) run full-bleed with the same 16/80px inner gutters as the container, so their hairlines span the viewport. The sticky header floats 16px from the top over content.
+Home sections run in this order: Hero, About, Why Choose, Services, Portfolio, How It Works, FAQ, Let's Talk (proof right after the pitch, then the offer, work, process, objections and the ask). Each section owns its own vertical padding (`section-y`: 56px mobile / 80px desktop, top and bottom) and never relies on a neighbour's padding or negative margins; the About stat circles stay inside their section. Inside sections: 40px gaps between major blocks, 24px inside stacks of copy, 8px between related lines. Card padding is 24px mobile / 32px desktop; the Let's Talk panel goes to 48px. Accordion rows (Services, FAQ) share one row pattern, run full-bleed with the same 16/80px inner gutters as the container, and are split by 1px hairlines (top and bottom), so the hairlines span the viewport. The sticky header floats 16px from the top over content.
 
 Portfolio uses a responsive grid of project cards (fixed-height covers in sliders, aspect-ratio covers in the grid). Tech Stack and the hero use infinite marquees with edge fades to white.
 
@@ -256,13 +256,13 @@ Confident and tactile: heavy type in a big pill that physically responds.
 - **Footer:** Ink Black floor with an oversized white logo (up to 128px type), white nav links with the same dot pattern, and a white focus ring.
 
 ### Accordion Rows (signature)
-Services and FAQ are full-width rows rather than cards. A 32px question or title at weight 400 and a plus icon that rotates 45° to a cross when open. The row tints to Mist Grey on hover or when open, and Services adds a 76px Signal Lime disc half-hidden off the left edge as the "open" signal. The body expands with a 300ms grid-row transition and is `inert` while closed.
+Services and FAQ are full-width rows rather than cards: square-cornered, split by 1px Ink Black 10% hairlines, never rounded. A 32px question or title at weight 400 and a plus icon that rotates 45° to a cross when open. The row tints to Mist Grey on hover or when open, and Services adds a 76px Signal Lime disc half-hidden off the left edge as the "open" signal. The body expands with a 300ms grid-row transition and is `inert` while closed.
 
 ### The Signal Circle (signature)
 A large Signal Lime disc (260px desktop, 150px mobile) behind the hero headline. It rises in over 1.1s on `cubic-bezier(0.22, 1, 0.36, 1)` and then drifts on a slow spring as the page scrolls (stiffness 22, damping 18, mass 2.5). Reduced motion keeps it static. It is the brand's one large gesture: one per page, at the top.
 
 ### Icon Badge
-An 80px Signal Lime circle holding a 35–37px black line icon. It heads each Why Choose and How It Works item; in How It Works it pairs with a large 40%-black step number ("01") in the card corner.
+An 80px white circle with a 1px Ink Black 15% outline holding a 35–37px black line icon (64px on mobile in Why Choose, 40–48px in the landing-page feature list). It heads each Why Choose and How It Works item; in How It Works it pairs with a large 55%-black step number ("01") in the card corner. Lime is reserved for actions and signals, so the badge is not lime.
 
 ### Chat Widget
 A 56px lime launcher fixed bottom-right with the chat float shadow. The panel is white, 380px wide and 24px rounded on desktop, full-screen on mobile. Bot bubbles are Mist Grey, user bubbles Ink Black with white text, and errors are white with a red outline; all at 16px radius and 14px text.
@@ -270,7 +270,7 @@ A 56px lime launcher fixed bottom-right with the chat float shadow. The panel is
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep Signal Lime (#dbff04) for state and attention: active, open, hovered row, primary signal, the hero circle. One lime moment per viewport is the norm.
+- **Do** keep Signal Lime (#dbff04) for state and attention: active, open, hovered row, primary signal, the hero circle, the one About speed stat. One lime moment per viewport is the norm.
 - **Do** set lime surfaces with Ink Black text and icons only.
 - **Do** build secondary text from Ink Black at 80 / 70 / 60% opacity.
 - **Do** use Fixel Display for everything, at 400, 500, 600 or 700.

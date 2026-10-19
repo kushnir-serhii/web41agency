@@ -21,6 +21,7 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
   onToggle,
 }) => {
   const t = useTranslations('Services');
+  const tCta = useTranslations('Cta');
   const bodyId = useId();
 
   return (
@@ -71,7 +72,7 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
               href={CONSULTATION_HREF}
               className="inline-flex min-h-11 items-center gap-1 self-start text-base font-medium text-black underline underline-offset-4 hover:no-underline"
             >
-              {t('getQuote')}
+              {tCta('freeQuote')}
               <span aria-hidden>
                 <Icon id="icon-arrow_outward" width={14} height={14} />
               </span>

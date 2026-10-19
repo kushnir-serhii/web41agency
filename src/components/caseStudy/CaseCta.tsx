@@ -10,6 +10,7 @@ interface CaseCtaProps {
 
 export const CaseCta = async ({ nextCase }: CaseCtaProps) => {
   const t = await getTranslations('CaseStudy');
+  const tCta = await getTranslations('Cta');
 
   return (
     <section className="w-full max-w-[1440px] mx-auto px-4 lg:px-20 py-10">
@@ -20,7 +21,7 @@ export const CaseCta = async ({ nextCase }: CaseCtaProps) => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-          <Button text={t('freeConsultation')} href="/contacts" className="w-full sm:w-auto" />
+          <Button text={tCta('freeQuote')} href="/contacts" className="w-full sm:w-auto" />
           <Button
             text={t('allProjects')}
             btnType="ghost"

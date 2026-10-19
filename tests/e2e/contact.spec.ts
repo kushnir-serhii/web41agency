@@ -33,8 +33,8 @@ const fillValid = async (page: Page, labels: { name: string; email: string }) =>
   await form(page).getByLabel(labels.email).fill('olena@example.com');
 };
 
-const UK = { name: 'Ім’я', email: 'Електронна пошта', submit: 'Надіслати повідомлення' };
-const EN = { name: 'Name', email: 'Email', submit: 'Send Message' };
+const UK = { name: 'Ім’я', email: 'Електронна пошта', submit: 'Надіслати запит' };
+const EN = { name: 'Name', email: 'Email', submit: 'Send request' };
 
 test.describe('uk form validation', { tag: SPEC_TAGS }, () => {
   test('an empty name shows the Ukrainian "name is required" message and sends nothing', async ({
@@ -76,7 +76,7 @@ test.describe('uk form success', { tag: SPEC_TAGS }, () => {
     await form(page).getByRole('button', { name: UK.submit }).click();
 
     await expect(
-      form(page).getByText('Дякуємо! Ваше повідомлення надіслано. Ми скоро з вами зв’яжемося.'),
+      form(page).getByText('Дякуємо! Запит отримано. Ми відповімо з підходом, термінами та ціною.'),
     ).toBeVisible();
     await expect(form(page).getByLabel(UK.name)).toHaveValue('');
   });
@@ -94,7 +94,7 @@ test.describe('uk form errors', { tag: SPEC_TAGS }, () => {
     await form(page).getByRole('button', { name: UK.submit }).click();
 
     const alert = form(page).getByRole('alert');
-    await expect(alert).toContainText('Зараз не вдалося надіслати ваше повідомлення.');
+    await expect(alert).toContainText('Зараз не вдалося надіслати ваш запит.');
     await expect(alert).toContainText('Ви також можете написати нам на');
     await expect(alert.getByRole('link')).toHaveAttribute('href', /^mailto:.+@.+/);
     await expect(alert).not.toContainText('Something went wrong');

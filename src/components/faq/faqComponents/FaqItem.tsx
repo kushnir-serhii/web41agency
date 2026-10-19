@@ -1,7 +1,10 @@
 'use client';
 
+import { useId } from 'react';
+
 import { Icon } from '@/components/ui/Icon';
 import type { IFaqItem } from '@/content/faqContent';
+import { cn } from '@/utils/cn';
 
 interface FaqItemProps extends IFaqItem {
   isOpen: boolean;
@@ -9,15 +12,21 @@ interface FaqItemProps extends IFaqItem {
 }
 
 export const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, onToggle }) => {
+  const bodyId = useId();
+
   return (
     <li
-      className={`w-full rounded-lg transition-colors ${isOpen ? 'bg-bg_item' : 'bg-white hover:bg-bg_item'}`}
+      className={cn(
+        'w-full overflow-hidden border-b border-black/10 first:border-t transition-colors hover:bg-bg_item',
+        isOpen && 'bg-bg_item',
+      )}
     >
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="flex justify-between items-center w-full gap-4 px-4 lg:px-20 py-6 lg:py-10 text-left cursor-pointer"
+        aria-controls={bodyId}
+        className="flex justify-between items-center w-full gap-4 px-4 lg:px-20 py-6 lg:min-h-[120px] text-left cursor-pointer focus-visible:-outline-offset-4"
       >
         <span className="text-xl lg:text-[32px] text-black">{question}</span>
         <Icon
@@ -29,6 +38,8 @@ export const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, onTo
       </button>
 
       <div
+        id={bodyId}
+        inert={!isOpen}
         className={`grid transition-[grid-template-rows] duration-300 ease-out ${
           isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
         }`}

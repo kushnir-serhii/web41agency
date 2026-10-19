@@ -4,6 +4,9 @@ import type { IWhyChooseContent } from '@/components/whyChoose/WhyChoose';
 import { CONSULTATION_HREF } from '@/content/ctaLinks';
 import type { Locale } from '@/i18n/types';
 
+// The chat is behind a build-time flag (see the locale layout), so only promise it when it is on.
+const chatEnabled = process.env.NEXT_PUBLIC_CHAT_ENABLED === 'true';
+
 const whyChooseBase = [
   { id: 'fast', iconId: 'icon-fast' },
   { id: 'cost', iconId: 'icon-cost' },
@@ -24,17 +27,15 @@ interface WhyChooseItemCopy {
 
 interface WhyChooseSectionCopy {
   sectionTitle: string;
-  textButton: string;
 }
 
 const whyChooseSectionEn: WhyChooseSectionCopy = {
-  sectionTitle: 'Why Choose Us',
-  textButton: 'Free Consultation',
+  sectionTitle: 'Why choose us',
 };
 
 const whyChooseEn = {
   fast: {
-    title: 'Fast & Efficient',
+    title: 'Fast and efficient',
     description: [
       { text: 'Landing pages go live in ', highlight: false },
       { text: '3–7 days,', highlight: true },
@@ -45,18 +46,21 @@ const whyChooseEn = {
     ],
   },
   cost: {
-    title: 'Cost-Effective',
+    title: 'Cost-effective',
     description: [
       { text: 'Pay for what your project needs, nothing extra. You get ', highlight: false },
       { text: 'a clear price before any work starts', highlight: true },
-      { text: ', and our AI assistant can share starting prices anytime.', highlight: false },
+      {
+        text: chatEnabled ? ', and our AI assistant can share starting prices anytime.' : '.',
+        highlight: false,
+      },
     ],
   },
   flex: {
-    title: 'Scalable & Flexible',
+    title: 'Scalable and flexible',
     description: [
       {
-        text: 'Whether you need a fully custom-coded platform or an easy-to-manage Webflow site, ',
+        text: 'Whether you need a simple site or a full custom web app, ',
         highlight: false,
       },
       { text: 'we build solutions that grow ', highlight: true },
@@ -69,7 +73,6 @@ const whyChooseSectionCopy = {
   en: whyChooseSectionEn,
   uk: {
     sectionTitle: 'Чому обирають нас',
-    textButton: 'Безкоштовна оцінка',
   },
 } satisfies Record<Locale, WhyChooseSectionCopy>;
 
@@ -77,9 +80,9 @@ const whyChooseCopy = {
   en: whyChooseEn,
   uk: {
     fast: {
-      title: 'Швидко та ефективно',
+      title: 'Швидко й ефективно',
       description: [
-        { text: 'Лендинги запускаються за ', highlight: false },
+        { text: 'Лендінги запускаються за ', highlight: false },
         { text: '3–7 днів,', highlight: true },
         {
           text: ' а для більших проєктів ви отримуєте чіткий графік до початку робіт.',
@@ -90,16 +93,22 @@ const whyChooseCopy = {
     cost: {
       title: 'Вигідно',
       description: [
-        { text: 'Платите лише за те, що потрібно вашому проєкту. Ви отримуєте ', highlight: false },
+        {
+          text: 'Ви платите лише за те, що потрібно вашому проєкту. Ви отримуєте ',
+          highlight: false,
+        },
         { text: 'чітку ціну ще до початку робіт', highlight: true },
-        { text: ', а наш AI-асистент назве стартові ціни будь-коли.', highlight: false },
+        {
+          text: chatEnabled ? ', а наш AI-асистент назве стартові ціни будь-коли.' : '.',
+          highlight: false,
+        },
       ],
     },
     flex: {
       title: 'Масштабовано та гнучко',
       description: [
         {
-          text: 'Незалежно від того, чи потрібна вам повністю індивідуальна платформа, чи простий у керуванні сайт на Webflow, ',
+          text: 'Потрібен простий сайт чи повноцінний індивідуальний вебзастосунок, ',
           highlight: false,
         },
         { text: 'ми створюємо рішення, що зростають ', highlight: true },

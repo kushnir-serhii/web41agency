@@ -292,7 +292,7 @@ describe('@spec:005-multilingual-site-ukrainian @regression chat locale (FS 2.6)
   });
 
   it('the glossary maps site terms to the Ukrainian names used on the site', () => {
-    expect(uk).toContain('Free Quote = Безкоштовна оцінка');
+    expect(uk).toContain('Get a free quote = Отримати безкоштовну оцінку');
     expect(uk).toContain('Services = Послуги');
   });
 

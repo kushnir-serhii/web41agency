@@ -13,13 +13,14 @@ interface ChatLongNoteProps {
 
 export const ChatLongNote: React.FC<ChatLongNoteProps> = ({ onStartOver, onNavigate }) => {
   const t = useTranslations('Chat');
+  const tCta = useTranslations('Cta');
   const handleClick = useHandoffNavigate(onNavigate, 'long_chat');
   return (
     <div className="flex flex-col gap-3 bg-bg_item px-4 py-3">
       <p className="text-base">{t('longChat')}</p>
       <div className="flex flex-wrap gap-2">
         <Button
-          text={t('handoffCta')}
+          text={tCta('freeQuote')}
           btnType="accent"
           size="sm"
           href={`/${CONSULTATION_HREF}`}

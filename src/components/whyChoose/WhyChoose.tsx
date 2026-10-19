@@ -1,9 +1,11 @@
+import { getTranslations } from 'next-intl/server';
+
 import { Button } from '../ui/Button';
+import { SectionHeading } from '../ui/SectionHeading';
 import { WhyChooseList } from './whyChooseComponents/WhyChooseList';
 
 export interface IWhyChooseContent {
   sectionTitle: string;
-  textButton: string;
   href: string;
   mainContent: {
     iconId: string;
@@ -18,16 +20,15 @@ export interface IWhyChooseContent {
 interface WhyChooseProps {
   content: IWhyChooseContent;
 }
-export const WhyChoose: React.FC<WhyChooseProps> = ({ content }) => {
-  const { sectionTitle, textButton, href, mainContent } = content;
+export const WhyChoose = async ({ content }: WhyChooseProps) => {
+  const tCta = await getTranslations('Cta');
+  const { sectionTitle, href, mainContent } = content;
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto flex flex-col justify-start items-start relative gap-10 px-4 lg:px-20 py-20 lg:py-40">
-      <h2 className="self-stretch w-full text-4xl lg:text-6xl font-semibold text-left text-black">
-        {sectionTitle}
-      </h2>
+    <div className="w-full max-w-[1440px] mx-auto flex flex-col justify-start items-start relative gap-10 px-4 lg:px-20 section-y">
+      <SectionHeading>{sectionTitle}</SectionHeading>
       <WhyChooseList mainContent={mainContent} />
-      <Button text={textButton} href={href} />
+      <Button text={tCta('freeQuote')} href={href} />
     </div>
   );
 };
