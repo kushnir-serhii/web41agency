@@ -25,17 +25,25 @@
   --font-mono: var(--font-geist-mono); */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #0a0a0a;
-    --background: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Display-size headings carry single long words (uk "конфіденційності", en "Development")
+   that are wider than a 320px screen. Hyphenate by `lang`; break anywhere only as a last resort.
+   `anywhere` (unlike `break-word`) also shrinks min-content, so fit-content and flex parents
+   stop sizing the heading to its longest word. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    hyphens: auto;
+    /* Only words of 10+ letters, at least 4 on each side: never "Го-тові". */
+    hyphenate-limit-chars: 10 4 4;
+    overflow-wrap: anywhere;
+  }
 }
 
 .container {
@@ -152,5 +160,15 @@ body {
 
   footer :focus-visible {
     outline-color: #fff;
+  }
+
+  ::selection {
+    background: #dbff04;
+    color: #000;
+  }
+
+  input,
+  textarea {
+    caret-color: #000;
   }
 }

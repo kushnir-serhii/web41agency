@@ -1,7 +1,7 @@
 # Functional Specification: Multilingual Site — Ukrainian Version
 
 - **Topic:** Offer the whole Web41 website in Ukrainian alongside the existing English version, with a visible language switcher.
-- **Status:** Draft
+- **Status:** Completed
 - **Author:** Serhii Kushnir
 
 ---
@@ -30,10 +30,10 @@ This replaces the earlier product assumption that multi-language versions are ou
 - English pages keep their current addresses unchanged (for example `/services`). Each Ukrainian page has the same address with a `/uk` prefix (for example `/uk/services`, `/uk/portfolio/<case study>`). The Ukrainian home page is `/uk`.
 - Every page can be shared or bookmarked in a specific language.
   - **Acceptance Criteria:**
-    - [ ] When the visitor opens `/uk/services`, then the Services page loads fully in Ukrainian.
-    - [ ] When the visitor opens `/services`, then the Services page loads fully in English, exactly as before this change.
-    - [ ] When the visitor opens any address that worked before this change, then the same English page opens, with no "page not found" and no redirect to another address.
-    - [ ] When the visitor copies the address of a Ukrainian page and opens it in a new browser window, then the same page opens in Ukrainian.
+    - [x] When the visitor opens `/uk/services`, then the Services page loads fully in Ukrainian.
+    - [x] When the visitor opens `/services`, then the Services page loads fully in English, exactly as before this change.
+    - [x] When the visitor opens any address that worked before this change, then the same English page opens, with no "page not found" and no redirect to another address.
+    - [x] When the visitor copies the address of a Ukrainian page and opens it in a new browser window, then the same page opens in Ukrainian.
 
 ### 2.2. Language switcher
 
@@ -43,13 +43,13 @@ This replaces the earlier product assumption that multi-language versions are ou
 - Each option is announced to screen readers by its full language name, written in that language ("English", "Українська").
 - Switching the language keeps the visitor on the same page, at the top of the page. For example, the English Services page switches to the Ukrainian Services page, not to the home page.
   - **Acceptance Criteria:**
-    - [ ] Given the visitor is on the English Services page, when they choose "UA" in the switcher, then the Ukrainian Services page opens.
-    - [ ] Given the visitor is on a Ukrainian case study page, when they choose "EN", then the same case study opens in English.
-    - [ ] When the visitor opens the mobile menu, then the "English | Українська" switcher appears above the "Free Quote" button and works the same way as on desktop.
-    - [ ] When the visitor looks at the switcher, then the current language is shown on the yellow accent background and the other option looks clickable.
-    - [ ] When the visitor chooses the language that is already selected, then nothing changes and the page does not reload.
-    - [ ] When a keyboard-only visitor tabs to the switcher and presses Enter on the other language, then the page switches language, and the focus outline is clearly visible on the switcher.
-    - [ ] When a screen reader reaches the switcher, then it announces it as language selection, reads each option's full name, and indicates which one is currently selected.
+    - [x] Given the visitor is on the English Services page, when they choose "UA" in the switcher, then the Ukrainian Services page opens.
+    - [x] Given the visitor is on a Ukrainian case study page, when they choose "EN", then the same case study opens in English.
+    - [x] When the visitor opens the mobile menu, then the "English | Українська" switcher appears above the "Free Quote" button and works the same way as on desktop.
+    - [x] When the visitor looks at the switcher, then the current language is shown on the yellow accent background and the other option looks clickable.
+    - [x] When the visitor chooses the language that is already selected, then nothing changes and the page does not reload.
+    - [x] When a keyboard-only visitor tabs to the switcher and presses Enter on the other language, then the page switches language, and the focus outline is clearly visible on the switcher.
+    - [x] When a screen reader reaches the switcher, then it announces it as language selection, reads each option's full name, and indicates which one is currently selected.
 
 ### 2.3. Which language a visitor sees first
 
@@ -57,10 +57,10 @@ This replaces the earlier product assumption that multi-language versions are ou
 - Once a visitor picks a language with the switcher, the site remembers the choice on later visits.
 - A visitor who opens a direct link to a specific language version always sees that version and is never redirected.
   - **Acceptance Criteria:**
-    - [ ] Given the browser language is Ukrainian, when the visitor opens the home page for the first time, then the Ukrainian home page is shown.
-    - [ ] Given the browser language is anything other than Ukrainian, when the visitor opens the home page for the first time, then the English home page is shown.
-    - [ ] Given the visitor switched to English earlier, when they come back to the home page later, then the English version is shown, even if their browser prefers Ukrainian.
-    - [ ] When the visitor opens a direct link to any Ukrainian or English page other than the home page, then that page is shown in that language without a redirect, whatever their browser language.
+    - [x] Given the browser language is Ukrainian, when the visitor opens the home page for the first time, then the Ukrainian home page is shown.
+    - [x] Given the browser language is anything other than Ukrainian, when the visitor opens the home page for the first time, then the English home page is shown.
+    - [x] Given the visitor switched to English earlier, when they come back to the home page later, then the English version is shown, even if their browser prefers Ukrainian.
+    - [x] When the visitor opens a direct link to any Ukrainian or English page other than the home page, then that page is shown in that language without a redirect, whatever their browser language.
 
 ### 2.4. Translated content
 
@@ -78,23 +78,23 @@ Everything a visitor reads is shown in the selected language:
 The Ukrainian copy is prepared as a draft translation during implementation and proofread by the site owner before launch.
 
   - **Acceptance Criteria:**
-    - [ ] When the visitor browses any page in Ukrainian, then no English sentences are visible, except brand, technology and project names (e.g. "Web41", "Webflow", "React").
-    - [ ] When the visitor opens the Ukrainian Privacy Policy, then the full policy is in Ukrainian and a note near the top says the English version prevails.
-    - [ ] When the visitor opens a Ukrainian legal page, then its "last updated" date is in Ukrainian format (e.g. "15 жовтня 2026").
-    - [ ] When the visitor views a Ukrainian page in a browser tab, then the tab title is in Ukrainian.
-    - [ ] When a Ukrainian page is shared in a messenger or on a social network, then the preview title and description are in Ukrainian.
-    - [ ] When the visitor follows any link or call-to-action button on a Ukrainian page, then they land on a Ukrainian page.
+    - [x] When the visitor browses any page in Ukrainian, then no English sentences are visible, except brand, technology and project names (e.g. "Web41", "Webflow", "React").
+    - [x] When the visitor opens the Ukrainian Privacy Policy, then the full policy is in Ukrainian and a note near the top says the English version prevails.
+    - [x] When the visitor opens a Ukrainian legal page, then its "last updated" date is in Ukrainian format (e.g. "15 жовтня 2026").
+    - [x] When the visitor views a Ukrainian page in a browser tab, then the tab title is in Ukrainian.
+    - [x] When a Ukrainian page is shared in a messenger or on a social network, then the preview title and description are in Ukrainian.
+    - [x] When the visitor follows any link or call-to-action button on a Ukrainian page, then they land on a Ukrainian page.
 
 ### 2.5. Free Quote form in Ukrainian
 
 - On Ukrainian pages, the "Let's talk" form shows its field labels, placeholders, validation messages, the success message and the error message in Ukrainian.
 - Every request the agency receives shows which language the visitor used, for example "Language: Ukrainian" or "Language: English".
   - **Acceptance Criteria:**
-    - [ ] Given the visitor is on a Ukrainian page, when they submit the form with an empty name, then they see the "name is required" message in Ukrainian.
-    - [ ] Given the visitor is on a Ukrainian page, when they submit a valid form, then they see the success message in Ukrainian.
-    - [ ] Given the visitor is on a Ukrainian page, when sending the form fails, then they see the error message in Ukrainian.
-    - [ ] When a visitor submits the form from a Ukrainian page, then the request arrives in the agency inbox and shows "Language: Ukrainian".
-    - [ ] When a visitor submits the form from an English page, then the request arrives in the agency inbox and shows "Language: English".
+    - [x] Given the visitor is on a Ukrainian page, when they submit the form with an empty name, then they see the "name is required" message in Ukrainian.
+    - [x] Given the visitor is on a Ukrainian page, when they submit a valid form, then they see the success message in Ukrainian.
+    - [x] Given the visitor is on a Ukrainian page, when sending the form fails, then they see the error message in Ukrainian.
+    - [x] When a visitor submits the form from a Ukrainian page, then the request arrives in the agency inbox and shows "Language: Ukrainian".
+    - [x] When a visitor submits the form from an English page, then the request arrives in the agency inbox and shows "Language: English".
 
 ### 2.6. AI assistant in Ukrainian
 
@@ -104,24 +104,24 @@ The Ukrainian copy is prepared as a draft translation during implementation and 
 - When the assistant hands the visitor over to the Free Quote form, it takes them to the form on a page in the current language.
 - Switching language does not clear the conversation. Earlier messages stay as they were, and the interface and new replies follow the new language.
   - **Acceptance Criteria:**
-    - [ ] Given the visitor is on a Ukrainian page, when they open the chat, then the greeting and suggested questions are in Ukrainian.
-    - [ ] Given the visitor is on a Ukrainian page, when they ask "Скільки коштує лендінг?", then the reply is in Ukrainian and quotes the same "from $X" amount as the English assistant.
-    - [ ] Given the visitor is on a Ukrainian page, when the assistant suggests the free quote and the visitor accepts, then they land on the Ukrainian "Let's talk" form.
-    - [ ] Given the visitor had a conversation on an English page, when they switch to Ukrainian and open the chat, then the earlier messages are still visible and the chat interface is in Ukrainian.
+    - [x] Given the visitor is on a Ukrainian page, when they open the chat, then the greeting and suggested questions are in Ukrainian.
+    - [x] Given the visitor is on a Ukrainian page, when they ask "Скільки коштує лендінг?", then the reply is in Ukrainian and quotes the same "from $X" amount as the English assistant.
+    - [x] Given the visitor is on a Ukrainian page, when the assistant suggests the free quote and the visitor accepts, then they land on the Ukrainian "Let's talk" form.
+    - [x] Given the visitor had a conversation on an English page, when they switch to Ukrainian and open the chat, then the earlier messages are still visible and the chat interface is in Ukrainian.
 
 ### 2.7. Search engines
 
 - Search engines can find both language versions of every page and know which pages are translations of each other. Ukrainian searchers are shown Ukrainian pages, and everyone else is shown English pages.
 - The site map lists both language versions of every page.
   - **Acceptance Criteria:**
-    - [ ] When the site map is opened, then every page is listed in both English and Ukrainian.
-    - [ ] When a search engine's page inspection tool checks any Ukrainian page, then it reports the page as Ukrainian and linked to its English counterpart.
+    - [x] When the site map is opened, then every page is listed in both English and Ukrainian.
+    - [x] When a search engine's page inspection tool checks any Ukrainian page, then it reports the page as Ukrainian and linked to its English counterpart.
 
 ### 2.8. Missing pages
 
 - A visitor who opens a Ukrainian address that does not exist sees a "page not found" message in Ukrainian, with a link back to the Ukrainian home page.
   - **Acceptance Criteria:**
-    - [ ] When the visitor opens a non-existent address under `/uk`, then they see a Ukrainian "page not found" message with a link to the Ukrainian home page.
+    - [x] When the visitor opens a non-existent address under `/uk`, then they see a Ukrainian "page not found" message with a link to the Ukrainian home page.
 
 ---
 
@@ -149,3 +149,11 @@ The Ukrainian copy is prepared as a draft translation during implementation and 
 ## Change Log
 
 _Dated amendments made after the spec was first written — typically by `/awos:spec` in Update Mode when a bug fix changed documented behavior. Each entry records the date, the source reference (bug id or fix description), and what behavior changed and why. Leave empty until the first amendment._
+
+---
+
+## Verification Evidence (2026-10-16)
+
+- All 33 acceptance criteria verified. Behavioural criteria are covered by the passing `@spec:005-multilingual-site-ukrainian` tests: `src/i18n/i18n.test.ts`, `src/server/chat/chat.test.ts`, `src/server/contact/contact.test.ts` (Vitest, 106 passed) and `tests/e2e/i18n.spec.ts`, `chat.spec.ts`, `contact.spec.ts` (Playwright, 142 of 143 passed).
+- Look-and-feel confirmed by the owner from `docs/screenshots/005-multilingual-site-ukrainian-*.png` (en-header-1280, uk-header-1280, uk-header-1024, uk-home, uk-mobile-menu, uk-privacy, uk-404).
+- The one failing e2e test (spec 003 legal switcher) passed on isolated rerun, so it was treated as flaky.

@@ -40,7 +40,7 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
         <span
           aria-hidden
           className={cn(
-            'pointer-events-none absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[76px] rounded-full bg-accent transition-opacity duration-300 lg:group-hover:opacity-100',
+            'pointer-events-none hidden lg:block absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[76px] rounded-full bg-accent transition-opacity duration-300 lg:group-hover:opacity-100',
             isOpen ? 'opacity-100' : 'opacity-0',
           )}
         />
@@ -69,7 +69,7 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
             <p className="text-base text-black/70">{t('timeline', { value: timeline })}</p>
             <a
               href={CONSULTATION_HREF}
-              className="inline-flex items-center gap-1 self-start text-base font-medium text-black underline underline-offset-4 hover:no-underline"
+              className="inline-flex min-h-11 items-center gap-1 self-start text-base font-medium text-black underline underline-offset-4 hover:no-underline"
             >
               {t('getQuote')}
               <span aria-hidden>

@@ -94,7 +94,7 @@ const portfolioSectionCopy = {
   uk: { sectionTitle: 'Портфоліо' },
 } satisfies Record<Locale, { sectionTitle: string }>;
 
-/* TODO(owner): review — every industry and summary below is a draft written from the title and tags.
+/* Industry and summary are grounded in each case study. Do not claim client results here.
    TODO(owner): real numbers — no card has a `metric` yet. Add one per project only when it is measured. */
 const projectCopy = {
   en: {
@@ -102,76 +102,78 @@ const projectCopy = {
       title: 'AI Powered Movie Matching Web Application and Website',
       industry: 'Entertainment',
       summary:
-        'A web app that uses OpenAI to match people with films they will actually want to watch.',
+        'A short quiz and OpenAI pick films people will actually want to watch. No endless scrolling.',
     },
     calmisu: {
       title: 'Calmisu App - Mindfulness Mobile Application',
-      industry: 'Health & Wellness',
-      summary: 'A mindfulness mobile app built with Expo, with an AI chat companion at its core.',
+      industry: 'Mental Wellness',
+      summary:
+        'A mindfulness app with an AI chat companion that helps people check in with themselves daily.',
     },
     catoshi: {
       title: 'Catoshi - AI-powered Forecasting Crypto Dashboard',
-      industry: 'Fintech / Crypto',
+      industry: 'Crypto / Fintech',
       summary:
-        'A crypto dashboard that turns market data and news into probability-based forecasts.',
+        'Turns market data and news into probability-based forecasts, ready before you open the dashboard.',
     },
     nuance: {
       title: 'Nuance - AI Powered Web Application',
-      industry: 'AI Software',
-      summary: 'An AI-powered web application built on OpenAI, designed and developed end to end.',
+      industry: 'EdTech',
+      summary:
+        'Helps non-native English speakers handle workplace conversations, with instant AI feedback.',
     },
     'meridian-coffee-shop': {
       title: 'Meridian - Online Shop for a Coffee Brand',
       industry: 'E-commerce',
       summary:
-        'An online shop for a coffee brand, with subscriptions, one cart and a three-step checkout.',
+        'A coffee brand’s online shop with subscriptions, one cart and a three-step checkout.',
     },
     'meme-academy': {
       title: 'Meme Academy - Real-Time Multiplayer Party Game',
-      industry: 'Entertainment',
+      industry: 'Gaming',
       summary:
-        'A browser party game where friends join a room by link and battle with meme cards in real time.',
+        'A real-time party game: friends join by link, match meme cards to prompts and take turns judging.',
     },
     investico: {
       title: 'Investico - Investor and Startup Matching Platform',
-      industry: 'Venture / SaaS',
+      industry: 'Venture Capital',
       summary:
-        'A multilingual platform that matches startups with investors, with AI-assisted discovery.',
+        'Startups and investors find each other, with AI matching that cuts down on cold outreach.',
     },
     'qa-freelancer-website': {
       title: 'Website for QA Freelancer',
-      industry: 'Software QA',
+      industry: 'Software Testing',
       summary:
-        'A portfolio website that presents a freelance QA engineer’s services and experience.',
+        'A QA engineer’s site that lays out services and past work, and makes getting in touch easy.',
     },
     'full-stack-developer-portfolio': {
       title: 'Full Stack Developer Portfolio Website',
       industry: 'Software Development',
       summary:
-        'A one-page portfolio that shows a full stack developer’s skills and projects at a glance.',
+        'A one-page developer portfolio that shows skills and projects as proof. Reads in under a minute.',
     },
     'low-code-landing-page': {
       title: 'Low Code Mobile Development Landing Page',
       industry: 'Mobile Development',
       summary:
-        'A landing page that explains a low-code mobile development offer and turns visitors into leads.',
+        'Explains a low-code offer in plain language. The team edits the page without a developer.',
     },
     'construction-company-website': {
       title: 'Corporate Website for Construction Company',
       industry: 'Construction',
-      summary:
-        'A corporate website that presents a construction company’s services and completed work.',
+      summary: 'Puts a builder’s completed projects up front, with a quote request one click away.',
     },
     'digital-marketing-website': {
       title: 'Digital Marketing Website',
-      industry: 'Marketing',
+      industry: 'Marketing Agency',
       summary:
-        'A corporate website for a digital marketing agency, built to present its services clearly.',
+        'Website design for a marketing agency, with a confident style and services that are easy to scan.',
     },
     'designer-portfolio': {
       title: 'Designer’s Portfolio Website',
       industry: 'Design',
-      summary: 'A portfolio website in Framer that puts a designer’s work front and centre.',
+      summary:
+        'A Framer portfolio where the work leads, and the designer adds new projects without a developer.',
     },
   },
   uk: {
@@ -179,74 +181,78 @@ const projectCopy = {
       title: 'Вебзастосунок і сайт для підбору фільмів на основі AI',
       industry: 'Розваги',
       summary:
-        'Вебзастосунок, який за допомогою OpenAI підбирає фільми, що людям справді захочеться подивитися.',
+        'Короткий квіз і OpenAI підбирають фільми, які справді захочеться подивитися. Без нескінченного гортання.',
     },
     calmisu: {
       title: 'Calmisu — мобільний застосунок для усвідомленості',
-      industry: 'Здоров’я та добробут',
-      summary: 'Мобільний застосунок для усвідомленості на Expo з AI-співрозмовником в основі.',
+      industry: 'Ментальне здоров’я',
+      summary:
+        'Застосунок для усвідомленості з AI-співрозмовником, який допомагає щодня прислухатися до себе.',
     },
     catoshi: {
       title: 'Catoshi — криптодашборд із прогнозами на основі AI',
-      industry: 'Фінтех / Крипто',
-      summary: 'Криптодашборд, який перетворює ринкові дані та новини на прогнози з ймовірностями.',
+      industry: 'Крипто / Фінтех',
+      summary:
+        'Перетворює ринкові дані й новини на ймовірнісні прогнози, готові ще до того, як ви відкриєте дашборд.',
     },
     nuance: {
       title: 'Nuance — вебзастосунок на основі AI',
-      industry: 'AI-програми',
-      summary: 'Вебзастосунок на основі OpenAI, який ми спроєктували та розробили від і до.',
+      industry: 'EdTech',
+      summary:
+        'Допомагає тим, для кого англійська не рідна, впевнено спілкуватися на роботі, з миттєвим AI-фідбеком.',
     },
     'meridian-coffee-shop': {
       title: 'Meridian — інтернет-магазин кавового бренду',
       industry: 'Електронна комерція',
       summary:
-        'Інтернет-магазин кавового бренду з підписками, єдиним кошиком і оформленням замовлення у три кроки.',
+        'Інтернет-магазин кавового бренду з підписками, єдиним кошиком і оформленням у три кроки.',
     },
     'meme-academy': {
       title: 'Meme Academy — мультиплеєрна гра для компанії в реальному часі',
-      industry: 'Розваги',
+      industry: 'Ігри',
       summary:
-        'Браузерна гра для компанії: друзі заходять у кімнату за посиланням і змагаються мем-картками в реальному часі.',
+        'Гра для компанії в реальному часі: друзі заходять за посиланням, підбирають мем-картки й по черзі суддять.',
     },
     investico: {
       title: 'Investico — платформа для пошуку інвесторів і стартапів',
-      industry: 'Венчур / SaaS',
+      industry: 'Венчурні інвестиції',
       summary:
-        'Багатомовна платформа, яка поєднує стартапи з інвесторами та допомагає з пошуком за допомогою AI.',
+        'Стартапи й інвестори знаходять одне одного, а AI-підбір зменшує кількість холодних листів.',
     },
     'qa-freelancer-website': {
       title: 'Сайт для QA-фрилансера',
       industry: 'Тестування ПЗ',
-      summary: 'Сайт-портфоліо, що представляє послуги та досвід QA-інженера на фрилансі.',
+      summary: 'Сайт QA-інженера, що показує послуги й попередні роботи та спрощує зв’язок.',
     },
     'full-stack-developer-portfolio': {
       title: 'Сайт-портфоліо full stack розробника',
       industry: 'Розробка ПЗ',
       summary:
-        'Односторінкове портфоліо, яке з першого погляду показує навички та проєкти full stack розробника.',
+        'Односторінкове портфоліо розробника, де навички й проєкти — це докази. Читається менш ніж за хвилину.',
     },
     'low-code-landing-page': {
       title: 'Лендінг для low-code мобільної розробки',
       industry: 'Мобільна розробка',
       summary:
-        'Лендінг, який пояснює пропозицію low-code мобільної розробки та перетворює відвідувачів на заявки.',
+        'Простою мовою пояснює low-code пропозицію. Команда редагує сторінку без розробника.',
     },
     'construction-company-website': {
       title: 'Корпоративний сайт будівельної компанії',
       industry: 'Будівництво',
       summary:
-        'Корпоративний сайт, що представляє послуги та завершені об’єкти будівельної компанії.',
+        'Виводить завершені об’єкти будівельної компанії на перший план, а запит на кошторис — за один клік.',
     },
     'digital-marketing-website': {
       title: 'Сайт агенції цифрового маркетингу',
-      industry: 'Маркетинг',
+      industry: 'Маркетингова агенція',
       summary:
-        'Корпоративний сайт агенції цифрового маркетингу, створений, щоб чітко представити її послуги.',
+        'Дизайн сайту маркетингової агенції: впевнений стиль і послуги, які легко переглянути.',
     },
     'designer-portfolio': {
       title: 'Сайт-портфоліо дизайнера',
       industry: 'Дизайн',
-      summary: 'Сайт-портфоліо на Framer, який ставить роботи дизайнера в центр уваги.',
+      summary:
+        'Портфоліо на Framer, де головне — роботи, а дизайнер сам додає нові проєкти без розробника.',
     },
   },
 } satisfies Record<Locale, Record<CaseStudySlug, ProjectCopy>>;

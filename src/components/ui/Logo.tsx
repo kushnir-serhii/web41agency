@@ -26,7 +26,7 @@ export const Logo: React.FC<LogoProps> = ({
   return (
     <Link
       href="/"
-      className={`flex justify-center items-center ${
+      className={`flex min-h-11 justify-center items-center ${
         widthIcon === 30 ? 'gap-2' : 'gap-4 lg:gap-8'
       }`}
       aria-label={tCommon('logoHome')}

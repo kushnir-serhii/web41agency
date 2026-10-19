@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { useId, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
@@ -22,9 +22,12 @@ const errorClass = 'text-sm text-left text-black';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Longer than the server's 10s Telegram timeout, so a slow send still gets the server's answer.
+const SUBMIT_TIMEOUT_MS = 20_000;
+
 type FieldKey = 'name' | 'email';
 type FieldErrors = Partial<Record<FieldKey, 'nameRequired' | 'emailRequired' | 'emailInvalid'>>;
-type SubmitError = 'rateLimited' | 'unavailable' | 'generic';
+type SubmitError = 'rateLimited' | 'unavailable' | 'offline' | 'generic';
 type Status =
   | { state: 'idle' }
   | { state: 'submitting' }
@@ -62,10 +65,28 @@ export const LetsTalk = () => {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<Status>({ state: 'idle' });
   const fieldId = useId();
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+
+  const showFieldErrors = (errors: FieldErrors) => {
+    setFieldErrors(errors);
+    // Move focus to the first problem so keyboard and screen-reader users land on it.
+    if (errors.name) nameRef.current?.focus();
+    else if (errors.email) emailRef.current?.focus();
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    // Editing a field clears its error, and a fresh edit after success or failure clears the notice.
+    if (name in fieldErrors) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next[name as FieldKey];
+        return next;
+      });
+    }
+    if (status.state === 'success' || status.state === 'error') setStatus({ state: 'idle' });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -73,7 +94,7 @@ export const LetsTalk = () => {
     if (status.state === 'submitting') return;
 
     const errors = validate(form);
-    setFieldErrors(errors);
+    showFieldErrors(errors);
     if (Object.keys(errors).length > 0) {
       setStatus({ state: 'idle' });
       return;
@@ -94,6 +115,10 @@ export const LetsTalk = () => {
           page: pathname,
           website: form.website,
         }),
+        signal:
+          typeof AbortSignal.timeout === 'function'
+            ? AbortSignal.timeout(SUBMIT_TIMEOUT_MS)
+            : undefined,
       });
 
       if (response.ok) {
@@ -104,7 +129,7 @@ export const LetsTalk = () => {
 
       const body: ContactErrorBody = await response.json().catch(() => ({}));
       if (response.status === 400 && body.error === 'validation') {
-        setFieldErrors(fromServerFields(body.fields));
+        showFieldErrors(fromServerFields(body.fields));
         setStatus({ state: 'idle' });
       } else if (response.status === 429) {
         setStatus({ state: 'error', error: 'rateLimited' });
@@ -113,14 +138,17 @@ export const LetsTalk = () => {
       } else {
         setStatus({ state: 'error', error: 'generic' });
       }
-    } catch {
-      setStatus({ state: 'error', error: 'generic' });
+    } catch (error: unknown) {
+      const isTimeout = error instanceof DOMException && error.name === 'TimeoutError';
+      const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+      setStatus({
+        state: 'error',
+        error: isOffline ? 'offline' : isTimeout ? 'unavailable' : 'generic',
+      });
     }
   };
 
   const isSubmitting = status.state === 'submitting';
-  const showMailto =
-    status.state === 'error' && (status.error === 'unavailable' || status.error === 'generic');
 
   const fieldProps = (key: FieldKey) => ({
     'aria-invalid': fieldErrors[key] ? true : undefined,
@@ -144,7 +172,7 @@ export const LetsTalk = () => {
             onClick={() =>
               trackEvent({ name: 'email_click', props: { location: 'lets_talk_link', locale } })
             }
-            className="text-[26px] font-bold text-left text-black hover:underline"
+            className="inline-flex min-h-11 max-w-full items-center text-[22px] sm:text-[26px] font-bold text-left text-black hover:underline [overflow-wrap:anywhere]"
           >
             {CONTACT_EMAIL}
           </a>
@@ -154,7 +182,7 @@ export const LetsTalk = () => {
             onClick={() =>
               trackEvent({ name: 'email_click', props: { location: 'lets_talk_button', locale } })
             }
-            className="flex justify-center items-center w-20 h-20 rounded-full bg-accent border-4 border-bg_item transition-transform hover:scale-105"
+            className="hidden lg:flex justify-center items-center w-20 h-20 rounded-full bg-accent border-4 border-bg_item transition-transform hover:scale-105"
           >
             <Icon id="icon-send" width={32} height={32} />
           </a>
@@ -173,6 +201,7 @@ export const LetsTalk = () => {
             </label>
             <input
               id={`${fieldId}-name`}
+              ref={nameRef}
               type="text"
               name="name"
               value={form.name}
@@ -197,6 +226,7 @@ export const LetsTalk = () => {
             </label>
             <input
               id={`${fieldId}-email`}
+              ref={emailRef}
               type="email"
               name="email"
               value={form.email}
@@ -271,15 +301,14 @@ export const LetsTalk = () => {
             {status.state === 'error' && (
               <p className="text-base font-medium text-left text-black">
                 {t(`errors.${status.error}`)}{' '}
-                {showMailto &&
-                  t.rich('errors.mailtoFallback', {
-                    email: CONTACT_EMAIL,
-                    mail: (chunks) => (
-                      <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-2">
-                        {chunks}
-                      </a>
-                    ),
-                  })}
+                {t.rich('errors.mailtoFallback', {
+                  email: CONTACT_EMAIL,
+                  mail: (chunks) => (
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-2">
+                      {chunks}
+                    </a>
+                  ),
+                })}
               </p>
             )}
           </div>

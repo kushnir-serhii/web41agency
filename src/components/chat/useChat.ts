@@ -26,7 +26,11 @@ const toPlainText = (md: string): string =>
     .replace(/\s+/g, ' ')
     .trim();
 
-const newId = (): string => crypto.randomUUID();
+// randomUUID is missing before Safari 15.4; ids only need to be unique within one conversation.
+const newId = (): string =>
+  typeof crypto.randomUUID === 'function'
+    ? crypto.randomUUID()
+    : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 
 export function useChat(): IUseChat {
   const locale = useLocale();
@@ -89,6 +93,17 @@ export function useChat(): IUseChat {
       const controller = new AbortController();
       abortRef.current = controller;
 
+      // A hung provider or dropped connection would otherwise leave the typing indicator up forever.
+      let stalled = false;
+      let stallTimer: ReturnType<typeof setTimeout> | null = null;
+      const armStallTimer = () => {
+        if (stallTimer !== null) clearTimeout(stallTimer);
+        stallTimer = setTimeout(() => {
+          stalled = true;
+          controller.abort();
+        }, CHAT_LIMITS.stallMs);
+      };
+
       const dropEmptyAssistant = () =>
         commitMessages(messagesRef.current.filter((m) => m.id !== assistantId || m.content));
 
@@ -99,6 +114,7 @@ export function useChat(): IUseChat {
       };
 
       const run = async () => {
+        armStallTimer();
         try {
           const res = await fetch('/api/chat', {
             method: 'POST',
@@ -124,6 +140,7 @@ export function useChat(): IUseChat {
           for (;;) {
             const { done, value } = await reader.read();
             if (done) break;
+            armStallTimer();
             rawRef.current += decoder.decode(value, { stream: true });
             if (frameRef.current === null) frameRef.current = requestAnimationFrame(flush);
           }
@@ -141,6 +158,14 @@ export function useChat(): IUseChat {
         } catch (error: unknown) {
           if (error instanceof DOMException && error.name === 'AbortError') {
             if (abortRef.current !== controller) return; // superseded by reset()
+            if (stalled) {
+              // Keep any partial answer visible; retry() drops it and resends the question.
+              cancelFrame();
+              writeAssistant(assistantId, true);
+              dropEmptyAssistant();
+              changeStatus('error');
+              return;
+            }
             cancelFrame();
             writeAssistant(assistantId, true);
             dropEmptyAssistant();
@@ -150,6 +175,7 @@ export function useChat(): IUseChat {
           }
           fail('error');
         } finally {
+          if (stallTimer !== null) clearTimeout(stallTimer);
           if (abortRef.current === controller) abortRef.current = null;
         }
       };

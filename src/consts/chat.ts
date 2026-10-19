@@ -10,6 +10,8 @@ export const CHAT_LIMITS = {
   burst: { limit: 20, windowMs: 600_000 },
   daily: { limit: 60, windowMs: 86_400_000 },
   teaserDelayMs: 20_000,
+  /** No bytes for this long (before or during the stream) counts as a failed reply. */
+  stallMs: 30_000,
 } as const;
 
 export const CHAT_STORAGE_KEYS = {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
+import { About } from '@/components/about/About';
 import { LetsTalk } from '@/components/letsTalk/LetsTalk';
 import { WhyChoose } from '@/components/whyChoose/WhyChoose';
 import { getWhyChoose } from '@/content/whyChooseContent';
@@ -28,7 +29,8 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
   setRequestLocale(locale);
 
   return (
-    <div className="container flex-col">
+    <div className="flex flex-col items-center w-full">
+      <About headingLevel="h1" />
       <WhyChoose content={getWhyChoose(locale)} />
       <LetsTalk />
     </div>

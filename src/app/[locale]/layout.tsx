@@ -90,6 +90,7 @@ const CLIENT_NAMESPACES = [
   'Common',
   'LetsTalk',
   'Chat',
+  'Error',
 ] as const;
 
 export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }));

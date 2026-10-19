@@ -17,7 +17,7 @@ export const HowItWorksItem: React.FC<HowItWorksItemComponentProps> = ({
   step,
 }) => {
   return (
-    <div className="relative flex flex-col justify-between items-start h-full min-h-[351px] w-full gap-10 lg:gap-20 p-6 lg:p-8 rounded-lg bg-bg_item">
+    <div className="relative flex flex-col justify-start items-start h-full lg:min-h-[351px] w-full gap-6 md:gap-8 lg:gap-20 p-6 lg:p-8 rounded-lg bg-bg_item">
       <span
         aria-hidden="true"
         className="absolute top-6 right-6 lg:top-8 lg:right-8 text-5xl lg:text-6xl font-bold leading-none text-black/40"

@@ -30,7 +30,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           src={image}
           alt={`${title} — ${industry}`}
           fill
-          sizes="(max-width: 1024px) 90vw, 416px"
+          sizes="(min-width: 1024px) 416px, (min-width: 768px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
         {metric && (
@@ -41,7 +41,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         )}
       </div>
 
-      <div className="flex flex-col items-start gap-2 w-full">
+      <div className="flex flex-col flex-1 items-start gap-2 w-full">
         <span className="text-base uppercase tracking-wide text-black/60">{industry}</span>
         <h3 className="text-2xl lg:text-[32px] font-semibold leading-[1.2] text-left text-black">
           {title}
@@ -57,7 +57,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </li>
           ))}
         </ul>
-        <span className="mt-2 text-lg font-bold text-black underline underline-offset-4 group-hover:no-underline group-focus-visible:no-underline">
+        <span className="mt-auto pt-2 text-lg font-bold text-black underline underline-offset-4 group-hover:no-underline group-focus-visible:no-underline">
           {readLabel} &rarr;
         </span>
       </div>

@@ -41,7 +41,7 @@ const faqEn = {
   'build-time': {
     question: 'How long does it take to build a website?',
     answer:
-      'A Webflow site typically takes 2–4 weeks. A custom JavaScript application depends on scope, and we give you a detailed timeline before any work starts.',
+      'A landing page takes 3–7 days. Larger sites and custom web apps depend on scope, and we give you a detailed timeline before any work starts.',
   },
   'self-update': {
     question: 'Can I update my website myself after launch?',
@@ -81,7 +81,7 @@ const faqCopy = {
     'build-time': {
       question: 'Скільки часу займає створення сайту?',
       answer:
-        'Сайт на Webflow зазвичай займає 2–4 тижні. Термін індивідуального JavaScript-застосунку залежить від обсягу робіт, і ми надаємо детальний графік до початку роботи.',
+        'Лендинг займає 3–7 днів. Терміни більших сайтів і вебзастосунків залежать від обсягу робіт, і ми надаємо детальний графік до початку роботи.',
     },
     'self-update': {
       question: 'Чи можу я самостійно оновлювати сайт після запуску?',

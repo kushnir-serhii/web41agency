@@ -2,7 +2,6 @@
 // down as props (`server-only` is not installed, so not enforced).
 import type { IWhyChooseContent } from '@/components/whyChoose/WhyChoose';
 import { CONSULTATION_HREF } from '@/content/ctaLinks';
-import { formatUsd, PRICING_TIERS } from '@/content/pricing';
 import type { Locale } from '@/i18n/types';
 
 const whyChooseBase = [
@@ -28,26 +27,6 @@ interface WhyChooseSectionCopy {
   textButton: string;
 }
 
-/** Builds the price sentence from PRICING_TIERS (USD-only) with localized glue words. */
-const pricingSegments = (words: {
-  intro: string;
-  and: string;
-  from: string;
-  tierLabels: Record<(typeof PRICING_TIERS)[number]['key'], string>;
-}): Segment[] => [
-  { text: words.intro, highlight: false },
-  ...PRICING_TIERS.flatMap((tier, index) => [
-    {
-      text: index === 0 ? '' : index === PRICING_TIERS.length - 1 ? words.and : ', ',
-      highlight: false,
-    },
-    { text: words.tierLabels[tier.key] + ' ', highlight: true },
-    { text: words.from, highlight: false },
-    { text: formatUsd(tier.usd), highlight: true },
-  ]).filter((segment) => segment.text !== ''),
-  { text: '.', highlight: false },
-];
-
 const whyChooseSectionEn: WhyChooseSectionCopy = {
   sectionTitle: 'Why Choose Us',
   textButton: 'Free Consultation',
@@ -57,22 +36,21 @@ const whyChooseEn = {
   fast: {
     title: 'Fast & Efficient',
     description: [
-      { text: 'Get your website up and running quickly—Webflow sites in ', highlight: false },
-      { text: '2–4 weeks,', highlight: true },
+      { text: 'Landing pages go live in ', highlight: false },
+      { text: '3–7 days,', highlight: true },
       {
-        text: ' and custom JavaScript solutions optimized for high performance.',
+        text: ' and larger builds get a clear timeline before any work starts.',
         highlight: false,
       },
     ],
   },
   cost: {
     title: 'Cost-Effective',
-    description: pricingSegments({
-      intro: 'We tailor our pricing to fit your needs: ',
-      and: ' and ',
-      from: 'from ',
-      tierLabels: { landing: 'Landing Page', lowCode: 'Low Code', custom: 'Custom' },
-    }),
+    description: [
+      { text: 'Pay for what your project needs, nothing extra. You get ', highlight: false },
+      { text: 'a clear price before any work starts', highlight: true },
+      { text: ', and our AI assistant can share starting prices anytime.', highlight: false },
+    ],
   },
   flex: {
     title: 'Scalable & Flexible',
@@ -101,22 +79,21 @@ const whyChooseCopy = {
     fast: {
       title: 'Швидко та ефективно',
       description: [
-        { text: 'Запустіть сайт швидко — сайти на Webflow за ', highlight: false },
-        { text: '2–4 тижні,', highlight: true },
+        { text: 'Лендинги запускаються за ', highlight: false },
+        { text: '3–7 днів,', highlight: true },
         {
-          text: ' а індивідуальні JavaScript-рішення оптимізовані для високої продуктивності.',
+          text: ' а для більших проєктів ви отримуєте чіткий графік до початку робіт.',
           highlight: false,
         },
       ],
     },
     cost: {
       title: 'Вигідно',
-      description: pricingSegments({
-        intro: 'Ми підбираємо ціну під ваші потреби: ',
-        and: ' та ',
-        from: 'від ',
-        tierLabels: { landing: 'Лендінг', lowCode: 'Low Code', custom: 'Індивідуальна розробка' },
-      }),
+      description: [
+        { text: 'Платите лише за те, що потрібно вашому проєкту. Ви отримуєте ', highlight: false },
+        { text: 'чітку ціну ще до початку робіт', highlight: true },
+        { text: ', а наш AI-асистент назве стартові ціни будь-коли.', highlight: false },
+      ],
     },
     flex: {
       title: 'Масштабовано та гнучко',
