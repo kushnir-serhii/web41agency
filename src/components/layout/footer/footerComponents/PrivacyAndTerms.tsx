@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { SITE_NAME } from '@/utils/site';
 
 const linkClass =
-  'flex min-h-11 items-center justify-center flex-grow-0 flex-shrink-0 text-base text-center text-[#f9f9f9] hover:underline';
+  'flex min-h-11 items-center justify-center flex-grow-0 flex-shrink-0 text-base text-center text-bg_item hover:underline';
 
 export const PrivacyAndTerms: React.FC = async () => {
   const t = await getTranslations('Footer');
@@ -14,7 +14,7 @@ export const PrivacyAndTerms: React.FC = async () => {
       <Link href="/privacy-policy" className={linkClass}>
         {t('privacyPolicy')}
       </Link>
-      <p className="order-last basis-full text-center lg:order-none lg:basis-auto flex-grow-0 flex-shrink-0 text-base text-center text-[#f9f9f9]">
+      <p className="order-last basis-full text-center lg:order-none lg:basis-auto flex-grow-0 flex-shrink-0 text-base text-center text-bg_item">
         © {new Date().getFullYear()} {SITE_NAME}. {t('rights')}
       </p>
       <Link href="/terms-of-use" className={linkClass}>

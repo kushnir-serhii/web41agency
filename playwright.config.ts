@@ -13,6 +13,6 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
     timeout: 300_000,
-    env: { NEXT_PUBLIC_CHAT_ENABLED: 'true' },
+    env: { NEXT_PUBLIC_CHAT_ENABLED: 'true', NEXT_DIST_DIR: '.next-e2e' },
   },
 });

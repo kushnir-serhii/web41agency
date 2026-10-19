@@ -28,7 +28,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className={`relative w-full rounded-lg overflow-hidden ${imageClassName}`}>
         <Image
           src={image}
-          alt={`${title} — ${industry}`}
+          alt=""
           fill
           sizes="(min-width: 1024px) 416px, (min-width: 768px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"

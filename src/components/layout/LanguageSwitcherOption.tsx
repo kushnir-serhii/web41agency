@@ -31,10 +31,10 @@ export const LanguageSwitcherOption: React.FC<ILanguageSwitcherOptionProps> = ({
       <span
         lang={locale}
         aria-current="true"
-        aria-label={endonym}
         className={cn(baseClasses, 'bg-accent text-black')}
       >
-        {label}
+        <span aria-hidden="true">{label}</span>
+        <span className="sr-only">{endonym}</span>
       </span>
     );
   }

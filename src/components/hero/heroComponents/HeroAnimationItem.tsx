@@ -2,6 +2,8 @@
 
 import Image, { StaticImageData } from 'next/image';
 
+import { marqueePausedClass } from '../../slider/marqueePausedClass';
+
 interface HeroAnimationItemProps {
   arraySrc: (string | StaticImageData)[];
   speed: number;
@@ -36,7 +38,7 @@ export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
   return (
     <div className="relative flex-1 h-full overflow-hidden">
       <div
-        className={`absolute flex w-full ${isVertical ? 'flex-col' : 'flex-row'} ${animationClass}`}
+        className={`absolute flex w-full ${isVertical ? 'flex-col' : 'flex-row'} ${animationClass} ${marqueePausedClass}`}
         style={
           {
             '--marquee-duration': `${speed}s`,
@@ -53,6 +55,7 @@ export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
                 height={308}
                 sizes={SIZES}
                 alt=""
+                loading={isCopy ? 'lazy' : 'eager'}
                 className="w-full aspect-square"
               />
             ))}
