@@ -82,13 +82,18 @@
   },
   "About": {
     "title": "About Web41",
-    "intro": "Web41 is a small senior team. We listen first, learn how your business works, then build the site or product it needs.",
-    "details": "We build fast and have shipped AI products from idea to launch. We work with any AI API, from OpenAI to Anthropic and Google, and pick the tools that fit your business.",
+    "intro": "Web41 builds digital products that move businesses forward.",
+    "details": "From business websites to custom web applications and AI-powered solutions, we handle the process from concept to launch. We focus on practical solutions, clean engineering, and technology that solves real business problems.",
+    "closing": "Whether you need a new website, a smarter workflow, or an AI-powered product, we turn your ideas into working software.",
+    "ownershipValue": "100%",
+    "ownershipLabel": "you own the code & domain",
     "projectsLabel": "projects built",
     "speedValue": "3–7",
     "speedLabel": "days to launch a landing page",
     "industriesValue": "10+",
-    "industriesLabel": "industries expertise"
+    "industriesLabel": "industries expertise",
+    "responseValue": "24h",
+    "responseLabel": "reply to every request"
   },
   "PortfolioPreview": {
     "title": "Portfolio",

@@ -7,28 +7,41 @@ import { Button } from '../ui/Button';
 import { SectionHeading } from '../ui/SectionHeading';
 
 interface IFact {
-  id: 'projects' | 'speed' | 'industries';
+  id: 'projects' | 'ownership' | 'speed' | 'industries' | 'response';
   accent: boolean;
-  /* Position inside the facts box, as a percentage of its width/height —
-     the same staggered triangle on mobile and desktop. */
+  /* Desktop position inside the facts box, as a percentage of its
+     width/height — a staggered cluster around the accent circle. */
   position: string;
+  /* Mobile grid placement (6-col grid, each circle spans 2 → 3 + 2 centred). */
+  mobile?: string;
 }
 
 const facts: IFact[] = [
   {
     id: 'projects',
+    accent: true,
+    position: 'lg:left-[62%] lg:top-0',
+  },
+  {
+    id: 'ownership',
     accent: false,
-    position: 'lg:left-[65.1%] lg:top-0',
+    position: 'lg:left-[8%] lg:top-[10.2%]',
   },
   {
     id: 'speed',
     accent: true,
-    position: 'lg:left-0 lg:top-[36.4%]',
+    position: 'lg:left-[35%] lg:top-[36.7%]',
   },
   {
     id: 'industries',
     accent: false,
-    position: 'lg:left-[34.9%] lg:top-[64.7%]',
+    position: 'lg:left-[70%] lg:top-[63.3%]',
+    mobile: 'col-start-2 lg:col-start-auto',
+  },
+  {
+    id: 'response',
+    accent: true,
+    position: 'lg:left-[2%] lg:top-[67.3%]',
   },
 ];
 
@@ -42,13 +55,17 @@ export const About = async ({ headingLevel = 'h2' }: AboutProps) => {
   const tCta = await getTranslations('Cta');
   const values = {
     projects: String(caseStudySlugs.length),
+    ownership: t('ownershipValue'),
     speed: t('speedValue'),
     industries: t('industriesValue'),
+    response: t('responseValue'),
   };
   const labels = {
     projects: t('projectsLabel'),
+    ownership: t('ownershipLabel'),
     speed: t('speedLabel'),
     industries: t('industriesLabel'),
+    response: t('responseLabel'),
   };
 
   return (
@@ -58,16 +75,17 @@ export const About = async ({ headingLevel = 'h2' }: AboutProps) => {
         <div className="w-full flex flex-col gap-4 opacity-80 text-lg text-left text-black">
           <p>{t('intro')}</p>
           <p>{t('details')}</p>
+          <p>{t('closing')}</p>
         </div>
         <Button text={tCta('freeQuote')} href={CONSULTATION_HREF} />
       </div>
 
-      <div className="relative grid grid-cols-3 gap-2 md:gap-4 w-full max-w-[560px] lg:block lg:max-w-none lg:w-1/2 xl:w-[600px] lg:aspect-[631/623] shrink-0">
-        {facts.map(({ id, accent, position }) => (
+      <div className="relative grid grid-cols-6 gap-2 md:gap-4 w-full max-w-[560px] lg:block lg:max-w-none lg:w-1/2 xl:w-[600px] lg:aspect-[100/98] shrink-0">
+        {facts.map(({ id, accent, position, mobile = '' }) => (
           <div
             key={id}
-            className={`lg:absolute flex flex-col justify-center items-center px-2 lg:px-0 w-full lg:w-[34.9%] aspect-square rounded-full
-              ${position} ${accent ? 'bg-accent' : 'bg-bg_item ring-1 ring-inset ring-black/10'}`}
+            className={`col-span-2 lg:absolute flex flex-col justify-center items-center px-2 lg:px-3 w-full lg:w-[30%] aspect-square rounded-full
+              ${position} ${mobile} ${accent ? 'bg-accent' : 'bg-bg_item ring-1 ring-inset ring-black/10'}`}
           >
             <p className="w-full text-2xl md:text-3xl lg:text-[32px] font-bold text-center text-black">
               {values[id]}

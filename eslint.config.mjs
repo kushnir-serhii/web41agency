@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
 const eslintConfig = [
-  { ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts', 'tools/**'] },
+  { ignores: ['.next/**', '.next-e2e/**', 'node_modules/**', 'next-env.d.ts', 'tools/**'] },
 
   // Extend Next.js recommended rules
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
