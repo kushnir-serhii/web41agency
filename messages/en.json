@@ -208,5 +208,9 @@
     "composerLabel": "Message",
     "stop": "Stop",
     "send": "Send"
+  },
+  "Marquee": {
+    "pause": "Pause animation",
+    "play": "Play animation"
   }
 }

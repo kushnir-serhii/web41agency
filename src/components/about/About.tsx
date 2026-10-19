@@ -4,6 +4,7 @@ import { caseStudySlugs } from '@/content/caseStudyTitles';
 import { CONSULTATION_HREF } from '@/content/ctaLinks';
 
 import { Button } from '../ui/Button';
+import { Magnetic } from '../ui/Magnetic';
 import { SectionHeading } from '../ui/SectionHeading';
 
 interface IFact {
@@ -12,14 +13,14 @@ interface IFact {
   /* Desktop position inside the facts box, as a percentage of its
      width/height — a staggered cluster around the accent circle. */
   position: string;
-  /* Mobile grid placement (6-col grid, each circle spans 2 → 3 + 2 centred). */
+  /* Mobile grid placement (4-col grid below sm → 2+2+1 centred; 6-col from sm → 3+2 centred). */
   mobile?: string;
 }
 
 const facts: IFact[] = [
   {
     id: 'projects',
-    accent: true,
+    accent: false,
     position: 'lg:left-[62%] lg:top-0',
   },
   {
@@ -36,12 +37,13 @@ const facts: IFact[] = [
     id: 'industries',
     accent: false,
     position: 'lg:left-[70%] lg:top-[63.3%]',
-    mobile: 'col-start-2 lg:col-start-auto',
+    mobile: 'sm:col-start-2 lg:col-start-auto',
   },
   {
     id: 'response',
-    accent: true,
+    accent: false,
     position: 'lg:left-[2%] lg:top-[67.3%]',
+    mobile: 'col-start-2 sm:col-start-auto',
   },
 ];
 
@@ -80,20 +82,20 @@ export const About = async ({ headingLevel = 'h2' }: AboutProps) => {
         <Button text={tCta('freeQuote')} href={CONSULTATION_HREF} />
       </div>
 
-      <div className="relative grid grid-cols-6 gap-2 md:gap-4 w-full max-w-[560px] lg:block lg:max-w-none lg:w-1/2 xl:w-[600px] lg:aspect-[100/98] shrink-0">
+      <div className="relative grid grid-cols-4 sm:grid-cols-6 gap-2 md:gap-4 w-full max-w-[560px] lg:block lg:max-w-none lg:w-1/2 xl:w-[600px] lg:aspect-[100/98] shrink-0">
         {facts.map(({ id, accent, position, mobile = '' }) => (
-          <div
+          <Magnetic
             key={id}
-            className={`col-span-2 lg:absolute flex flex-col justify-center items-center px-2 lg:px-3 w-full lg:w-[30%] aspect-square rounded-full
+            className={`col-span-2 lg:absolute flex flex-col justify-center items-center px-3 lg:px-3 w-full lg:w-[30%] aspect-square rounded-full
               ${position} ${mobile} ${accent ? 'bg-accent' : 'bg-bg_item ring-1 ring-inset ring-black/10'}`}
           >
             <p className="w-full text-2xl md:text-3xl lg:text-[32px] font-bold text-center text-black">
               {values[id]}
             </p>
-            <p className="w-full text-sm lg:text-lg leading-tight text-center text-black">
+            <p className="w-full text-sm lg:text-lg leading-tight text-center text-balance text-black">
               {labels[id]}
             </p>
-          </div>
+          </Magnetic>
         ))}
       </div>
     </section>

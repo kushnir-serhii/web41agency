@@ -16,7 +16,7 @@ export const IconBadge: React.FC<IconBadgeProps> = ({ size = 'md', children, cla
   <span
     aria-hidden="true"
     className={cn(
-      'flex shrink-0 items-center justify-center rounded-full bg-accent text-black',
+      'flex shrink-0 items-center justify-center rounded-full bg-white text-black ring-1 ring-inset ring-black/15',
       sizeClass[size],
       className,
     )}

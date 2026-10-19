@@ -10,7 +10,7 @@ export const NavBarItem: React.FC<NavBarItemProps> = ({ link, text, isActive, is
   return (
     <Link
       href={link}
-      className={`group flex justify-center items-center gap-2 text-base  transition-all duration-200 easy-in-out
+      className={`group flex justify-center items-center gap-2 text-base  transition-colors duration-200 ease-in-out
           min-h-11 py-2 ${isFooter ? 'px-4 text-light_text' : 'px-1 xl:px-4 text-dark_text hover:text-dark_text-hover'}`}
     >
       <div

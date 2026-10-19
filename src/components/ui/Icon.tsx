@@ -29,7 +29,7 @@ export const Icon: React.FC<IconProps> = ({
       height={isAutoHeight ? undefined : height}
       focusable="false"
       {...a11yProps}
-      className={`transition-all ease-in-out ${isAutoHeight ? 'h-auto' : ''} ${className ?? ''}`}
+      className={`transition-transform ease-in-out ${isAutoHeight ? 'h-auto' : ''} ${className ?? ''}`}
     >
       <use xlinkHref={`/icons/sprite.svg#${id}`} />
     </svg>
