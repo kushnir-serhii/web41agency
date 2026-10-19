@@ -23,9 +23,9 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
   });
 };
 
-// TODO(content): messengers and a physical address are placeholders below —
-// replace with the real values (and remove this comment) as soon as they're
-// finalized, per step 7 of docs/seo-plan-en.md.
+// TODO(content): messengers are a placeholder below — replace with the real links
+// (and remove this comment) once they're finalized. Web41 has no physical address,
+// so there is deliberately no Address row.
 export default async function ContactsPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -37,18 +37,18 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
         heading={[{ text: t('headingMain') }, { text: t('headingMuted'), muted: true }]}
         description={t('description')}
       />
-      <div className="container flex-col gap-2 pb-10">
+      <div className="container flex-col gap-1 pt-8 lg:pt-12 pb-10 lg:pb-16">
         <p className="text-lg text-black">
           <span className="font-semibold">{t('emailLabel')}</span>{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="inline-flex min-h-11 items-center hover:underline"
+          >
             {CONTACT_EMAIL}
           </a>
         </p>
         <p className="text-lg text-black/70">
           <span className="font-semibold text-black">{t('messengersLabel')}</span> {t('comingSoon')}
-        </p>
-        <p className="text-lg text-black/70">
-          <span className="font-semibold text-black">{t('addressLabel')}</span> {t('comingSoon')}
         </p>
       </div>
       <LetsTalk />

@@ -11,38 +11,28 @@ interface HeroAnimationProps {
   slideLabel: string;
 }
 
+// Columns: 2 on mobile, 3 from md, 4 from lg.
+const columns = [
+  { images: heroImagesArray_1, speed: 85, reverse: false, visibility: '' },
+  { images: heroImagesArray_2, speed: 80, reverse: true, visibility: '' },
+  { images: heroImagesArray_3, speed: 95, reverse: false, visibility: 'hidden md:block' },
+  { images: heroImagesArray_4, speed: 90, reverse: true, visibility: 'hidden lg:block' },
+];
+
 export const HeroAnimation: React.FC<HeroAnimationProps> = ({ slideLabel }) => {
   return (
     <div className="bg-bg_hero w-full">
-      <ul className="relative flex items-center justify-between gap-4 w-full h-[500px] px-20">
-        <li className="flex-1 h-full">
-          <HeroAnimationItem arraySrc={heroImagesArray_1} slideLabel={slideLabel} speed={85} />
-        </li>
-        <li className="flex-1 h-full">
-          <HeroAnimationItem
-            arraySrc={heroImagesArray_2}
-            slideLabel={slideLabel}
-            speed={80}
-            revers={true}
-          />
-        </li>
-        <li className="flex-1 h-full">
-          <HeroAnimationItem
-            arraySrc={heroImagesArray_3}
-            slideLabel={slideLabel}
-            speed={95}
-            className="hidden lg:flex"
-          />
-        </li>
-        <li className="flex-1 h-full">
-          <HeroAnimationItem
-            arraySrc={heroImagesArray_4}
-            slideLabel={slideLabel}
-            speed={90}
-            revers={true}
-            className="hidden lg:flex"
-          />
-        </li>
+      <ul className="relative flex items-center justify-between gap-3 lg:gap-4 w-full max-w-[1440px] mx-auto h-[380px] md:h-[440px] lg:h-[500px] px-4 lg:px-20">
+        {columns.map(({ images, speed, reverse, visibility }, index) => (
+          <li key={index} className={`flex-1 min-w-0 h-full ${visibility}`}>
+            <HeroAnimationItem
+              arraySrc={images}
+              slideLabel={slideLabel}
+              speed={speed}
+              revers={reverse}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );

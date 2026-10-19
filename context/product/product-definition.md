@@ -1,9 +1,9 @@
 # Product Definition: Web41 Agency Website
 
-- **Version:** 1.0
+- **Version:** 1.2
 - **Status:** Proposed
 
-> Drafted from the existing site content and specs 001–004. Sections marked _(assumption)_ were
+> Drafted from the existing site content and specs 001–005. Sections marked _(assumption)_ were
 > filled from best-practice defaults, not from an owner answer. Confirm or correct them.
 
 ---
@@ -13,8 +13,8 @@
 ### 1.1. Project Vision & Purpose
 
 The Web41 website is the agency's main sales channel. It should turn a curious visitor into a qualified lead
-in one visit. It does this by showing the services, the prices, the timelines and past work, and by
-making it easy to ask for a free quote.
+in one visit. It does this by showing the services, the timelines and past work, by letting the AI assistant
+answer price questions, and by making it easy to ask for a free quote.
 
 The goal: a small business owner understands what Web41 builds, what it costs and how long it takes in
 under two minutes, and then sends a request.
@@ -27,6 +27,8 @@ under two minutes, and then sends a request.
   (payments, CRMs, AI services).
 - Mostly English-speaking international clients who find the agency through search, referrals or
   outreach _(assumption)_.
+- Ukrainian-speaking business owners, who can use the whole site, the AI assistant and the Free Quote
+  form in Ukrainian.
 
 ### 1.3. User Personas
 
@@ -48,8 +50,9 @@ _(assumption: targets to be confirmed by the owner)_
 - **Lead conversion:** at least 3% of unique visitors submit the Free Quote form or start a chat that
   hands off to it.
 - **No lost leads:** 100% of form submissions reach the agency inbox.
-- **Fast answers:** visitors find price and timeline for any service without contacting anyone (checked
-  via the AI assistant's unanswered-question log and form questions).
+- **Fast answers:** visitors get the timeline for any service from the page and a starting price from
+  the AI assistant, without contacting anyone (checked via the AI assistant's unanswered-question log
+  and form questions).
 - **Trust:** each main service has at least one case study with a real result.
 - **Discoverability:** the site ranks on the first page of search results for its main service and
   location keywords within 6 months.
@@ -60,21 +63,24 @@ _(assumption: targets to be confirmed by the owner)_
 
 ### 2.1. Core Features
 
-- **Services & pricing:** six services (Landing Page, JS Development, Low Code / Webflow, API
-  Integrations, UI/UX Design, Branding), each with a short description, timeline and a single,
-  consistent price (Landing from $100, Low Code from $800, Custom from $1,600).
+- **Services:** six services (Landing Page, JS Development, Low Code / Webflow, API Integrations,
+  UI/UX Design, Branding), each with a short description and timeline. Pages show no prices.
 - **Portfolio & case studies:** real projects with the client's problem, what was built and the result.
 - **Free Quote form ("Let's talk"):** a short contact form whose submissions reliably reach the agency.
 - **AI pre-sales assistant:** a chat on every page that answers questions about services, prices,
-  process and timelines, and moves qualified visitors to the Free Quote form.
+  process and timelines, and moves qualified visitors to the Free Quote form. It is the only place on
+  the site that talks about prices: it quotes starting prices in USD, in both languages (Landing from
+  $100, Low Code from $800, Custom from $1,600).
 - **Trust & compliance:** clear "How it works" process, Privacy Policy and Terms of Use pages.
+- **English and Ukrainian versions:** the full site in both languages (Ukrainian under `/uk`), a
+  language switcher on every page, and a Ukrainian-speaking AI assistant and Free Quote form.
 
 ### 2.2. User Journey
 
 A visitor arrives from a search result or a shared link. The hero says in one line what Web41 does. They
-scroll to Services, open the one they need and see the timeline and price. They check Portfolio for a
-similar project. If they have a question, they ask the AI assistant, which answers and suggests the free
-quote. They fill in the "Let's talk" form with their name, email and a short description. The agency
+scroll to Services, open the one they need and see what it includes and how long it takes. They check Portfolio for a
+similar project. If they want to know the price or have a question, they ask the AI assistant, which answers
+and suggests the free quote. They fill in the "Let's talk" form with their name, email and a short description. The agency
 gets the request in its inbox and replies.
 
 ---
@@ -83,19 +89,21 @@ gets the request in its inbox and replies.
 
 ### 3.1. What's In-Scope for this Version
 
-- Home page with hero, services, pricing, "How it works", portfolio preview and the "Let's talk" form.
+- Home page with hero, services, "How it works", portfolio preview and the "Let's talk" form.
 - Portfolio page with case studies.
 - Working calls to action across the site, all leading to the Free Quote form.
 - Contact form delivery to the agency inbox, with spam protection.
 - AI pre-sales chat assistant (phase 1: hands off to the form).
 - Privacy Policy and Terms of Use pages.
+- English and Ukrainian versions of the site: Ukrainian pages under the `/uk` prefix, a language
+  switcher, and the AI assistant and Free Quote form working in Ukrainian.
 - SEO basics and accessibility fixes.
 
 ### 3.2. What's Out-of-Scope (Non-Goals)
 
 - Blog or content hub (removed for now).
+- Prices or a pricing table on site pages. Only the AI assistant talks about prices.
 - Client accounts, a client portal or project tracking.
 - Online payments, checkout or booking calls directly on the site _(assumption)_.
 - Lead collection inside the chat (phase 2, after the contact form ships).
-- Multi-language versions of the site _(assumption)_.
 - A CRM or admin dashboard for managing leads _(assumption)_.

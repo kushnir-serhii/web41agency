@@ -16,7 +16,9 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = async ({ projects }) 
   const rightColumn = projects.filter((_, index) => index % 2 !== 0);
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-6 px-4 lg:px-20 py-20">
+    <section className="w-full max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-6 px-4 lg:px-20 py-20">
+      {/* Keeps the outline H1 → H2 → H3 (card titles) without repeating the hero visually. */}
+      <h2 className="sr-only">{t('title')}</h2>
       <div className="flex flex-col gap-16 lg:gap-20">
         {leftColumn.map((project) => (
           <ProjectCard

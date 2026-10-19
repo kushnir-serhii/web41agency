@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 
 // Top inset must exceed the sections' scroll-mt-32 (128px) landing offset, so the
 // previous section's bottom edge (at 128px after an anchor jump) stays outside the band.
-const ROOT_MARGIN = '-140px 0px -65% 0px';
+const TOP_INSET = 140;
+const ROOT_MARGIN = `-${TOP_INSET}px 0px -65% 0px`;
 
 export const useActiveSection = (ids: string[]): string => {
   const [activeId, setActiveId] = useState<string>(ids[0] ?? '');
@@ -26,7 +27,13 @@ export const useActiveSection = (ids: string[]): string => {
         return;
       }
       const first = ids.find((id) => visible.current.has(id));
-      if (first) setActiveId(first);
+      if (first) {
+        setActiveId(first);
+        return;
+      }
+      // Above the first section (back at the top of the page), nothing is in the band.
+      const firstEl = document.getElementById(ids[0]);
+      if (firstEl && firstEl.getBoundingClientRect().top > TOP_INSET) setActiveId(ids[0]);
     };
 
     const observer = new IntersectionObserver(

@@ -14,7 +14,8 @@ export const LegalSwitcher: React.FC<LegalSwitcherProps> = async ({ currentSlug,
 
   return (
     <nav aria-label={t('switcherLabel')} className="print:hidden">
-      <ul className="flex flex-nowrap gap-2">
+      {/* Wraps: the two uk titles are wider than a phone screen side by side. */}
+      <ul className="flex flex-wrap gap-2">
         {legalDocuments[locale].map(({ slug, title }) => {
           const isActive = slug === currentSlug;
           return (

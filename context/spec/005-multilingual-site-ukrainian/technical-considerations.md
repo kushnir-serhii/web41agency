@@ -1,7 +1,7 @@
 # Technical Specification: Multilingual Site — Ukrainian Version
 
 - **Functional Specification:** [functional-spec.md](./functional-spec.md) · decisions: [decisions.md](./decisions.md)
-- **Status:** Draft
+- **Status:** Completed
 - **Author(s):** Serhii Kushnir (drafted with Claude)
 
 ---

@@ -14,10 +14,10 @@ export interface WhyChooseItemProps {
 export const WhyChooseItem: React.FC<WhyChooseItemProps> = ({ iconId, title, description }) => {
   return (
     <div className="flex flex-col justify-start items-start w-full relative gap-6 lg:pr-4 rounded-lg">
-      <div className="flex justify-center items-center rounded-full shrink-0 size-20 bg-accent">
+      <div className="flex justify-center items-center rounded-full shrink-0 size-16 lg:size-20 bg-accent">
         <Icon id={iconId} width={37} height={36} />{' '}
       </div>
-      <h3 className="self-stretch w-full lg:max-w-[400px] text-2xl lg:text-[32px] font-bold text-left text-black">
+      <h3 className="self-stretch w-full lg:max-w-[400px] text-xl lg:text-[32px] font-bold text-left text-black">
         {title}
       </h3>
       <p className="self-stretch w-full lg:max-w-[400px] opacity-80 text-lg text-left text-black">

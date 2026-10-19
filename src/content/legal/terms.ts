@@ -10,7 +10,7 @@ export const termsOfUse: LegalDocument = {
   lastUpdated: '2026-09-18',
   summary: [
     'You can browse the site and contact us freely.',
-    'Prices and timelines on the site are a guide, not an offer.',
+    'Prices quoted by our AI assistant and timelines on the site are a guide, not an offer.',
     'Our design and content belong to us; client work belongs to our clients.',
     'Each project is agreed separately, in writing.',
   ],
@@ -45,7 +45,7 @@ export const termsOfUse: LegalDocument = {
     {
       heading: 'Information on the Site',
       paragraphs: [
-        'The content of the Site, including prices and timelines, is general information only and is not an offer. We agree the final scope, price and terms of any project with you separately, in writing.',
+        'The content of the Site, including timelines and prices quoted by our AI assistant, is general information only and is not an offer. We agree the final scope, price and terms of any project with you separately, in writing.',
       ],
     },
     {

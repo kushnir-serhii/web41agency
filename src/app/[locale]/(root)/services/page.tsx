@@ -35,7 +35,11 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         heading={[{ text: t('headingMain') }, { text: t('headingMuted'), muted: true }]}
         description={t('description')}
       />
-      <Services content={getServices(locale)} featuresContent={getServiceFeatures(locale)} />
+      <Services
+        content={getServices(locale)}
+        featuresContent={getServiceFeatures(locale)}
+        hideTitle
+      />
       <LetsTalk />
     </div>
   );

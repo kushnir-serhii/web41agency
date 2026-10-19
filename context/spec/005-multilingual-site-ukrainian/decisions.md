@@ -32,3 +32,5 @@
 - [implement] Q: next-intl install blocked by ERESOLVE (vitest ^5 needs @types/node ^22|>=24; package.json had ^20) → A: Bump @types/node to ^22, then install next-intl@^4.
 - [implement] ASSUMED: 404 pages render server-side as Next error shell (content only in RSC payload; blank without JS) — same on pre-existing portfolio/[slug] 404, so accepted as Next 15.5 behaviour; AC met with JS.
 - [implement] ASSUMED: Switcher EN option on /uk pages renders href /en/<path> (next-intl as-needed behaviour for explicit default locale) which 307s to /<path>; functionally correct, revisit in Slice 6 (hreflang/SEO) if a direct href is wanted.
+- [verify] Q: Do the screenshots in docs/screenshots/005-multilingual-site-ukrainian-*.png match the spec's look-and-feel? → A: Yes, matches the spec
+- [verify] ASSUMED: One e2e failure (legal-pages 'switcher marks current page', spec 003) passed on isolated rerun; treated as flaky dev-server cold-compile timeout, not a 005 regression.

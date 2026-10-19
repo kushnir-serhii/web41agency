@@ -25,7 +25,7 @@ export const CaseHero = async ({
       <nav aria-label={t('breadcrumb')} className="text-lg text-black/60">
         <Link
           href="/portfolio"
-          className="hover:text-black focus-visible:text-black underline-offset-4 hover:underline"
+          className="inline-flex min-h-11 items-center hover:text-black focus-visible:text-black underline-offset-4 hover:underline"
         >
           {tNav('portfolio')}
         </Link>
@@ -60,7 +60,7 @@ export const CaseHero = async ({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg font-bold text-black underline underline-offset-4 hover:no-underline"
+              className="inline-flex min-h-11 items-center text-lg font-bold text-black underline underline-offset-4 hover:no-underline"
             >
               {t('visitLive')}
             </a>

@@ -18,13 +18,16 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
+// min-h, not h: a full-width button whose label outgrows a phone screen (uk "Надіслати
+// повідомлення" at 320px) wraps to two lines instead of clipping. shrink-0 keeps buttons in
+// rows (header, hero) at their natural one-line width.
 const sizeClass = {
-  md: 'h-14 px-6 text-lg',
-  sm: 'h-11 px-5 py-2 text-base',
+  md: 'min-h-14 px-6 py-2 text-lg',
+  sm: 'min-h-11 px-5 py-2 text-base',
 };
 
-const baseClass = `flex justify-center items-center shrink-0 gap-2.5 py-4 rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg active:scale-98 active:shadow-sm motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100
-              font-bold whitespace-nowrap`;
+const baseClass = `flex justify-center items-center shrink-0 gap-2.5 rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg active:scale-98 active:shadow-sm motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100
+              font-bold text-center text-balance`;
 
 export const Button: React.FC<ButtonProps> = ({
   text,
