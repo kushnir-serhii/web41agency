@@ -46,6 +46,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
     <div className="flex flex-col items-center w-full">
       <Hero />
       <About />
+      <WhyChoose content={getWhyChoose(locale)} />
       <Services content={getServices(locale)} featuresContent={getServiceFeatures(locale)} />
       {/* <TechStack /> */}
       <Portfolio
@@ -58,7 +59,6 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       />
       <HowItWorks content={getHowItWorks(locale)} />
       <Faq content={getFaq(locale)} />
-      <WhyChoose content={getWhyChoose(locale)} />
       <LetsTalk />
     </div>
   );

@@ -65,7 +65,9 @@ test.describe(`helpers (no browser) ${SPEC}`, () => {
       const key = Object.keys(nodeRequire.cache).find((k) => /legal[\\/]utils\.ts$/.test(k));
       expect(key, 'utils module should be loaded').toBeTruthy();
       delete nodeRequire.cache[key!];
-      const fresh = nodeRequire(key!) as { formatLegalDate: (iso: string, locale: string) => string };
+      const fresh = nodeRequire(key!) as {
+        formatLegalDate: (iso: string, locale: string) => string;
+      };
       expect(fresh.formatLegalDate('2026-09-18', 'en')).toBe('September 18, 2026');
     } finally {
       if (previousTz === undefined) delete process.env.TZ;
@@ -345,7 +347,7 @@ for (const { doc, path, otherTitle, otherPath, question } of docs) {
 
     test('Free Quote scrolls to the Lets talk form on the same page', tag, async ({ page }) => {
       await page.goto(path);
-      await page.getByRole('link', { name: 'Free Quote' }).first().click();
+      await page.getByRole('link', { name: 'Get a free quote' }).first().click();
       await expect(page).toHaveURL(new RegExp(`${path}#lets-talk$`));
       await expect(page.locator('#lets-talk')).toBeInViewport();
     });

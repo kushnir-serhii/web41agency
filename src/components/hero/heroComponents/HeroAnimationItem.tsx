@@ -5,7 +5,6 @@ import Image, { StaticImageData } from 'next/image';
 interface HeroAnimationItemProps {
   arraySrc: (string | StaticImageData)[];
   speed: number;
-  slideLabel: string;
   revers?: boolean;
   direction?: 'vertical' | 'horizontal';
 }
@@ -15,7 +14,6 @@ const SIZES = '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw';
 export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
   arraySrc,
   speed,
-  slideLabel,
   revers = false,
   direction = 'vertical',
 }) => {
@@ -46,11 +44,7 @@ export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
         }
       >
         {[false, true].map((isCopy) => (
-          <div
-            key={isCopy ? 'second' : 'first'}
-            className={groupClass}
-            aria-hidden={isCopy || undefined}
-          >
+          <div key={isCopy ? 'second' : 'first'} className={groupClass}>
             {arraySrc.map((src, index) => (
               <Image
                 key={index}
@@ -58,7 +52,7 @@ export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
                 width={308}
                 height={308}
                 sizes={SIZES}
-                alt={isCopy ? '' : `${slideLabel} ${index + 1}`}
+                alt=""
                 className="w-full aspect-square"
               />
             ))}

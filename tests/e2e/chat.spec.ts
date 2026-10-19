@@ -236,7 +236,7 @@ test.describe('chat limits, errors, retry, long chat and Stop', { tag: SPEC_TAGS
         "This chat is getting long. Start a new one, or get a free quote and we'll answer in detail.",
       ),
     ).toBeVisible();
-    await expect(dlg(page).getByRole('link', { name: 'Get a free quote →' })).toBeVisible();
+    await expect(dlg(page).getByRole('link', { name: 'Get a free quote' })).toBeVisible();
     await expect(input).toBeDisabled();
 
     await dlg(page).getByText('Start over', { exact: true }).click();
@@ -300,7 +300,7 @@ test.describe('chat handoff card', { tag: SPEC_TAGS }, () => {
     await ask(page, 'How much is a landing page?');
 
     await expect(log(page).getByText('Landing pages start from $100.')).toBeVisible();
-    const cta = dlg(page).getByRole('link', { name: 'Get a free quote →' });
+    const cta = dlg(page).getByRole('link', { name: 'Get a free quote' });
     await expect(cta).toBeVisible();
     await expect(page.getByText('[[HANDOFF]]')).toHaveCount(0);
     expect(await page.locator('body').innerText()).not.toContain('HANDOFF');
@@ -318,7 +318,7 @@ test.describe('chat handoff card', { tag: SPEC_TAGS }, () => {
     await mockAnswer(page, 'Landing pages start from $100.[[HANDOFF]]');
     await ask(page, 'How much is a landing page?');
 
-    const cta = dlg(page).getByRole('link', { name: 'Get a free quote →' });
+    const cta = dlg(page).getByRole('link', { name: 'Get a free quote' });
     await expect(cta).toBeVisible();
     await cta.click();
 
@@ -335,7 +335,7 @@ test.describe('chat handoff card', { tag: SPEC_TAGS }, () => {
 
     await expect(log(page).getByText('UI/UX design shapes how a product')).toBeVisible();
     await expect(dlg(page).getByText('Want an exact quote?')).toHaveCount(0);
-    await expect(dlg(page).getByRole('link', { name: 'Get a free quote →' })).toHaveCount(0);
+    await expect(dlg(page).getByRole('link', { name: 'Get a free quote' })).toHaveCount(0);
   });
 
   test('a token split across chunks is never visible', async ({ page }) => {
@@ -360,7 +360,7 @@ test.describe('chat handoff card', { tag: SPEC_TAGS }, () => {
     const during = await page.locator('body').innerText();
     expect(during).not.toContain('[[');
     expect(during).not.toContain('HAN');
-    await expect(dlg(page).getByRole('link', { name: 'Get a free quote →' })).toBeVisible();
+    await expect(dlg(page).getByRole('link', { name: 'Get a free quote' })).toBeVisible();
     const after = await page.locator('body').innerText();
     expect(after).not.toContain('[[');
     expect(after).not.toContain('HANDOFF');
@@ -576,7 +576,7 @@ test.describe('chat mobile, keyboard, reduced motion and print', { tag: SPEC_TAG
     expect((await overflow()).includes('hidden')).toBe(false);
   });
 
-  test('375 px: launcher never overlaps the header Free Quote button or lets-talk fields', async ({
+  test('375 px: launcher never overlaps the header free quote button or lets-talk fields', async ({
     page,
   }) => {
     await page.setViewportSize(MOBILE);
@@ -947,7 +947,7 @@ test.describe('acceptance: handoff card layout', { tag: SPEC_TAGS }, () => {
     await acOpen(page);
     await acAsk(page, 'How much is a Webflow site?');
     const answer = acLog(page).getByText('A Webflow site starts from $800.');
-    const cta = acDlg(page).getByRole('link', { name: 'Get a free quote →' });
+    const cta = acDlg(page).getByRole('link', { name: 'Get a free quote' });
     await expect(cta).toBeVisible();
     await expect(acDlg(page).getByText('Want an exact quote?')).toBeVisible();
     const card = acDlg(page).locator('div.rounded-2xl', { hasText: 'Want an exact quote?' }).last();
@@ -996,7 +996,7 @@ test.describe('acceptance: touch targets and font size', { tag: SPEC_TAGS }, () 
 
     // After a priced answer: handoff card button and the rest.
     await acAsk(page, 'How much is a landing page?');
-    await expect(acDlg(page).getByRole('link', { name: 'Get a free quote →' })).toBeVisible();
+    await expect(acDlg(page).getByRole('link', { name: 'Get a free quote' })).toBeVisible();
     expect(await undersized()).toEqual([]);
   });
 });
@@ -1138,7 +1138,7 @@ test.describe('chat in Ukrainian', { tag: UK_TAGS }, () => {
     await acMock(page, 'Лендінг від $100.[[HANDOFF]]');
     await ukInput(page).fill('Скільки коштує лендінг?');
     await ukInput(page).press('Enter');
-    const cta = acDlg(page).getByRole('link', { name: 'Безкоштовна оцінка →' });
+    const cta = acDlg(page).getByRole('link', { name: 'Отримати безкоштовну оцінку' });
     await expect(cta).toBeVisible();
     await expect(cta).toHaveAttribute('href', '/uk#lets-talk');
     await expect(page.getByText('[[HANDOFF]]')).toHaveCount(0);

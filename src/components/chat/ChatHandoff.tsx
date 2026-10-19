@@ -12,13 +12,14 @@ interface ChatHandoffProps {
 
 export const ChatHandoff: React.FC<ChatHandoffProps> = ({ onNavigate }) => {
   const t = useTranslations('Chat');
+  const tCta = useTranslations('Cta');
   const handleClick = useHandoffNavigate(onNavigate, 'handoff_card');
 
   return (
     <div className="flex flex-col items-start gap-3 rounded-2xl bg-black px-4 py-3 text-white">
       <p className="text-sm">{t('handoffLine')}</p>
       <Button
-        text={t('handoffCta')}
+        text={tCta('freeQuote')}
         btnType="accent"
         size="sm"
         href={`/${CONSULTATION_HREF}`}

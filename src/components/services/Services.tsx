@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { IconBadge } from '@/components/ui/IconBadge';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import type { IService, IServiceFeature } from '@/content/servicesContent';
 
 import { ServiceItem } from './servicesComponents/ServiceItem';
@@ -21,12 +23,10 @@ export const Services: React.FC<ServicesProps> = ({ content, featuresContent, hi
 
   return (
     <section
-      className={`w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8 ${hideTitle ? 'pt-16 lg:pt-24' : ''}`}
+      className={`w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8 ${hideTitle ? 'pt-16 lg:pt-24' : 'section-y'}`}
     >
       <div className={hideTitle ? 'sr-only' : 'w-full px-4 lg:px-20'}>
-        <h2 className="w-full text-4xl lg:text-6xl font-semibold text-left text-black">
-          {sectionTitle}
-        </h2>
+        <SectionHeading>{sectionTitle}</SectionHeading>
       </div>
 
       <ul className="flex flex-col items-start w-full">
@@ -40,15 +40,15 @@ export const Services: React.FC<ServicesProps> = ({ content, featuresContent, hi
         ))}
       </ul>
 
-      <div className="w-full flex flex-col gap-8 px-4 lg:px-20 pt-8 lg:pt-12">
+      <div className="w-full flex flex-col gap-8 px-4 lg:px-20 pt-2 lg:pt-12">
         <h3 className="text-2xl lg:text-4xl font-semibold text-left text-black">{featuresTitle}</h3>
-        <ul className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <ul className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-6">
           {features.map(({ title, description, iconPath }) => (
             <li
               key={title}
-              className="grid grid-cols-[auto_1fr] md:flex md:flex-col items-start gap-x-4 gap-y-1 md:gap-4 rounded-lg bg-bg_item p-4 md:p-6"
+              className="grid grid-cols-[auto_1fr] md:flex md:flex-col items-start gap-x-3 gap-y-0.5 md:gap-4 border-b border-black/10 py-3 last:border-b-0 md:rounded-lg md:border-0 md:bg-bg_item md:p-6"
             >
-              <span className="row-span-2 flex size-10 md:size-12 items-center justify-center rounded-full bg-accent">
+              <IconBadge size="sm" className="row-span-2">
                 <svg
                   aria-hidden
                   viewBox="0 0 24 24"
@@ -63,9 +63,9 @@ export const Services: React.FC<ServicesProps> = ({ content, featuresContent, hi
                 >
                   <path d={iconPath} />
                 </svg>
-              </span>
-              <h4 className="text-xl font-semibold text-left text-black">{title}</h4>
-              <p className="opacity-80 text-base text-left text-black">{description}</p>
+              </IconBadge>
+              <h4 className="text-lg md:text-xl font-semibold text-left text-black">{title}</h4>
+              <p className="opacity-80 text-sm md:text-base text-left text-black">{description}</p>
             </li>
           ))}
         </ul>

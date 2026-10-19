@@ -4,11 +4,11 @@ export type Locale = 'en' | 'uk';
 
 export interface ILocaleOption {
   readonly locale: Locale;
-  readonly short: 'EN' | 'UA';
+  readonly short: 'EN' | 'UK';
   readonly endonym: 'English' | 'Українська';
 }
 
 export const LOCALE_OPTIONS = [
   { locale: 'en', short: 'EN', endonym: 'English' },
-  { locale: 'uk', short: 'UA', endonym: 'Українська' },
+  { locale: 'uk', short: 'UK', endonym: 'Українська' },
 ] as const satisfies readonly ILocaleOption[];

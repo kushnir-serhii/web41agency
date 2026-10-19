@@ -20,36 +20,34 @@ interface HowItWorksStepCopy {
 interface HowItWorksSectionCopy {
   sectionTitle: string;
   ctaTitle: string;
-  ctaText: string;
 }
 
 export interface HowItWorksContent {
   sectionTitle: string;
   mainContent: { id: HowItWorksId; logoId: string; title: string; description: string }[];
-  cta: { title: string; text: string; href: string };
+  cta: { title: string; href: string };
 }
 
 const howItWorksSectionEn: HowItWorksSectionCopy = {
   sectionTitle: 'How it works',
   ctaTitle: 'Ready to start?',
-  ctaText: 'Free Consultation',
 };
 
 const howItWorksEn = {
   vision: {
-    title: 'Tell Us Your Vision',
+    title: 'Tell us what you need',
     description:
-      'Share your goals, ideas, and requirements. We’ll discuss whether you need a fully custom-coded solution or a fast, scalable Webflow site.',
+      'Share your goals and ideas. We listen, ask the right questions, and recommend the simplest option that fits: a quick Webflow site or a custom build.',
   },
   build: {
-    title: 'We Build & Iterate',
+    title: 'We build, you review',
     description:
-      'Our team designs and develops your website or web app, keeping you in the loop with regular updates and iterations.',
+      'We design and develop your website or web app, and show you progress along the way so nothing comes as a surprise.',
   },
   launch: {
-    title: 'Launch & Grow',
+    title: 'Launch and grow',
     description:
-      'We deliver a high-performance, scalable solution, ensuring seamless deployment and providing support to help your business thrive.',
+      'We launch a fast site or app that is ready to grow, and stay available for support after it goes live.',
   },
 } satisfies Record<HowItWorksId, HowItWorksStepCopy>;
 
@@ -58,7 +56,6 @@ const howItWorksSectionCopy = {
   uk: {
     sectionTitle: 'Як це працює',
     ctaTitle: 'Готові почати?',
-    ctaText: 'Безкоштовна оцінка',
   },
 } satisfies Record<Locale, HowItWorksSectionCopy>;
 
@@ -66,28 +63,28 @@ const howItWorksCopy = {
   en: howItWorksEn,
   uk: {
     vision: {
-      title: 'Розкажіть про своє бачення',
+      title: 'Розкажіть, що вам потрібно',
       description:
-        'Поділіться цілями, ідеями та вимогами. Ми обговоримо, чи потрібне вам повністю індивідуальне рішення на коді, чи швидкий масштабований сайт на Webflow.',
+        'Поділіться цілями та ідеями. Ми вислухаємо, поставимо потрібні запитання й запропонуємо найпростіший варіант, який підходить: швидкий сайт на Webflow або індивідуальну розробку.',
     },
     build: {
-      title: 'Створюємо та вдосконалюємо',
+      title: 'Робимо, а ви дивитесь',
       description:
-        'Наша команда проєктує й розробляє ваш сайт або вебзастосунок, регулярно інформуючи вас про оновлення та ітерації.',
+        'Ми проєктуємо й розробляємо ваш сайт або вебзастосунок і показуємо результат по ходу роботи, щоб жодна несподіванка не зіпсувала запуск.',
     },
     launch: {
       title: 'Запуск і зростання',
       description:
-        'Ми передаємо продуктивне, масштабоване рішення, забезпечуємо плавний запуск і підтримку, щоб ваш бізнес розвивався.',
+        'Запускаємо швидкий сайт чи застосунок, готовий до росту, і залишаємося на зв’язку для підтримки після запуску.',
     },
   },
 } satisfies Record<Locale, Record<HowItWorksId, HowItWorksStepCopy>>;
 
 export function getHowItWorks(locale: Locale): HowItWorksContent {
-  const { sectionTitle, ctaTitle, ctaText } = howItWorksSectionCopy[locale];
+  const { sectionTitle, ctaTitle } = howItWorksSectionCopy[locale];
   return {
     sectionTitle,
     mainContent: howItWorksBase.map((base) => ({ ...base, ...howItWorksCopy[locale][base.id] })),
-    cta: { title: ctaTitle, text: ctaText, href: CONSULTATION_HREF },
+    cta: { title: ctaTitle, href: CONSULTATION_HREF },
   };
 }

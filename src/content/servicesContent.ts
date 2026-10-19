@@ -31,35 +31,35 @@ const servicesSectionEn: ServicesSectionCopy = { sectionTitle: 'Services' };
 
 const servicesEn = {
   'landing-page': {
-    title: 'Landing Page',
+    title: 'Landing page',
     description:
-      'A focused one-page site that turns visitors into leads — fast to launch, easy to update.',
+      'A focused one-page site that turns visitors into leads. Fast to launch, easy to update.',
     timeline: '3–7 days',
   },
   'js-development': {
-    title: 'JS Development',
+    title: 'Custom web apps',
     description:
-      'Custom-built websites and web apps with pure code. We develop high-performance, scalable solutions using JS and modern frameworks.',
+      'Websites and web apps built from scratch around your needs. Fast, scalable and ready to grow with your business.',
     // TODO(owner): confirm timeline
     timeline: '4–8 weeks, scope-dependent',
   },
   'low-code': {
-    title: 'Low Code',
+    title: 'Webflow sites',
     description:
-      'Fast, flexible Webflow builds — perfect when you need to launch quickly with a site your team can manage without a developer.',
+      'Fast, flexible sites on Webflow. A good fit when you need to launch quickly and want your team to manage the site without a developer.',
     timeline: '2–4 weeks',
   },
   'api-integrations': {
-    title: 'API Integrations',
+    title: 'Integrations and AI',
     description:
-      'We connect your product to payments, CRMs, AI services and any third-party data your business runs on.',
+      'We connect your site or product to payments, CRMs and the data your business runs on, and add AI features with any provider: OpenAI, Anthropic, Google and others.',
     // TODO(owner): confirm timeline
     timeline: '1–3 weeks, scope-dependent',
   },
   'ui-ux-design': {
-    title: 'UI/UX Design',
+    title: 'Website and app design',
     description:
-      'Interfaces designed around your users — from research and wireframes to a polished, production-ready design system.',
+      'Interfaces designed around your users, from research and wireframes to a polished design system ready for development.',
     // TODO(owner): confirm timeline
     timeline: '2–4 weeks',
   },
@@ -83,33 +83,33 @@ const servicesCopy = {
     'landing-page': {
       title: 'Лендінг',
       description:
-        'Сфокусований односторінковий сайт, що перетворює відвідувачів на клієнтів — швидко запускається і легко оновлюється.',
+        'Сфокусований односторінковий сайт, що перетворює відвідувачів на клієнтів. Швидко запускається і легко оновлюється.',
       timeline: '3–7 днів',
     },
     'js-development': {
-      title: 'JS-розробка',
+      title: 'Індивідуальні вебзастосунки',
       description:
-        'Сайти та вебзастосунки на чистому коді, створені під ваші задачі. Розробляємо продуктивні, масштабовані рішення на JS і сучасних фреймворках.',
+        'Сайти та вебзастосунки, створені з нуля під ваші задачі. Швидкі, масштабовані й готові рости разом із вашим бізнесом.',
       // TODO(owner): confirm timeline
       timeline: '4–8 тижнів, залежно від обсягу',
     },
     'low-code': {
-      title: 'Low Code',
+      title: 'Сайти на Webflow',
       description:
-        'Швидкі та гнучкі сайти на Webflow — ідеальний варіант, коли потрібно швидко запуститися із сайтом, яким ваша команда керуватиме без розробника.',
+        'Швидкі та гнучкі сайти на Webflow. Добрий вибір, коли потрібно швидко запуститися і щоб команда керувала сайтом без розробника.',
       timeline: '2–4 тижні',
     },
     'api-integrations': {
-      title: 'API-інтеграції',
+      title: 'Інтеграції та AI',
       description:
-        'Підключаємо ваш продукт до платежів, CRM, AI-сервісів і будь-яких сторонніх даних, на яких працює ваш бізнес.',
+        'Підключаємо ваш сайт чи продукт до платежів, CRM і даних, на яких працює ваш бізнес, та додаємо AI-функції з будь-яким провайдером: OpenAI, Anthropic, Google та іншими.',
       // TODO(owner): confirm timeline
       timeline: '1–3 тижні, залежно від обсягу',
     },
     'ui-ux-design': {
-      title: 'UI/UX-дизайн',
+      title: 'Дизайн сайтів і застосунків',
       description:
-        'Інтерфейси, створені навколо ваших користувачів — від досліджень і вайрфреймів до продуманої дизайн-системи, готової до розробки.',
+        'Інтерфейси, створені навколо ваших користувачів: від досліджень і вайрфреймів до продуманої дизайн-системи, готової до розробки.',
       // TODO(owner): confirm timeline
       timeline: '2–4 тижні',
     },
@@ -210,8 +210,8 @@ const serviceFeaturesEn = {
 } satisfies Record<ServiceFeatureId, ServiceFeatureCopy>;
 
 const serviceFeaturesSectionCopy = {
-  en: { title: "What's included" },
-  uk: { title: 'Що входить у вартість' },
+  en: { title: 'Every landing page includes' },
+  uk: { title: 'У кожен лендінг входить' },
 } satisfies Record<Locale, { title: string }>;
 
 const serviceFeaturesCopy = {
@@ -246,7 +246,7 @@ const serviceFeaturesCopy = {
     },
     'free-ssl': {
       title: 'Безкоштовний SSL-сертифікат',
-      description: 'Безпечне HTTPS-з’єднання входить у вартість.',
+      description: 'Безпечне HTTPS-з’єднання вже включено.',
     },
     'video-walkthrough': {
       title: 'Відеоінструкція',
