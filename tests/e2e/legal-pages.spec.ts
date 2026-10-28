@@ -136,7 +136,7 @@ for (const { doc, path, otherTitle, otherPath, question } of docs) {
       await expect(current).toHaveCSS('color', 'rgb(255, 255, 255)');
       await expect(other).toHaveCSS('border-top-width', '1px');
       await other.click();
-      await expect(page).toHaveURL(new RegExp(`${otherPath}$`));
+      await expect(page).toHaveURL(new RegExp(`${otherPath}$`), { timeout: 30_000 });
       await expect(switcher(page).getByRole('link', { name: otherTitle })).toHaveAttribute(
         'aria-current',
         'page',

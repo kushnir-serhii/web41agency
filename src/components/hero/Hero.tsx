@@ -9,7 +9,11 @@ export const Hero = async () => {
 
   return (
     <PageHero
-      heading={[{ text: t('headingLead'), muted: true }, { text: t('headingMain') }]}
+      heading={[
+        { text: t('headingLead'), muted: true },
+        { text: t('headingMain') },
+        { text: t('headingTail'), muted: true },
+      ]}
       description={t('description')}
       secondaryButton={t('secondaryButton')}
     >

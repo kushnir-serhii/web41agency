@@ -2,14 +2,14 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --accent-yellow: #dbff04;
-  --bg_item: #f9f9f9;
-  --dark_text-hover: #000000;
+  --foreground: #000000;
 }
 
+/* Old token names -> DESIGN.md names:
+   accent = signal-lime, light_text = paper-white, dark_text = graphite,
+   bg_dark / bg_hero = ink-black, bg_item = mist-grey, bg_header = frost-grey,
+   muted_text = slate-mute, placeholder = placeholder-grey. */
 @theme inline {
-  /* --color-background: var(--background); */
   --color-accent: #dbff04;
   --color-light_text: #ffffff;
   --color-dark_text: #333333;
@@ -19,16 +19,13 @@
   --color-bg_item: #f9f9f9;
   --color-bg_header: #ededed;
   --color-muted_text: #656973;
+  --color-placeholder: #6b6b6b;
   --shadow-chat: 0 24px 64px -12px rgb(0 0 0 / 0.25);
-
-  /* --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono); */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Display-size headings carry single long words (uk "конфіденційності", en "Development")
@@ -53,10 +50,10 @@ body {
 .gradient-techstack_slider {
   background: linear-gradient(
     90deg,
-    #fff 3.76%,
-    rgba(255, 255, 255, 0) 8.67%,
-    rgba(255, 255, 255, 0) 90.53%,
-    #fff 96.75%
+    var(--color-light_text) 3.76%,
+    transparent 8.67%,
+    transparent 90.53%,
+    var(--color-light_text) 96.75%
   );
 }
 
@@ -135,22 +132,22 @@ body {
    offset inside clipped containers) can still adjust it. */
 @layer base {
   :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-    outline: 2px solid #000;
+    outline: 2px solid var(--color-bg_dark);
     outline-offset: 2px;
   }
 
   footer :focus-visible {
-    outline-color: #fff;
+    outline-color: var(--color-light_text);
   }
 
   ::selection {
-    background: #dbff04;
-    color: #000;
+    background: var(--color-accent);
+    color: var(--color-bg_dark);
   }
 
   input,
   textarea {
-    caret-color: #000;
+    caret-color: var(--color-bg_dark);
   }
 }
 

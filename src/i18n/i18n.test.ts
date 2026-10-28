@@ -4,7 +4,7 @@
  * 2.4 uk legal date format ............. formatLegalDate, legal lastUpdated parity, prevailing note
  * 2.4/2.7 titles, previews, hreflang ... buildPageMetadata, localeUrl, localeLanguages
  * 2.7 site map lists both languages .... sitemap()
- * 2.3 first-visit language ............. pickLocaleFromAcceptLanguage, resolveHomeRedirect, middleware
+ * 2.3 first-visit language ............. pickLocaleFromAcceptLanguage, resolveHomeRedirect, proxy
  * MANUAL: owner proofreading of the Ukrainian copy (2.4 quality).
  */
 import { NextRequest, NextResponse } from 'next/server';
@@ -202,10 +202,10 @@ describe(`${TAGS} language detection`, () => {
   );
 });
 
-describe(`${TAGS} middleware`, () => {
+describe(`${TAGS} proxy`, () => {
   const run = async (path: string, headers: Record<string, string> = {}) => {
-    const { default: middleware } = await import('@/middleware');
-    return middleware(new NextRequest(`http://localhost${path}`, { headers }));
+    const { default: proxy } = await import('@/proxy');
+    return proxy(new NextRequest(`http://localhost${path}`, { headers }));
   };
 
   it('redirects / to /uk for a Ukrainian browser, with Vary and no cookie set', async () => {

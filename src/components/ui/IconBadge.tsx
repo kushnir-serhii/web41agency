@@ -12,12 +12,11 @@ const sizeClass = {
   lg: 'size-20',
 };
 
-/* Outline treatment: lime is reserved for primary actions and the hero disc. */
 export const IconBadge: React.FC<IconBadgeProps> = ({ size = 'md', children, className }) => (
   <span
     aria-hidden="true"
     className={cn(
-      'flex shrink-0 items-center justify-center rounded-full border border-black/15 bg-white text-black',
+      'flex shrink-0 items-center justify-center rounded-full bg-accent text-black',
       sizeClass[size],
       className,
     )}

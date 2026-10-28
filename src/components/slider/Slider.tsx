@@ -2,6 +2,8 @@ import React from 'react';
 
 import { cn } from '@/utils/cn';
 
+import { marqueePausedClass } from './marqueePausedClass';
+
 interface MySliderProps<T> {
   contentArray: T[];
   slide: (item: T, index: number) => React.ReactNode;
@@ -26,7 +28,7 @@ export const MySlider = <T,>({
 }: MySliderProps<T>) => (
   <div className={cn('relative w-full overflow-hidden', className)}>
     <div
-      className="flex w-max animate-marquee-horizontal"
+      className={cn('flex w-max animate-marquee-horizontal', marqueePausedClass)}
       style={
         {
           '--marquee-duration': `${contentArray.length * secondsPerItem}s`,

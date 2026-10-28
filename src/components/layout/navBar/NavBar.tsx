@@ -17,7 +17,7 @@ export const NavBar: React.FC<NavBarProps> = ({ isFooter }) => {
   const tNav = useTranslations('Nav');
   const tCta = useTranslations('Cta');
   return (
-    <ul className={`flex justify-between items-center ${isFooter ? 'flex-col' : 'w-full'}`}>
+    <ul className={`flex justify-between items-center ${isFooter ? 'flex-col items-start' : 'w-full'}`}>
       {navBarArray.map(({ href, labelKey }) => (
         <li key={href}>
           <NavBarItem

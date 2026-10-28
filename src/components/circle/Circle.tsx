@@ -21,8 +21,6 @@ interface CircleProps {
   /* Entrance: the circle rises this many px from below on mount. 0 disables it. */
   riseFrom?: number;
   className?: string;
-  title?: string;
-  description?: string;
   children?: React.ReactNode;
 }
 
@@ -35,8 +33,6 @@ export const Circle: React.FC<CircleProps> = ({
   speed = 700,
   riseFrom = 0,
   className,
-  title,
-  description,
   children,
 }) => {
   // useReducedMotion is null on the server, so gate it behind mount: the first
@@ -71,11 +67,7 @@ export const Circle: React.FC<CircleProps> = ({
           className="size-full bg-accent rounded-full flex flex-col justify-center items-center"
           style={reduceMotion ? { x: stillX, y: stillY } : { x, y }}
         >
-          <div className="flex flex-col justify-center items-center text-center">
-            {title && <h4>{title}</h4>}
-            {description && <p>{description}</p>}
-            {children}
-          </div>
+          <div className="flex flex-col justify-center items-center text-center">{children}</div>
         </motion.div>
       </motion.div>
     </MotionConfig>

@@ -13,7 +13,7 @@ import { CONTACT_EMAIL } from '@/utils/site';
 import { RequiredMark } from './RequiredMark';
 
 const inputClass =
-  'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-[#6b6b6b] outline-none focus-visible:ring-2 focus-visible:ring-black aria-invalid:ring-2 aria-invalid:ring-black';
+  'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-placeholder outline-none focus-visible:ring-2 focus-visible:ring-black aria-invalid:ring-2 aria-invalid:ring-black';
 
 const labelClass = 'text-base font-medium text-black';
 
@@ -181,7 +181,7 @@ export const LetsTalk = () => {
             onClick={() =>
               trackEvent({ name: 'email_click', props: { location: 'lets_talk_button', locale } })
             }
-            className="hidden lg:flex justify-center items-center w-20 h-20 rounded-full bg-accent border-4 border-bg_item transition-transform hover:scale-105"
+            className="hidden lg:flex justify-center items-center w-20 h-20 rounded-full bg-accent border-4 border-bg_item transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
           >
             <Icon id="icon-send" width={32} height={32} />
           </a>

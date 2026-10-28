@@ -7,7 +7,7 @@ import { routing } from './i18n/routing';
 const handleI18nRouting = createMiddleware(routing);
 const VARY_VALUE = 'Accept-Language, Cookie';
 
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (pathname !== '/') return handleI18nRouting(request);
 
