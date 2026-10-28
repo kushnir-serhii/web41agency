@@ -25,24 +25,26 @@ const facts: IFact[] = [
   },
   {
     id: 'ownership',
-    accent: false,
+    accent: true,
     position: 'lg:left-[8%] lg:top-[10.2%]',
   },
   {
     id: 'speed',
     accent: true,
-    position: 'lg:left-[35%] lg:top-[36.7%]',
-  },
-  {
-    id: 'industries',
-    accent: false,
-    position: 'lg:left-[70%] lg:top-[63.3%]',
+    // position: 'lg:left-[35%] lg:top-[36.7%]',
+    position: 'lg:left-[80%] lg:top-[53.3%]',
     mobile: 'sm:col-start-2 lg:col-start-auto',
   },
+  // {
+  //   id: 'industries',
+  //   accent: false,
+  //   position: 'lg:left-[70%] lg:top-[63.3%]',
+  //   mobile: 'sm:col-start-2 lg:col-start-auto',
+  // },
   {
     id: 'response',
     accent: false,
-    position: 'lg:left-[2%] lg:top-[67.3%]',
+    position: 'lg:left-[12%] lg:top-[67.3%]',
     mobile: 'col-start-2 sm:col-start-auto',
   },
 ];

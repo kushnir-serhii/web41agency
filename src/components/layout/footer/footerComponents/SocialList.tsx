@@ -15,7 +15,7 @@ export const SocialList: React.FC = async () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t('instagram')}
-          className="flex size-11 items-center justify-center rounded-full"
+          className="flex size-11 items-center justify-center rounded-full text-white transition-colors duration-200 ease-in-out hover:text-accent focus-visible:text-accent"
         >
           <Icon id="icon-instagram" width={34} height={34} />
         </Link>
@@ -26,7 +26,7 @@ export const SocialList: React.FC = async () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t('dribbble')}
-          className="flex size-11 items-center justify-center rounded-full"
+          className="flex size-11 items-center justify-center rounded-full text-white transition-colors duration-200 ease-in-out hover:text-accent focus-visible:text-accent"
         >
           <Icon id="icon-dribbble" width={34} height={34} />
         </Link>
@@ -35,7 +35,7 @@ export const SocialList: React.FC = async () => {
         <Link
           href={`mailto:${CONTACT_EMAIL}`}
           aria-label={t('email')}
-          className="flex size-11 items-center justify-center rounded-full"
+          className="flex size-11 items-center justify-center rounded-full text-white transition-colors duration-200 ease-in-out hover:text-accent focus-visible:text-accent"
         >
           <Icon id="icon-email" width={34} height={34} />
         </Link>

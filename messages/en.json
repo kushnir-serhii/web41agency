@@ -75,8 +75,9 @@
     }
   },
   "Hero": {
-    "headingLead": "Fast sites,",
-    "headingMain": "built around your business",
+    "headingLead": "Custom",
+    "headingMain": "Websites & Web Apps - ",
+    "headingTail": "Built to Perform",
     "description": "A small senior team that listens first, then builds fast. Landing pages in 3–7 days, outdated sites rebuilt, AI-powered products shipped end to end.",
     "secondaryButton": "View Projects"
   },

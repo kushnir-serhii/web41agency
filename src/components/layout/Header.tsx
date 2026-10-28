@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { NavBar } from '@/components/layout/navBar/NavBar';
@@ -29,8 +29,38 @@ export const Header: React.FC = () => {
     };
   }, [isOpen]);
 
+  const rootRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // A route change closes the menu (hash links like #lets-talk close via their own onClick).
+  useEffect(() => setIsOpen(false), [pathname]);
+
+  // Open: focus the first link. Escape closes and returns focus to the toggle;
+  // a click outside the header closes without stealing focus.
+  useEffect(() => {
+    if (!isOpen) return;
+    menuRef.current?.querySelector<HTMLElement>('a, button')?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setIsOpen(false);
+      toggleRef.current?.focus();
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setIsOpen(false);
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="relative w-full px-2 lg:px-20 max-w-[1440px] mx-auto">
+    <div ref={rootRef} className="relative w-full px-2 lg:px-20 max-w-[1440px] mx-auto">
       <div className="flex justify-between items-center max-w-[1280px] w-full mx-auto pl-4 pr-2 py-2 rounded-[100px] bg-bg_header/30 backdrop-blur-[100px]">
         <Logo />
 
@@ -42,6 +72,7 @@ export const Header: React.FC = () => {
 
         {/* Mobile hamburger */}
         <button
+          ref={toggleRef}
           type="button"
           aria-label={isOpen ? tHeader('closeMenu') : tHeader('openMenu')}
           aria-expanded={isOpen}
@@ -63,6 +94,7 @@ export const Header: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={menuRef}
             id="mobile-menu"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}

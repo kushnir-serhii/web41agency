@@ -1,19 +1,25 @@
-import { FlatCompat } from '@eslint/eslintrc';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const compat = new FlatCompat({ baseDirectory: __dirname });
 
 const eslintConfig = [
-  { ignores: ['.next/**', '.next-e2e/**', 'node_modules/**', 'next-env.d.ts', 'tools/**'] },
+  {
+    ignores: [
+      '.next/**',
+      '.next-e2e/**',
+      'node_modules/**',
+      'next-env.d.ts',
+      'tools/**',
+      '.claude/**',
+      '.awos-tune/**',
+    ],
+  },
 
   // Extend Next.js recommended rules
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  ...nextVitals,
+  ...nextTs,
 
   // Turn off core rules that conflict with Prettier
   prettierConfig,

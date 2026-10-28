@@ -11,12 +11,12 @@ export const NavBarItem: React.FC<NavBarItemProps> = ({ link, text, isActive, is
     <Link
       href={link}
       className={`group flex justify-center items-center gap-2 text-base  transition-colors duration-200 ease-in-out
-          min-h-11 py-2 ${isFooter ? 'px-4 text-light_text' : 'px-1 xl:px-4 text-dark_text hover:text-dark_text-hover'}`}
+          min-h-11 py-2 ${isFooter ? 'px-4 text-light_text hover:text-accent' : 'px-1 xl:px-4 text-dark_text hover:text-dark_text-hover'}`}
     >
       <div
         className={`size-2 rounded-full transition-all duration-200  ${
           isActive
-            ? `flex ${isFooter ? 'bg-light_text' : 'bg-dark_text group-hover:bg-dark_text-hover'}`
+            ? `flex ${isFooter ? 'bg-light_text group-hover:bg-accent' : 'bg-dark_text group-hover:bg-dark_text-hover'}`
             : 'bg-transparent'
         }`}
       />

@@ -67,9 +67,7 @@ export const Circle: React.FC<CircleProps> = ({
           className="size-full bg-accent rounded-full flex flex-col justify-center items-center"
           style={reduceMotion ? { x: stillX, y: stillY } : { x, y }}
         >
-          <div className="flex flex-col justify-center items-center text-center">
-            {children}
-          </div>
+          <div className="flex flex-col justify-center items-center text-center">{children}</div>
         </motion.div>
       </motion.div>
     </MotionConfig>

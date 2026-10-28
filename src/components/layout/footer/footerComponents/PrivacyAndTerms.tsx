@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { SITE_NAME } from '@/utils/site';
 
 const linkClass =
-  'flex min-h-11 items-center justify-center flex-grow-0 flex-shrink-0 text-base text-center text-bg_item hover:underline';
+  'flex min-h-11 items-center justify-center flex-grow-0 flex-shrink-0 text-base text-center text-bg_item transition-colors duration-200 ease-in-out hover:text-accent hover:underline underline-offset-4';
 
 export const PrivacyAndTerms: React.FC = async () => {
   const t = await getTranslations('Footer');
