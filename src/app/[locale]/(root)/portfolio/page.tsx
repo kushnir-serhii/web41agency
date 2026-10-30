@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { About } from '@/components/about/About';
 import { LetsTalk } from '@/components/letsTalk/LetsTalk';
@@ -27,7 +27,6 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 
 export default async function PortfolioPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
-  setRequestLocale(locale);
   const t = await getTranslations('PortfolioPage');
 
   return (

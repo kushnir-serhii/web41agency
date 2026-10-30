@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { LetsTalk } from '@/components/letsTalk/LetsTalk';
 import { PageHero } from '@/components/pageHero/PageHero';
@@ -26,9 +26,7 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 // TODO(content): messengers are a placeholder below — replace with the real links
 // (and remove this comment) once they're finalized. Web41 has no physical address,
 // so there is deliberately no Address row.
-export default async function ContactsPage({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+export default async function ContactsPage() {
   const t = await getTranslations('ContactsPage');
 
   return (

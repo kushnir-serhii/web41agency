@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { About } from '@/components/about/About';
 import { LetsTalk } from '@/components/letsTalk/LetsTalk';
@@ -26,7 +26,6 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 
 export default async function AboutUsPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
-  setRequestLocale(locale);
 
   return (
     <div className="flex flex-col items-center w-full">

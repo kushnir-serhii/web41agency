@@ -33,6 +33,8 @@ import projectPortfolioDesign from './projects/portfolio-design.webp';
 import projectPortfolioDev from './projects/portfolio-dev.webp';
 import projectQa from './projects/qa.webp';
 import projectReelReveal from './projects/reel-reveal.webp';
+import reelRevealPhones from './projects/reel-reveal_phones.webp';
+import reelRevealSecond from './projects/reel-reveal_second_x1.5.webp';
 
 // Named exports for individual images
 export {
@@ -70,4 +72,6 @@ export {
   projectPortfolioDev,
   projectQa,
   projectReelReveal,
+  reelRevealPhones,
+  reelRevealSecond,
 };
