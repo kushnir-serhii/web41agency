@@ -21,7 +21,7 @@
     "groupLabel": "Language selection"
   },
   "Cta": {
-    "freeQuote": "Get a free quote",
+    "freeQuote": "Free Consultation",
     "viewProjects": "View Projects"
   },
   "Common": {
@@ -78,7 +78,7 @@
     "headingLead": "Custom",
     "headingMain": "Websites & Web Apps - ",
     "headingTail": "Built to Perform",
-    "description": "A small senior team that listens first, then builds fast. Landing pages in 3–7 days, outdated sites rebuilt, AI-powered products shipped end to end.",
+    "description": "We build websites, web applications, and AI solutions that help businesses attract customers, automate processes, and grow. From idea to launch — without unnecessary complexity.",
     "secondaryButton": "View Projects"
   },
   "About": {
@@ -110,7 +110,7 @@
     "timeline": "Timeline: {value}"
   },
   "ServicesPage": {
-    "headingMain": "Services",
+    "headingMain": "Services\n",
     "headingMuted": "Built to Ship",
     "description": "From a single landing page to a full custom build — pick what you need below, or get in touch and we'll scope it together."
   },

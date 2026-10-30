@@ -23,7 +23,7 @@ export const Services: React.FC<ServicesProps> = ({ content, featuresContent, hi
 
   return (
     <section
-      className={`w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8 ${hideTitle ? 'pt-16 lg:pt-24' : 'section-y'}`}
+      className={`w-full max-w-[1440px] mx-auto flex flex-col items-start gap-8 ${hideTitle ? 'pt-4 lg:pt-6' : 'section-y'}`}
     >
       <div className={hideTitle ? 'sr-only' : 'w-full px-4 lg:px-20'}>
         <SectionHeading>{sectionTitle}</SectionHeading>

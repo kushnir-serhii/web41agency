@@ -9,6 +9,8 @@ interface HeroAnimationItemProps {
   speed: number;
   revers?: boolean;
   direction?: 'vertical' | 'horizontal';
+  /** Images of the first copy loaded eagerly (the ones visible on first paint). */
+  eagerCount?: number;
 }
 
 const SIZES = '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw';
@@ -18,6 +20,7 @@ export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
   speed,
   revers = false,
   direction = 'vertical',
+  eagerCount = 0,
 }) => {
   const isVertical = direction === 'vertical';
 
@@ -55,7 +58,7 @@ export const HeroAnimationItem: React.FC<HeroAnimationItemProps> = ({
                 height={308}
                 sizes={SIZES}
                 alt=""
-                loading={isCopy ? 'lazy' : 'eager'}
+                loading={!isCopy && index < eagerCount ? 'eager' : 'lazy'}
                 className="w-full aspect-square"
               />
             ))}
