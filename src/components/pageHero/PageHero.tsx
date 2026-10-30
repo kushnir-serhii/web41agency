@@ -54,7 +54,7 @@ export const PageHero = async ({
       {/* Desktop circle: rests top-left, behind the first heading word. */}
       <Circle
         size={320}
-        // top={-112}
+        top={-90}
         left="max(0px, calc(50% - 708px))"
         startX={0}
         startY={160}
@@ -64,7 +64,7 @@ export const PageHero = async ({
       />
 
       <div className="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row items-start lg:items-center lg:justify-between px-4 lg:px-20 pt-[60px] lg:pt-25 pb-8 lg:pb-14 gap-6 lg:gap-12 overflow-hidden">
-        <h1 className="w-full min-w-0 lg:max-w-[760px] text-[clamp(2.25rem,10.5vw,3.75rem)] md:text-[60px] lg:text-[clamp(4rem,6.5vw,5.5rem)] font-bold leading-[1.08] lg:leading-tight text-left">
+        <h1 className="w-full min-w-0 lg:max-w-[760px] text-[clamp(2.25rem,10.5vw,3.75rem)] md:text-[60px] lg:text-[clamp(4rem,6.5vw,5.5rem)] font-bold leading-[1.08] lg:leading-tight text-left whitespace-pre-line">
           {heading.map(({ text, muted }, index) => (
             <span key={index} className={muted ? 'text-muted_text' : 'text-black'}>
               {index > 0 ? ' ' : ''}
