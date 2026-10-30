@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 
 import { ChatLoader } from '@/components/chat/ChatLoader';
 import { Footer } from '@/components/layout/footer/Footer';
@@ -106,7 +106,6 @@ export default async function LocaleLayout({
 }>) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
-  setRequestLocale(locale);
 
   const messages = await getMessages();
   const tMeta = await getTranslations({ locale, namespace: 'Meta.default' });

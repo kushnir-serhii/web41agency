@@ -22,6 +22,8 @@ import {
   projectPortfolioDev,
   projectQa,
   projectReelReveal,
+  reelRevealPhones,
+  reelRevealSecond,
 } from '../../public/images';
 import {
   type CaseStudySlug,
@@ -122,6 +124,7 @@ const caseStudyBase = {
       'Stripe',
     ],
     liveUrl: 'https://www.reel-reveal.club/',
+    gallery: [reelRevealPhones, reelRevealSecond],
   },
   /* Source: serhii-k_stack projects.ts (calmisu). */
   calmisu: {

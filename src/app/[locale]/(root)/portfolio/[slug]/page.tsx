@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { CaseBlocks } from '@/components/caseStudy/CaseBlocks';
 import { CaseCta } from '@/components/caseStudy/CaseCta';
@@ -46,7 +46,6 @@ export const generateMetadata = async ({ params }: CasePageProps): Promise<Metad
 
 export default async function CaseStudyPage({ params }: CasePageProps) {
   const { locale, slug } = await params;
-  setRequestLocale(locale);
   const caseStudy = getCaseStudy(slug, locale);
 
   if (!caseStudy) notFound();

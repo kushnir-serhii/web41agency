@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { setRequestLocale } from 'next-intl/server';
 
 import { LegalPage } from '@/components/legal';
 import { getLegalDocument } from '@/content/legal';
@@ -22,7 +21,6 @@ export default async function PrivacyPolicyPage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
 
   return <LegalPage doc={getLegalDocument('privacy-policy', locale)} locale={locale} />;
 }

@@ -43,15 +43,15 @@
   "Meta": {
     "default": {
       "title": "Web41 Agency: Fast Websites and AI-Powered Web Apps",
-      "description": "We rebuild slow, outdated business websites and build new sites, landing pages and AI-powered web apps. A small senior team: landing pages go live in 3–7 days."
+      "description": "We design and build websites and web apps with AI built in, from landing pages to full products for your business. Landing pages go live in 3–7 days."
     },
     "home": {
       "title": "Web41 Agency: Fast Websites and AI-Powered Web Apps",
-      "description": "We rebuild slow, outdated business websites and build new sites, landing pages and AI-powered web apps. A small senior team: landing pages go live in 3–7 days."
+      "description": "We design and build websites and web apps with AI built in, from landing pages to full products for your business. Landing pages go live in 3–7 days."
     },
     "aboutUs": {
       "title": "About Us",
-      "description": "Web41 Agency is a small senior team that builds fast, modern websites and web apps for businesses and founders: design, development and launch, without the agency overhead."
+      "description": "Web41 Agency builds fast, modern websites and web apps with AI for businesses and founders: design, development and launch in one place."
     },
     "services": {
       "title": "Services",
@@ -75,10 +75,10 @@
     }
   },
   "Hero": {
-    "headingLead": "Custom",
-    "headingMain": "Websites & Web Apps - ",
-    "headingTail": "Built to Perform",
-    "description": "We build websites, web applications, and AI solutions that help businesses attract customers, automate processes, and grow. From idea to launch — without unnecessary complexity.",
+    "headingLead": "Building",
+    "headingMain": "Digital Products",
+    "headingTail": "for Your Growth",
+    "description": "Websites & web apps with AI built in. Designed, built and launched for your business.",
     "secondaryButton": "View Projects"
   },
   "About": {
