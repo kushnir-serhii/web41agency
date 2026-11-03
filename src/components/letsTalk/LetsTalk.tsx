@@ -13,7 +13,7 @@ import { CONTACT_EMAIL } from '@/utils/site';
 import { RequiredMark } from './RequiredMark';
 
 const inputClass =
-  'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-placeholder outline-none focus-visible:ring-2 focus-visible:ring-black aria-invalid:ring-2 aria-invalid:ring-black';
+  'w-full h-16 px-6 py-[18px] rounded bg-white text-lg text-black placeholder:text-muted outline-none focus-visible:ring-2 focus-visible:ring-black aria-invalid:ring-2 aria-invalid:ring-black';
 
 const labelClass = 'text-base font-medium text-black';
 
@@ -162,7 +162,7 @@ export const LetsTalk = () => {
       tabIndex={-1}
       className="scroll-mt-24 outline-none w-full max-w-[1440px] mx-auto px-4 lg:px-20 section-y"
     >
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 overflow-hidden p-6 lg:p-12 rounded-lg bg-bg_item">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 overflow-hidden p-6 lg:p-12 rounded-lg bg-mist">
         <div className="flex flex-col items-start w-full lg:w-[369px] gap-6">
           <SectionHeading>{t('heading')}</SectionHeading>
           <p className="text-lg text-left text-black">{t('intro')}</p>
@@ -181,7 +181,7 @@ export const LetsTalk = () => {
             onClick={() =>
               trackEvent({ name: 'email_click', props: { location: 'lets_talk_button', locale } })
             }
-            className="hidden lg:flex justify-center items-center w-20 h-20 rounded-full bg-accent border-4 border-bg_item transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+            className="hidden lg:flex justify-center items-center w-20 h-20 rounded-full bg-accent border-4 border-mist transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
           >
             <Icon id="icon-send" width={32} height={32} />
           </a>

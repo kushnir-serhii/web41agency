@@ -9,7 +9,6 @@ colors:
   slate-mute: "#656973"
   mist-grey: "#f9f9f9"
   frost-grey: "#ededed"
-  placeholder-grey: "#6b6b6b"
 typography:
   display:
     fontFamily: "Fixel Display, Arial, Helvetica, sans-serif"
@@ -156,23 +155,24 @@ Components are confident and tactile: 56px pill buttons in bold type that lift 2
 A gallery-white, ink-black palette with one acidic lime signal.
 
 ### Primary
-- **Signal Lime** (#dbff04): The only chromatic color. It marks attention and state: the hero circle, the speed circle in About, the halo behind an open or hovered service row, the active language pill, the open-menu close button, the chat launcher, and `button-accent` (the lime pill in the How It Works CTA card). Icon badges are black outline circles, not lime. Text on it is always ink black (lime fails as a text color on white).
+- **Signal Lime** (#dbff04): The only chromatic color. It marks attention and state: the hero circle, the ownership and speed circles in About, the halo behind an open or hovered service row, the active language pill, the open-menu close button, the chat launcher, and `button-accent` (the lime pill in the How It Works CTA card). Icon badges are black outline circles, not lime. Text on it is always ink black. Lime as a color only works on Ink Black (about 18:1): footer link hovers, the chat avatar initials. On white it is 1.15:1, so it is never text, an outline or a thin line on a light surface.
 
 ### Neutral
 - **Ink Black** (#000000): Headlines, primary buttons, the footer background, user chat bubbles and the default focus ring. Body text is ink black at 80% opacity rather than a separate grey.
 - **Paper White** (#ffffff): Page background, secondary-button fill, form inputs (inside grey panels), footer text.
 - **Graphite** (#333333): Header nav link text at rest; hovers to Ink Black.
-- **Slate Mute** (#656973): The faded words inside display headings (for example "Custom … that performs"). Passes 4.5:1 on white.
+- **Slate Mute** (#656973): The faded words inside display headings (for example "Custom … that performs"), and form placeholders. Passes 4.5:1 on white. Where muted words cross the hero circle they multiply into a dark olive (about 5.4:1 on lime), never plain grey on lime.
 - **Mist Grey** (#f9f9f9): The one surface tone. Cards, the Let's Talk panel, hovered or open accordion rows, bot chat bubbles.
 - **Frost Grey** (#ededed): The sticky header pill, used at 30% opacity behind a 100px backdrop blur.
-- **Placeholder Grey** (#6b6b6b): Form placeholder text only.
 
-Supporting alphas of Ink Black carry secondary text: 70–80% for body and meta copy, 60% for labels and inactive language options, 55% for the decorative step numbers, and 10% for hairline borders and chip outlines.
+Supporting alphas of Ink Black carry secondary text: 70–80% for body and meta copy, 60% for labels, inactive language options and legal section numbers, 55% for the decorative step numbers (large display size only), and 10% for hairline borders and chip outlines. Text never goes below 55%: 40% on white is 2.8:1 and fails AA.
+
+Code tokens: `accent`, `graphite`, `muted`, `mist`, `frost`; Ink Black and Paper White are Tailwind's `black` and `white`.
 
 ### Named Rules
-**The One Signal Rule.** Signal Lime is the only hue on the page and covers well under 10% of any viewport. It marks attention, state or the next action. Never use it as a section background, a card fill, a text color or decoration. The How It Works CTA card is Mist Grey and carries its lime only in the pill button; only one About stat circle is lime.
+**The One Signal Rule.** Signal Lime is the only hue on the page and covers well under 10% of any viewport. It marks attention, state or the next action. Never use it as a section background, a card fill, text on a light surface, or decoration (bullet dots, dividers). On inner pages lime goes on the action, not the ornament. The How It Works CTA card is Mist Grey and carries its lime only in the pill button; only two of the seven About fact circles are lime (ownership and speed), set on a diagonal.
 
-**The Opacity, Not Greys Rule.** Secondary text is Ink Black at reduced opacity (80 / 70 / 60%), not new grey hexes. Slate Mute exists only for the muted headline words.
+**The Opacity, Not Greys Rule.** Secondary text is Ink Black at reduced opacity (80 / 70 / 60%), not new grey hexes. Slate Mute exists only for the muted headline words and placeholders.
 
 ## Typography
 
@@ -242,10 +242,11 @@ Confident and tactile: heavy type in a big pill that physically responds.
 - **Shadow Strategy:** None (see the Flat-At-Rest Rule).
 - **Border:** None.
 - **Internal Padding:** 24px mobile, 32px desktop; 48px for the Let's Talk panel.
+- **Closing CTA card (dark):** Ink Black fill, white heading, 80% white body, a lime `button-accent` and a white ghost link, white focus ring. Case studies and legal pages end on one, so every inner page has a dark moment before the footer.
 - **Project card:** No container; an 8px-rounded cover image that zooms 5% over 500ms on hover, then label, title, two-line summary, chips and an underlined "Read case →" link whose underline drops on hover.
 
 ### Inputs / Fields
-- **Style:** White fill inside the grey Let's Talk panel, no border, 4px radius, 64px tall, 24px padding, 18px text, Placeholder Grey placeholders. Labels sit above at 16px weight 500; required marks are explicit.
+- **Style:** White fill inside the grey Let's Talk panel, no border, 4px radius, 64px tall, 24px padding, 18px text, Slate Mute placeholders. Labels sit above at 16px weight 500; required marks are explicit.
 - **Focus:** 2px Ink Black ring.
 - **Error:** 14px black helper text tied by `aria-describedby`; color is not the only signal.
 
@@ -256,7 +257,7 @@ Confident and tactile: heavy type in a big pill that physically responds.
 - **Footer:** Ink Black floor with an oversized white logo (up to 128px type), white nav links with the same dot pattern, and a white focus ring.
 
 ### Accordion Rows (signature)
-Services and FAQ are full-width rows rather than cards: square-cornered, split by 1px Ink Black 10% hairlines, never rounded. A 32px question or title at weight 400 and a plus icon that rotates 45° to a cross when open. The row tints to Mist Grey on hover or when open, and Services adds a 76px Signal Lime disc half-hidden off the left edge as the "open" signal. The body expands with a 300ms grid-row transition and is `inert` while closed.
+Services and FAQ are full-width rows rather than cards: square-cornered, split by 1px Ink Black 10% hairlines, never rounded. A 32px question or title at weight 400 and a plus icon that rotates 45° to a cross when open. The row tints to Mist Grey on hover or when open, and Services adds a 32px Signal Lime dot in the left gutter, fully visible, as the "open" signal. The body expands with a 300ms grid-row transition and is `inert` while closed.
 
 ### The Signal Circle (signature)
 A large Signal Lime disc (260px desktop, 150px mobile) behind the hero headline. It rises in over 1.1s on `cubic-bezier(0.22, 1, 0.36, 1)` and then drifts on a slow spring as the page scrolls (stiffness 22, damping 18, mass 2.5). Reduced motion keeps it static. It is the brand's one large gesture: one per page, at the top.
@@ -270,7 +271,7 @@ A 56px lime launcher fixed bottom-right with the chat float shadow. The panel is
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep Signal Lime (#dbff04) for state and attention: active, open, hovered row, primary signal, the hero circle, the one About speed stat. One lime moment per viewport is the norm.
+- **Do** keep Signal Lime (#dbff04) for state and attention: active, open, hovered row, primary signal, the hero circle, the two About lime facts. One lime moment per viewport is the norm.
 - **Do** set lime surfaces with Ink Black text and icons only.
 - **Do** build secondary text from Ink Black at 80 / 70 / 60% opacity.
 - **Do** use Fixel Display for everything, at 400, 500, 600 or 700.
@@ -281,7 +282,7 @@ A 56px lime launcher fixed bottom-right with the chat float shadow. The panel is
 
 ### Don't:
 - **Don't** introduce a second accent hue or tint lime into gradients or backgrounds.
-- **Don't** use Signal Lime as a text color or a full-section background.
+- **Don't** use Signal Lime as text on white or a full-section background (lime text on Ink Black is fine).
 - **Don't** add drop shadows to cards, sections or inputs at rest.
 - **Don't** add a second typeface or extra weights of Fixel Display.
 - **Don't** round content containers into pills, or square off buttons; round means action.

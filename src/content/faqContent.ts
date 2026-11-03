@@ -8,6 +8,7 @@ const faqBase = [
   { id: 'design-services' },
   { id: 'build-time' },
   { id: 'self-update' },
+  { id: 'seo-setup' },
   { id: 'post-launch-support' },
 ] as const;
 
@@ -48,10 +49,15 @@ const faqEn = {
     answer:
       'Yes. Webflow sites come with an editor you can use yourself, and for custom builds we can add an admin panel, so your team stays independent.',
   },
+  'seo-setup': {
+    question: 'Is SEO included?',
+    answer:
+      'Every site launches with technical SEO set up: page titles and descriptions, social sharing previews, a sitemap and robots.txt, structured data, clean URLs and fast mobile loading. Ongoing SEO work such as content writing, link building or ranking guarantees is not included and is quoted separately.',
+  },
   'post-launch-support': {
     question: 'Do you offer post-launch support?',
     answer:
-      'Yes. We offer ongoing support and maintenance covering updates, monitoring and new features as your product grows.',
+      'Yes. For 30 days after launch we fix, free of charge: bugs in what we built (broken layouts, forms, links or logic that does not match the agreed scope), display issues in current Chrome, Safari, Firefox and Edge on desktop, iOS and Android, and problems with the hosting or deployment we set up. Not included: new pages or features, design changes after approval, issues caused by edits from you or third parties, and outages or price changes of third-party services. After 30 days, support and new work are quoted separately.',
   },
 } satisfies Record<FaqId, FaqCopy>;
 
@@ -88,10 +94,15 @@ const faqCopy = {
       answer:
         'Так. Сайти на Webflow мають редактор, яким ви можете користуватися самі, а для індивідуальних проєктів ми можемо додати адмінпанель, щоб ваша команда залишалася незалежною.',
     },
+    'seo-setup': {
+      question: 'Чи входить SEO у вартість?',
+      answer:
+        'Кожен сайт запускається з налаштованим технічним SEO: заголовки й описи сторінок, прев’ю для соцмереж, sitemap і robots.txt, структуровані дані, зрозумілі URL та швидке завантаження на мобільних. Постійна робота з SEO, як-от написання контенту, нарощування посилань чи гарантії позицій, не входить і оцінюється окремо.',
+    },
     'post-launch-support': {
       question: 'Чи надаєте ви підтримку після запуску?',
       answer:
-        'Так. Ми пропонуємо постійну підтримку та обслуговування: оновлення, моніторинг і нові функції в міру росту вашого продукту.',
+        'Так. Протягом 30 днів після запуску ми безкоштовно виправляємо: помилки в тому, що ми створили (зламана верстка, форми, посилання чи логіка, що не відповідає погодженому обсягу), проблеми відображення в актуальних Chrome, Safari, Firefox і Edge на комп’ютері, iOS та Android, а також проблеми з хостингом чи деплоєм, які ми налаштували. Не входить: нові сторінки чи функції, зміни дизайну після погодження, проблеми через правки з вашого боку чи третіх осіб, збої або зміна цін сторонніх сервісів. Після 30 днів підтримка й нові роботи оцінюються окремо.',
     },
   },
 } satisfies Record<Locale, Record<FaqId, FaqCopy>>;

@@ -35,7 +35,7 @@ export const CaseBlocks: React.FC<CaseBlocksProps> = ({ blocks }) => {
                   >
                     <span
                       aria-hidden="true"
-                      className="mt-2.5 size-2.5 shrink-0 rounded-full bg-accent"
+                      className="mt-2.5 size-2.5 shrink-0 rounded-full bg-black"
                     />
                     <span>{bullet}</span>
                   </li>

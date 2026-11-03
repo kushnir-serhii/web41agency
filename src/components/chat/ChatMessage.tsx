@@ -15,7 +15,7 @@ const ROW: Record<ChatMessageVariant, string> = {
 };
 
 const BUBBLE: Record<ChatMessageVariant, string> = {
-  bot: 'bg-bg_item text-black',
+  bot: 'bg-mist text-black',
   error: 'border border-red-600 bg-white text-black',
   user: 'bg-black text-white whitespace-pre-wrap',
 };

@@ -10,10 +10,7 @@ export const LegalSummary: React.FC<LegalSummaryProps> = async ({ points }) => {
   const t = await getTranslations('Legal');
 
   return (
-    <section
-      aria-labelledby="legal-summary-title"
-      className="bg-bg_item rounded-lg p-6 lg:p-8 mb-10"
-    >
+    <section aria-labelledby="legal-summary-title" className="bg-mist rounded-lg p-6 lg:p-8 mb-10">
       <h2 id="legal-summary-title" className="text-2xl lg:text-3xl font-bold text-black mb-6">
         {t('atAGlance')}
       </h2>

@@ -86,8 +86,15 @@ const projectBase = {
     image: projectMarketing,
     tags: ['design', 'corporate-website', 'marketing'],
   },
-  'designer-portfolio': { image: projectPortfolioDesign, tags: ['design', 'portfolio', 'framer'] },
+  'designer-portfolio': { image: projectPortfolioDesign, tags: ['design', 'portfolio'] },
 } satisfies Record<CaseStudySlug, ProjectBase>;
+
+const aiTagIds: readonly ProjectTagId[] = ['openai', 'chat-ai', 'ai'];
+
+/* Projects with an AI feature, for the About facts. Counted from tags so it grows with the portfolio. */
+export const aiProjectCount = caseStudySlugs.filter((slug) =>
+  projectBase[slug].tags.some((tag) => aiTagIds.includes(tag)),
+).length;
 
 const portfolioSectionCopy = {
   en: { sectionTitle: 'Portfolio' },
@@ -173,7 +180,7 @@ const projectCopy = {
       title: 'Designer’s Portfolio Website',
       industry: 'Design',
       summary:
-        'A Framer portfolio where the work leads, and the designer adds new projects without a developer.',
+        'A no-code portfolio where the work leads, and the designer adds new projects without a developer.',
     },
   },
   uk: {
@@ -252,7 +259,7 @@ const projectCopy = {
       title: 'Сайт-портфоліо дизайнера',
       industry: 'Дизайн',
       summary:
-        'Портфоліо на Framer, де головне самі роботи, а дизайнер сам додає нові проєкти без розробника.',
+        'Портфоліо без коду, де головне самі роботи, а дизайнер сам додає нові проєкти без розробника.',
     },
   },
 } satisfies Record<Locale, Record<CaseStudySlug, ProjectCopy>>;

@@ -13,7 +13,7 @@ Key responsibilities:
 
 - Build and refactor pages in `src/app/(root)/**` and components in `src/components/**`, defaulting to server components and adding `'use client'` only where interactivity requires it (keep client props serializable and content modules out of the client bundle).
 - Keep one source of truth per fact: read services, pricing (`PRICING`), portfolio, FAQ, legal and CTA data from `src/content/*.ts` and `src/utils/site.ts` rather than hardcoding.
-- Style with existing `@theme` tokens in `src/app/globals.css` (`accent`, `bg_item`, `bg_header`, `muted_text`); do not add new colors. Use the `Icon` sprite and `Button` component where they fit.
+- Style with existing `@theme` tokens in `src/app/globals.css` (`accent`, `mist`, `frost`, `muted`); do not add new colors. Use the `Icon` sprite and `Button` component where they fit.
 - Maintain SEO: per-page `metadata` (remember Next merges `metadata` shallowly — repeat `openGraph` images/siteName), JSON-LD escaped with `.replace(/</g, '\\u003c')`, `sitemap.ts`, `robots.ts`, redirects in `next.config.ts`. Static routes must stay `○ (Static)` in the build output.
 - Accessibility: visible focus rings (including on black surfaces), ≥44px targets, ARIA for dialogs/logs/nav, `prefers-reduced-motion` respected, `print:` variants where specs ask.
 - Protect performance: lazy-load non-critical client widgets with `next/dynamic` and `ssr: false`, and don't regress LCP on `/`.

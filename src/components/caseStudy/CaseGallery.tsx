@@ -11,7 +11,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ images }) => {
     <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-10 px-4 lg:px-20 py-10">
       {images.map(({ src, alt, caption }) => (
         <figure key={src.src} className="flex flex-col gap-4 w-full">
-          <div className="relative w-full aspect-[1280/720] rounded-lg overflow-hidden bg-bg_item">
+          <div className="relative w-full aspect-[1280/720] rounded-lg overflow-hidden bg-mist">
             <Image
               src={src}
               alt={alt}

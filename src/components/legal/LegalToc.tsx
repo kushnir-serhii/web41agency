@@ -28,7 +28,7 @@ export const LegalToc: React.FC<LegalTocProps> = ({ items, variant, labels }) =>
 
   return (
     <nav aria-label={labels.tableOfContents} className="mb-8 lg:hidden print:hidden">
-      <details ref={detailsRef} className="group rounded-lg bg-bg_item">
+      <details ref={detailsRef} className="group rounded-lg bg-mist">
         <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-4 py-3 font-bold text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black [&::-webkit-details-marker]:hidden">
           {labels.onThisPage}
           <svg

@@ -9,6 +9,8 @@ interface PortfolioGridProps {
 }
 
 const cardImage = 'aspect-[628/500]';
+/* The first row of each column is above the fold. */
+const EAGER_PER_COLUMN = 1;
 
 export const PortfolioGrid: React.FC<PortfolioGridProps> = async ({ projects }) => {
   const t = await getTranslations('PortfolioPreview');
@@ -20,24 +22,26 @@ export const PortfolioGrid: React.FC<PortfolioGridProps> = async ({ projects }) 
       {/* Keeps the outline H1 → H2 → H3 (card titles) without repeating the hero visually. */}
       <h2 className="sr-only">{t('title')}</h2>
       <div className="flex flex-col gap-16 lg:gap-20">
-        {leftColumn.map((project) => (
+        {leftColumn.map((project, index) => (
           <ProjectCard
             key={project.title}
             {...project}
             imageClassName={cardImage}
             readLabel={t('readCaseStudy')}
+            eager={index < EAGER_PER_COLUMN}
           />
         ))}
       </div>
 
       {/* The right column sits lower, as in the design */}
       <div className="flex flex-col gap-16 lg:gap-20 lg:mt-[150px]">
-        {rightColumn.map((project) => (
+        {rightColumn.map((project, index) => (
           <ProjectCard
             key={project.title}
             {...project}
             imageClassName={cardImage}
             readLabel={t('readCaseStudy')}
+            eager={index < EAGER_PER_COLUMN}
           />
         ))}
       </div>

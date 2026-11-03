@@ -46,7 +46,7 @@ export const Services: React.FC<ServicesProps> = ({ content, featuresContent, hi
           {features.map(({ title, description, iconPath }) => (
             <li
               key={title}
-              className="grid grid-cols-[auto_1fr] md:flex md:flex-col items-start gap-x-3 gap-y-0.5 md:gap-4 border-b border-black/10 py-3 last:border-b-0 md:rounded-lg md:border-0 md:bg-bg_item md:p-6"
+              className="grid grid-cols-[auto_1fr] md:flex md:flex-col items-start gap-x-3 gap-y-0.5 md:gap-4 border-b border-black/10 py-3 last:border-b-0 md:rounded-lg md:border-0 md:bg-mist md:p-6"
             >
               <IconBadge size="sm" className="row-span-2">
                 <svg

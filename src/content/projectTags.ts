@@ -18,7 +18,6 @@ export const projectTagIds = [
   'low-code',
   'corporate-website',
   'marketing',
-  'framer',
 ] as const;
 
 export type ProjectTagId = (typeof projectTagIds)[number];
@@ -41,7 +40,6 @@ const projectTagLabels = {
     'low-code': 'Low-Code',
     'corporate-website': 'Corporate Website',
     marketing: 'Marketing',
-    framer: 'Framer',
   },
   uk: {
     design: 'Дизайн',
@@ -60,7 +58,6 @@ const projectTagLabels = {
     'low-code': 'Low-Code',
     'corporate-website': 'Корпоративний сайт',
     marketing: 'Маркетинг',
-    framer: 'Framer',
   },
 } satisfies Record<Locale, Record<ProjectTagId, string>>;
 

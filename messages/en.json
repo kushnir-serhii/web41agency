@@ -91,10 +91,13 @@
     "projectsLabel": "projects built",
     "speedValue": "3–7",
     "speedLabel": "days to launch a landing page",
-    "industriesValue": "10+",
-    "industriesLabel": "industries expertise",
+    "aiLabel": "AI products shipped",
     "responseValue": "24h",
-    "responseLabel": "reply to every request"
+    "responseLabel": "reply, 7 days a week",
+    "supportValue": "30 days",
+    "supportLabel": "of free fixes after launch",
+    "seoValue": "SEO",
+    "seoLabel": "setup included in every site"
   },
   "PortfolioPreview": {
     "title": "Portfolio",
@@ -198,7 +201,7 @@
     "error": "Sorry, something went wrong. Try again or email us at",
     "retry": "Try again",
     "limit": "You've hit the message limit. Email us at",
-    "longChat": "This chat is getting long. Start a new one, or get a free quote and we'll answer in detail.",
+    "longChat": "This chat is getting long. Start a new one, or request a quote and we'll answer in detail.",
     "startOver": "Start over",
     "handoffLine": "Want an exact quote?",
     "disclaimer": "AI can make mistakes. Prefer a human?",

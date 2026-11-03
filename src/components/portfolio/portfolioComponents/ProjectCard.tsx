@@ -7,6 +7,8 @@ interface ProjectCardProps extends IProject {
   /* Sizing for the cover — the slider uses fixed heights, the grid an aspect ratio. */
   imageClassName?: string;
   readLabel: string;
+  /* Cards visible on first paint load eagerly so the LCP image isn't lazy. */
+  eager?: boolean;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -19,6 +21,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   metric,
   imageClassName = 'h-[240px] lg:h-[371px]',
   readLabel,
+  eager = false,
 }) => {
   return (
     <Link
@@ -30,7 +33,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           src={image}
           alt=""
           fill
-          sizes="(min-width: 1024px) 416px, (min-width: 768px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 720px, (min-width: 768px) 60vw, 100vw"
+          quality={90}
+          loading={eager ? 'eager' : 'lazy'}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
         {metric && (

@@ -36,7 +36,7 @@ export const HeroAnimation = async () => {
   // Decorative project montage: hidden from assistive tech, the hero copy carries the meaning.
   return (
     <MarqueeRegion
-      className="bg-bg_hero w-full"
+      className="bg-black w-full"
       pauseLabel={t('pause')}
       playLabel={t('play')}
       toggleClassName="max-w-none lg:right-[max(1.25rem,calc((100%-1440px)/2+5rem))]"
