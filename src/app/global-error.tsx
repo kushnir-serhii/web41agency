@@ -21,7 +21,7 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
       <body className={fixelDisplay.className}>
         <main role="alert" className="container flex-col items-center gap-6 py-24 text-center">
           <h1 className="text-4xl font-bold md:text-6xl">{heading}</h1>
-          <p className="text-muted_text max-w-xl text-lg">{text}</p>
+          <p className="text-muted max-w-xl text-lg">{text}</p>
           <div className="flex flex-col sm:flex-row items-center gap-2">
             <button type="button" onClick={reset} className={`${buttonClass} bg-black text-white`}>
               {retry}

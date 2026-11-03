@@ -12,6 +12,7 @@ import { Logo } from '@/components/ui/Logo';
 import { CONSULTATION_HREF } from '@/content/ctaLinks';
 import { navBarArray } from '@/content/navBarArray';
 import { Link, usePathname } from '@/i18n/navigation';
+import { isNavActive } from '@/utils/isNavActive';
 
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +62,7 @@ export const Header: React.FC = () => {
 
   return (
     <div ref={rootRef} className="relative w-full px-2 lg:px-20 max-w-[1440px] mx-auto">
-      <div className="flex justify-between items-center max-w-[1280px] w-full mx-auto pl-4 pr-2 py-2 rounded-[100px] bg-bg_header/30 backdrop-blur-[100px]">
+      <div className="flex justify-between items-center max-w-[1280px] w-full mx-auto pl-4 pr-2 py-2 rounded-[100px] bg-frost/30 backdrop-blur-[100px]">
         <Logo />
 
         {/* Desktop nav */}
@@ -105,7 +106,11 @@ export const Header: React.FC = () => {
             <ul className="flex flex-col py-4">
               {navBarArray.map(({ href, labelKey }) => (
                 <li key={href} onClick={() => setIsOpen(false)}>
-                  <NavBarItem link={href} text={tNav(labelKey)} isActive={pathname === href} />
+                  <NavBarItem
+                    link={href}
+                    text={tNav(labelKey)}
+                    isActive={isNavActive(pathname, href)}
+                  />
                 </li>
               ))}
               <li className="px-4 pt-2">

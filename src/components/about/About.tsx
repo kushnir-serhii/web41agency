@@ -2,50 +2,35 @@ import { getTranslations } from 'next-intl/server';
 
 import { caseStudySlugs } from '@/content/caseStudyTitles';
 import { CONSULTATION_HREF } from '@/content/ctaLinks';
+import { aiProjectCount } from '@/content/portfolioContent';
 
 import { Button } from '../ui/Button';
 import { Magnetic } from '../ui/Magnetic';
 import { SectionHeading } from '../ui/SectionHeading';
 
 interface IFact {
-  id: 'projects' | 'ownership' | 'speed' | 'industries' | 'response';
+  id: 'ownership' | 'ai' | 'projects' | 'speed' | 'response' | 'support' | 'seo';
   accent: boolean;
   /* Desktop position inside the facts box, as a percentage of its
-     width/height — a staggered cluster around the accent circle. */
+     width/height — a 2-3-2 honeycomb with the two lime circles on a diagonal. */
   position: string;
-  /* Mobile grid placement (4-col grid below sm → 2+2+1 centred; 6-col from sm → 3+2 centred). */
+  /* Mobile grid placement (4-col grid below sm → 2+2+2+1; 6-col from sm → 3+3+1), last one centred. */
   mobile?: string;
 }
 
+/* Array order is the mobile reading order: lime circles land on a diagonal in the 2-col grid. */
 const facts: IFact[] = [
+  { id: 'ownership', accent: true, position: 'lg:left-[18%] lg:top-0' },
+  { id: 'ai', accent: false, position: 'lg:left-[36.5%] lg:top-[34%]' },
+  { id: 'projects', accent: false, position: 'lg:left-[55%] lg:top-[2%]' },
+  { id: 'speed', accent: true, position: 'lg:left-[55%] lg:top-[68%]' },
+  { id: 'response', accent: false, position: 'lg:left-0 lg:top-[36%]' },
+  { id: 'support', accent: false, position: 'lg:left-[73%] lg:top-[32%]' },
   {
-    id: 'projects',
+    id: 'seo',
     accent: false,
-    position: 'lg:left-[62%] lg:top-0',
-  },
-  {
-    id: 'ownership',
-    accent: true,
-    position: 'lg:left-[8%] lg:top-[10.2%]',
-  },
-  {
-    id: 'speed',
-    accent: true,
-    // position: 'lg:left-[35%] lg:top-[36.7%]',
-    position: 'lg:left-[80%] lg:top-[53.3%]',
-    mobile: 'sm:col-start-2 lg:col-start-auto',
-  },
-  // {
-  //   id: 'industries',
-  //   accent: false,
-  //   position: 'lg:left-[70%] lg:top-[63.3%]',
-  //   mobile: 'sm:col-start-2 lg:col-start-auto',
-  // },
-  {
-    id: 'response',
-    accent: false,
-    position: 'lg:left-[12%] lg:top-[67.3%]',
-    mobile: 'col-start-2 sm:col-start-auto',
+    position: 'lg:left-[18%] lg:top-[70%]',
+    mobile: 'col-start-2 sm:col-start-3 lg:col-start-auto',
   },
 ];
 
@@ -58,18 +43,22 @@ export const About = async ({ headingLevel = 'h2' }: AboutProps) => {
   const t = await getTranslations('About');
   const tCta = await getTranslations('Cta');
   const values = {
-    projects: String(caseStudySlugs.length),
     ownership: t('ownershipValue'),
+    ai: String(aiProjectCount),
+    projects: String(caseStudySlugs.length),
     speed: t('speedValue'),
-    industries: t('industriesValue'),
     response: t('responseValue'),
+    support: t('supportValue'),
+    seo: t('seoValue'),
   };
   const labels = {
-    projects: t('projectsLabel'),
     ownership: t('ownershipLabel'),
+    ai: t('aiLabel'),
+    projects: t('projectsLabel'),
     speed: t('speedLabel'),
-    industries: t('industriesLabel'),
     response: t('responseLabel'),
+    support: t('supportLabel'),
+    seo: t('seoLabel'),
   };
 
   return (
@@ -88,13 +77,13 @@ export const About = async ({ headingLevel = 'h2' }: AboutProps) => {
         {facts.map(({ id, accent, position, mobile = '' }) => (
           <Magnetic
             key={id}
-            className={`col-span-2 lg:absolute flex flex-col justify-center items-center px-3 lg:px-3 w-full lg:w-[30%] aspect-square rounded-full
-              ${position} ${mobile} ${accent ? 'bg-accent' : 'bg-bg_item ring-1 ring-inset ring-black/10'}`}
+            className={`col-span-2 lg:absolute flex flex-col justify-center items-center px-3 lg:px-3 w-full lg:w-[27%] aspect-square rounded-full
+              ${position} ${mobile} ${accent ? 'bg-accent' : 'bg-mist ring-1 ring-inset ring-black/10'}`}
           >
             <p className="w-full text-2xl md:text-3xl lg:text-[32px] font-bold text-center text-black">
               {values[id]}
             </p>
-            <p className="w-full text-sm lg:text-lg leading-tight text-center text-balance text-black">
+            <p className="w-full text-sm lg:text-base leading-tight text-center text-balance text-black">
               {labels[id]}
             </p>
           </Magnetic>

@@ -47,7 +47,7 @@ export const ChatComposer = forwardRef<HTMLTextAreaElement, ChatComposerProps>(
     return (
       <div className="p-3">
         <div
-          className={`flex items-end gap-2 bg-bg_item focus-within:ring-2 focus-within:ring-black py-1 pr-1 pl-4 ${isMulti ? 'rounded-3xl' : 'rounded-full'}`}
+          className={`flex items-end gap-2 bg-mist focus-within:ring-2 focus-within:ring-black py-1 pr-1 pl-4 ${isMulti ? 'rounded-3xl' : 'rounded-full'}`}
         >
           <label htmlFor="chat-message" className="sr-only">
             {t('composerLabel')}
@@ -75,7 +75,7 @@ export const ChatComposer = forwardRef<HTMLTextAreaElement, ChatComposerProps>(
           />
         </div>
         {value.length >= CHAT_LIMITS.counterFrom && (
-          <p className="mt-1 pr-2 text-right text-xs text-muted_text">
+          <p className="mt-1 pr-2 text-right text-xs text-muted">
             {value.length} / {CHAT_LIMITS.userMaxChars}
           </p>
         )}

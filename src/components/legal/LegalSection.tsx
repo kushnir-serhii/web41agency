@@ -19,7 +19,7 @@ export const LegalSection: React.FC<LegalSectionProps> = async ({ section, id, n
       className="scroll-mt-32 flex flex-col gap-4 border-t border-black/10 py-10 first:border-t-0 first:pt-0"
     >
       <div className="group flex items-baseline gap-4">
-        <span className="text-black/40 tabular-nums text-lg lg:text-xl font-semibold">
+        <span className="text-black/60 tabular-nums text-lg lg:text-xl font-semibold">
           {number}
         </span>
         <h2 id={headingId} className="text-2xl lg:text-3xl font-semibold text-black">

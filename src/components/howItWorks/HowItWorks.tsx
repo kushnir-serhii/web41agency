@@ -32,7 +32,7 @@ export const HowItWorks = async ({ content }: HowItWorksProps) => {
           className="grid gap-6 md:col-span-2 md:row-span-2 md:col-start-1 md:row-start-1 md:grid-cols-subgrid md:grid-rows-subgrid"
         />
         {cta && (
-          <div className="flex flex-col justify-between items-start gap-8 lg:min-h-[351px] p-6 lg:p-8 rounded-lg bg-bg_item md:col-start-2 md:row-start-2">
+          <div className="flex flex-col justify-between items-start gap-8 lg:min-h-[351px] p-6 lg:p-8 rounded-lg bg-mist md:col-start-2 md:row-start-2">
             <h3 className="text-2xl lg:text-[32px] font-bold text-left text-black">{cta.title}</h3>
             <Button text={tCta('freeQuote')} href={cta.href} btnType="accent" />
           </div>

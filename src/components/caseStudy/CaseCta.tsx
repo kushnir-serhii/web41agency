@@ -14,19 +14,24 @@ export const CaseCta = async ({ nextCase }: CaseCtaProps) => {
 
   return (
     <section className="w-full max-w-[1440px] mx-auto px-4 lg:px-20 py-10">
-      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 p-6 lg:p-12 rounded-lg bg-bg_item">
+      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 p-6 lg:p-12 rounded-lg bg-black">
         <div className="flex flex-col items-start gap-4">
-          <h2 className="text-3xl lg:text-5xl font-bold text-left text-black">{t('ctaTitle')}</h2>
-          <p className="text-lg text-black lg:max-w-[520px]">{t('ctaText')}</p>
+          <h2 className="text-3xl lg:text-5xl font-bold text-left text-white">{t('ctaTitle')}</h2>
+          <p className="text-lg text-white/80 lg:max-w-[520px]">{t('ctaText')}</p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-          <Button text={tCta('freeQuote')} href="/contacts" className="w-full sm:w-auto" />
+          <Button
+            text={tCta('freeQuote')}
+            btnType="accent"
+            href="/contacts"
+            className="w-full sm:w-auto focus-visible:outline-white"
+          />
           <Button
             text={t('allProjects')}
             btnType="ghost"
             href="/portfolio"
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto text-white focus-visible:outline-white"
           />
         </div>
       </div>

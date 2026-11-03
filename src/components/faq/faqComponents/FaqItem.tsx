@@ -17,8 +17,8 @@ export const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, onTo
   return (
     <li
       className={cn(
-        'w-full overflow-hidden border-b border-black/10 first:border-t transition-colors hover:bg-bg_item',
-        isOpen && 'bg-bg_item',
+        'w-full overflow-hidden border-b border-black/10 first:border-t transition-colors hover:bg-mist',
+        isOpen && 'bg-mist',
       )}
     >
       <button

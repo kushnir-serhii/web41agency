@@ -16,7 +16,7 @@ export const ChatLongNote: React.FC<ChatLongNoteProps> = ({ onStartOver, onNavig
   const tCta = useTranslations('Cta');
   const handleClick = useHandoffNavigate(onNavigate, 'long_chat');
   return (
-    <div className="flex flex-col gap-3 bg-bg_item px-4 py-3">
+    <div className="flex flex-col gap-3 bg-mist px-4 py-3">
       <p className="text-base">{t('longChat')}</p>
       <div className="flex flex-wrap gap-2">
         <Button

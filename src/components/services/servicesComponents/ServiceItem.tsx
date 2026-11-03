@@ -27,8 +27,8 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
   return (
     <li
       className={cn(
-        'group relative w-full overflow-hidden border-b border-black/10 first:border-t transition-colors hover:bg-bg_item',
-        isOpen && 'bg-bg_item',
+        'group relative w-full overflow-hidden border-b border-black/10 first:border-t transition-colors hover:bg-mist',
+        isOpen && 'bg-mist',
       )}
     >
       <button
@@ -41,7 +41,7 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({
         <span
           aria-hidden
           className={cn(
-            'pointer-events-none hidden lg:block absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[76px] rounded-full bg-accent transition-opacity duration-300 lg:group-hover:opacity-100',
+            'pointer-events-none hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 size-8 rounded-full bg-accent transition-opacity duration-300 lg:group-hover:opacity-100',
             isOpen ? 'opacity-100' : 'opacity-0',
           )}
         />

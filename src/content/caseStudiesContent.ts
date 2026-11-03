@@ -247,7 +247,7 @@ const caseStudyBase = {
   'designer-portfolio': {
     cover: projectPortfolioDesign,
     results: [], // TODO(owner): real numbers
-    stack: ['Framer'],
+    stack: [], // TODO(owner): review — add the no-code tool used
   },
 } satisfies Record<CaseStudySlug, CaseStudyBase>;
 
@@ -689,12 +689,12 @@ const caseStudiesEn = {
   },
   'designer-portfolio': {
     summary:
-      'A portfolio website built in Framer that puts a designer’s work front and centre and lets them add new projects without a developer.',
-    coverAlt: 'Designer’s portfolio website built in Framer',
+      'A no-code portfolio website that puts a designer’s work front and centre and lets them add new projects without a developer.',
+    coverAlt: 'Designer’s portfolio website built on a no-code site builder',
     facts: [
-      { label: 'Role', value: 'Design & Framer build' },
+      { label: 'Role', value: 'Design & no-code build' },
       { label: 'Deliverable', value: 'Portfolio website' },
-      { label: 'Platform', value: 'Framer' },
+      { label: 'Platform', value: 'No-code builder' },
     ],
     blocks: [
       {
@@ -706,11 +706,11 @@ const caseStudiesEn = {
       {
         heading: 'What we built',
         paragraphs: [
-          'We designed the site and built it in Framer, so the work is presented with care and the owner can add new projects on their own.',
+          'We designed the site and built it on a no-code site builder, so the work is presented with care and the owner can add new projects on their own.',
         ],
         bullets: [
           'Layout that lets the work carry the page',
-          'Built in Framer for easy, code-free updates',
+          'Built no-code for easy updates without a developer',
           'Smooth interactions that do not get in the way of the content',
         ],
       },
@@ -1161,12 +1161,12 @@ const caseStudiesUk = {
   },
   'designer-portfolio': {
     summary:
-      'Сайт-портфоліо на Framer, який ставить роботи дизайнера в центр уваги та дозволяє додавати нові проєкти без розробника.',
-    coverAlt: 'Сайт-портфоліо дизайнера, створений на Framer',
+      'Сайт-портфоліо на no-code конструкторі, який ставить роботи дизайнера в центр уваги та дозволяє додавати нові проєкти без розробника.',
+    coverAlt: 'Сайт-портфоліо дизайнера, створений на no-code конструкторі',
     facts: [
-      { label: 'Роль', value: 'Дизайн і збірка на Framer' },
+      { label: 'Роль', value: 'Дизайн і no-code збірка' },
       { label: 'Результат', value: 'Сайт-портфоліо' },
-      { label: 'Платформа', value: 'Framer' },
+      { label: 'Платформа', value: 'No-code конструктор' },
     ],
     blocks: [
       {
@@ -1178,11 +1178,11 @@ const caseStudiesUk = {
       {
         heading: 'Що ми створили',
         paragraphs: [
-          'Ми спроєктували сайт і зібрали його на Framer, тож роботи подано дбайливо, а власник може сам додавати нові проєкти.',
+          'Ми спроєктували сайт і зібрали його на no-code конструкторі, тож роботи подано дбайливо, а власник може сам додавати нові проєкти.',
         ],
         bullets: [
           'Макет, у якому сторінку тримають самі роботи',
-          'Зібрано на Framer для простих оновлень без коду',
+          'Зібрано без коду для простих оновлень без розробника',
           'Плавні взаємодії, що не заважають контенту',
         ],
       },

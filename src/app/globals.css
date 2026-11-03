@@ -1,31 +1,20 @@
 @import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #000000;
-}
-
-/* Old token names -> DESIGN.md names:
-   accent = signal-lime, light_text = paper-white, dark_text = graphite,
-   bg_dark / bg_hero = ink-black, bg_item = mist-grey, bg_header = frost-grey,
-   muted_text = slate-mute, placeholder = placeholder-grey. */
+/* Ink-black and paper-white are Tailwind's own black / white.
+   Token -> DESIGN.md name: accent = signal-lime, graphite = graphite,
+   mist = mist-grey, frost = frost-grey, muted = slate-mute. */
 @theme inline {
   --color-accent: #dbff04;
-  --color-light_text: #ffffff;
-  --color-dark_text: #333333;
-  --color-bg_dark: #000000;
-  --color-bg_hero: #000000;
-  --color-dark_text-hover: #000000;
-  --color-bg_item: #f9f9f9;
-  --color-bg_header: #ededed;
-  --color-muted_text: #656973;
-  --color-placeholder: #6b6b6b;
+  --color-graphite: #333333;
+  --color-mist: #f9f9f9;
+  --color-frost: #ededed;
+  --color-muted: #656973;
   --shadow-chat: 0 24px 64px -12px rgb(0 0 0 / 0.25);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-white);
+  color: var(--color-black);
 }
 
 /* Display-size headings carry single long words (uk "конфіденційності", en "Development")
@@ -50,10 +39,10 @@ body {
 .gradient-techstack_slider {
   background: linear-gradient(
     90deg,
-    var(--color-light_text) 3.76%,
+    var(--color-white) 3.76%,
     transparent 8.67%,
     transparent 90.53%,
-    var(--color-light_text) 96.75%
+    var(--color-white) 96.75%
   );
 }
 
@@ -132,22 +121,22 @@ body {
    offset inside clipped containers) can still adjust it. */
 @layer base {
   :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-    outline: 2px solid var(--color-bg_dark);
+    outline: 2px solid var(--color-black);
     outline-offset: 2px;
   }
 
   footer :focus-visible {
-    outline-color: var(--color-light_text);
+    outline-color: var(--color-white);
   }
 
   ::selection {
     background: var(--color-accent);
-    color: var(--color-bg_dark);
+    color: var(--color-black);
   }
 
   input,
   textarea {
-    caret-color: var(--color-bg_dark);
+    caret-color: var(--color-black);
   }
 }
 

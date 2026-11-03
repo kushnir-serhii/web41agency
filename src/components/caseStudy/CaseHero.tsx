@@ -68,7 +68,7 @@ export const CaseHero = async ({
         </div>
       </div>
 
-      <div className="relative w-full aspect-[1280/720] rounded-lg overflow-hidden bg-bg_item">
+      <div className="relative w-full aspect-[1280/720] rounded-lg overflow-hidden bg-mist">
         <Image
           src={cover.src}
           alt={cover.alt}

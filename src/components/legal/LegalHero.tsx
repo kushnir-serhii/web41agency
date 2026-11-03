@@ -64,7 +64,7 @@ export const LegalHero: React.FC<LegalHeroProps> = async ({
         {doc.prevailingNote && (
           <p
             role="note"
-            className="rounded-lg bg-bg_item px-4 py-3 text-base lg:text-lg leading-relaxed text-black"
+            className="rounded-lg bg-mist px-4 py-3 text-base lg:text-lg leading-relaxed text-black"
           >
             {doc.prevailingNote}
           </p>

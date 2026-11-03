@@ -6,6 +6,8 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig: NextConfig = {
   /* Playwright points this at .next-e2e so e2e runs never clobber a developer's dev server output. */
   distDir: process.env.NEXT_DIST_DIR || '.next',
+  /* Next 16 only serves whitelisted qualities: 75 is the default, 90 is used by portfolio cards. */
+  images: { qualities: [75, 90] },
   redirects: async () => [
     /* The old placeholder case showed the same project, now published as a full case study. */
     {
